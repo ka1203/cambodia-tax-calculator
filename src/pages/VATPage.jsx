@@ -41,127 +41,241 @@ export default function VATPage({ setPage }) {
     });
   }
 
-  const S = {
-    page: {
-      minHeight: "100vh",
-      background: "#f5f7fb",
-      padding: "32px 16px",
-      fontFamily: "Arial, sans-serif",
-    },
+ const S = {
+  page: {
+    minHeight: "100vh",
+    background: "#F8FAFC",
+    padding: "40px 20px",
+    fontFamily: "'Inter', sans-serif",
+  },
 
-    wrap: {
-      maxWidth: 900,
-      margin: "0 auto",
-    },
+  wrap: {
+    maxWidth: 1100,
+    margin: "0 auto",
+  },
 
-    header: {
-      background: "#0B1F4E",
-      color: "white",
-      borderRadius: 12,
-      padding: "24px 30px",
-      marginBottom: 20,
-    },
+  header: {
+    background:
+      "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "white",
+    borderRadius: 28,
+    padding: "36px",
+    marginBottom: 28,
+    boxShadow: "0 20px 40px rgba(37,99,235,.18)",
+  },
 
-    card: {
-      background: "white",
-      border: "1px solid #e5e7eb",
-      borderRadius: 12,
-      padding: 24,
-      marginBottom: 20,
-    },
+  h1: {
+    fontSize: "32px",
+    fontWeight: 800,
+    marginBottom: 10,
+  },
 
-    label: {
-      display: "block",
-      marginBottom: 6,
-      color: "#6b7280",
-      fontSize: 13,
-    },
+  hSub: {
+    fontSize: 15,
+    opacity: 0.9,
+  },
 
-    input: {
-      width: "100%",
-      padding: "10px 12px",
-      border: "1px solid #d1d5db",
-      borderRadius: 8,
-      fontSize: 14,
-      marginBottom: 16,
-    },
+  card: {
+    background: "#FFFFFF",
+    borderRadius: 24,
+    padding: 28,
+    marginBottom: 24,
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 4px 20px rgba(15,23,42,.05)",
+  },
 
-    btn: {
-      width: "100%",
-      padding: 12,
-      border: "none",
-      borderRadius: 10,
-      background: "#0B1F4E",
-      color: "white",
-      fontWeight: 700,
-      cursor: "pointer",
-    },
+  cardTitle: {
+    fontSize: 13,
+    fontWeight: 700,
+    color: "#2563EB",
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+    marginBottom: 20,
+  },
 
-    tabRow: {
-      display: "flex",
-      gap: 10,
-      marginBottom: 20,
-    },
+  tabRow: {
+    display: "flex",
+    gap: 12,
+    flexWrap: "wrap",
+    marginBottom: 24,
+  },
 
-    tab: {
-      padding: "8px 18px",
-      borderRadius: 20,
-      border: "1px solid #d1d5db",
-      background: "white",
-      cursor: "pointer",
-    },
+  tab: {
+    padding: "12px 22px",
+    borderRadius: 999,
+    border: "1px solid #CBD5E1",
+    background: "#FFFFFF",
+    color: "#64748B",
+    fontWeight: 600,
+    cursor: "pointer",
+  },
 
-    tabOn: {
-      padding: "8px 18px",
-      borderRadius: 20,
-      border: "1px solid #0B1F4E",
-      background: "#0B1F4E",
-      color: "white",
-      cursor: "pointer",
-    },
+  tabOn: {
+    padding: "12px 22px",
+    borderRadius: 999,
+    border: "none",
+    background: "#2563EB",
+    color: "#FFFFFF",
+    fontWeight: 700,
+    cursor: "pointer",
+    boxShadow: "0 6px 18px rgba(37,99,235,.25)",
+  },
 
-    metricGrid: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3,1fr)",
-      gap: 12,
-      marginBottom: 20,
-    },
+  row2: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
+    gap: 18,
+  },
 
-    metric: {
-      background: "#f9fafb",
-      border: "1px solid #e5e7eb",
-      borderRadius: 10,
-      padding: 16,
-      textAlign: "center",
-    },
+  field: {
+    marginBottom: 18,
+  },
 
-    barTrack: {
-      height: 14,
-      background: "#e5e7eb",
-      borderRadius: 7,
-      overflow: "hidden",
-      marginBottom: 8,
-    },
+  label: {
+    display: "block",
+    fontSize: 14,
+    fontWeight: 600,
+    color: "#334155",
+    marginBottom: 8,
+  },
 
-    note: {
-      background: "#eff6ff",
-      borderLeft: "4px solid #0B1F4E",
-      padding: "12px 16px",
-      borderRadius: 6,
-      marginTop: 10,
-      color: "#374151",
-      fontSize: 13,
-    },
+  input: {
+    width: "100%",
+    padding: "14px 16px",
+    borderRadius: 14,
+    border: "1px solid #CBD5E1",
+    background: "#FFFFFF",
+    fontSize: 15,
+    outline: "none",
+  },
 
-    row: {
-      display: "flex",
-      justifyContent: "space-between",
-      padding: "10px 0",
-      borderBottom: "1px solid #f3f4f6",
-    },
-  };
+  select: {
+    width: "100%",
+    padding: "14px 16px",
+    borderRadius: 14,
+    border: "1px solid #CBD5E1",
+    background: "#FFFFFF",
+    fontSize: 15,
+  },
 
-  return (
+  btn: {
+    width: "100%",
+    padding: "16px",
+    borderRadius: 16,
+    border: "none",
+    background:
+      "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "white",
+    fontSize: 16,
+    fontWeight: 700,
+    cursor: "pointer",
+    marginBottom: 28,
+    boxShadow: "0 10px 25px rgba(37,99,235,.2)",
+  },
+
+  note: {
+    background: "#EFF6FF",
+    border: "1px solid #BFDBFE",
+    borderRadius: 14,
+    padding: "16px",
+    color: "#1E40AF",
+    marginTop: 14,
+    lineHeight: 1.7,
+  },
+
+  metricGrid: {
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit,minmax(220px,1fr))",
+    gap: 18,
+    marginBottom: 24,
+  },
+
+  metric: {
+    background: "#FFFFFF",
+    borderRadius: 20,
+    padding: 24,
+    textAlign: "center",
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 4px 15px rgba(0,0,0,.04)",
+  },
+
+  mLabel: {
+    fontSize: 13,
+    color: "#64748B",
+    marginBottom: 8,
+  },
+
+  barTrack: {
+    height: 16,
+    background: "#E2E8F0",
+    borderRadius: 999,
+    overflow: "hidden",
+    display: "flex",
+    marginBottom: 10,
+  },
+
+  barLabels: {
+    display: "flex",
+    justifyContent: "space-between",
+    fontSize: 13,
+    color: "#64748B",
+  },
+
+  tbl: {
+    width: "100%",
+    borderCollapse: "collapse",
+    overflow: "hidden",
+    borderRadius: 14,
+  },
+
+  th: {
+    background: "#EFF6FF",
+    color: "#1E40AF",
+    padding: "14px",
+    textAlign: "left",
+    fontWeight: 700,
+    borderBottom: "1px solid #DBEAFE",
+  },
+
+  td: {
+    padding: "14px",
+    borderBottom: "1px solid #F1F5F9",
+  },
+
+  tdActive: {
+    padding: "14px",
+    background: "#DBEAFE",
+    color: "#1D4ED8",
+    fontWeight: 700,
+    borderBottom: "1px solid #BFDBFE",
+  },
+
+  dedRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "14px 0",
+    borderBottom: "1px solid #F1F5F9",
+  },
+
+  dedRowTotal: {
+    display: "flex",
+    justifyContent: "space-between",
+    background: "#EFF6FF",
+    padding: "16px",
+    borderRadius: 14,
+    marginTop: 10,
+    fontWeight: 700,
+  },
+
+  dedVal: {
+    color: "#2563EB",
+    fontWeight: 700,
+  },
+};
+  
+
+return (
     <div style={S.page}>
 
       <div style={S.wrap}>

@@ -3,9 +3,9 @@ import { useState } from "react";
 import HomePage from "./pages/HomePage";
 import SalaryTaxPage from "./pages/SalaryTaxPage";
 import VATPage from "./pages/VATPage";
-import PrepaymentTaxPage from "./pages/PrepaymentTaxPage";
+
 import OtherTaxPage from "./pages/OtherTaxPage";
-import IndirectTaxPage from "./pages/IndirectTaxPage";
+
 import CambodiaTaxCalc from "./pages/tax calculator";
 
 function App() {
@@ -31,16 +31,8 @@ function App() {
       )}
 
       
-      {page === "prepayment" && (
-        <PrepaymentTaxPage setPage={setPage} />
-      )}
-
       {page === "OtherTaxpage" && (
         <OtherTaxPage setPage={setPage} />
-      )}
-
-      {page === "indirect" && (
-        <IndirectTaxPage setPage={setPage} />
       )}
 
     </div>

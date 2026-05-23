@@ -115,39 +115,236 @@ export default function SalaryTaxPage() {
     });
   }
 
-  // ── Styles (plain objects — no Tailwind required) ──────────
   const S = {
-    page:    { minHeight: "100vh", background: "#f5f7fb", padding: "32px 16px", fontFamily: "Arial, sans-serif" },
-    wrap:    { maxWidth: 720, margin: "0 auto" },
-    header:  { background: "#0B1F4E", color: "white", borderRadius: 12, padding: "22px 28px", marginBottom: 24 },
-    h1:      { fontSize: 20, fontWeight: 700, marginBottom: 6 },
-    hSub:    { fontSize: 13, opacity: 0.7 },
-    card:    { background: "white", border: "1px solid #e5e7eb", borderRadius: 12, padding: 24, marginBottom: 20 },
-    cardTitle:{ fontSize: 12, fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 16 },
-    tabRow:  { display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" },
-    tab:     { padding: "8px 18px", borderRadius: 20, border: "1px solid #d1d5db", fontSize: 14, cursor: "pointer", background: "white", color: "#6b7280" },
-    tabOn:   { padding: "8px 18px", borderRadius: 20, border: "1px solid #0B1F4E", fontSize: 14, cursor: "pointer", background: "#0B1F4E", color: "white" },
-    row2:    { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 },
-    field:   { marginBottom: 16 },
-    label:   { display: "block", fontSize: 13, color: "#6b7280", marginBottom: 6 },
-    input:   { width: "100%", padding: "9px 12px", fontSize: 14, border: "1px solid #d1d5db", borderRadius: 8, background: "white", color: "#1a1a1a", outline: "none" },
-    select:  { width: "100%", padding: "9px 12px", fontSize: 14, border: "1px solid #d1d5db", borderRadius: 8, background: "white", color: "#1a1a1a" },
-    btn:     { width: "100%", padding: 12, fontSize: 15, fontWeight: 700, background: "#0B1F4E", color: "white", border: "none", borderRadius: 10, cursor: "pointer", marginBottom: 24 },
-    note:    { background: "#eff6ff", borderLeft: "4px solid #0B1F4E", borderRadius: 6, padding: "12px 16px", fontSize: 13, color: "#374151", marginTop: 12 },
-    metricGrid: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12, marginBottom: 20 },
-    metric:  { background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 10, padding: 16, textAlign: "center" },
-    mLabel:  { fontSize: 12, color: "#6b7280", marginBottom: 6 },
-    barTrack:{ height: 14, background: "#e5e7eb", borderRadius: 7, overflow: "hidden", display: "flex", marginBottom: 8 },
-    barLabels:{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#6b7280" },
-    tbl:     { width: "100%", borderCollapse: "collapse", fontSize: 13 },
-    th:      { background: "#f3f4f6", color: "#6b7280", fontWeight: 600, padding: "9px 12px", textAlign: "left", borderBottom: "1px solid #e5e7eb" },
-    td:      { padding: "9px 12px", borderBottom: "1px solid #f3f4f6", color: "#1a1a1a" },
-    tdActive:{ padding: "9px 12px", borderBottom: "1px solid #f3f4f6", background: "#EFF6FF", color: "#0B1F4E", fontWeight: 700 },
-    dedRow:  { display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid #f3f4f6", fontSize: 14 },
-    dedRowTotal:{ display: "flex", justifyContent: "space-between", padding: "10px 8px", fontSize: 14, fontWeight: 700, background: "#f9fafb", borderRadius: 6, marginTop: 4 },
-    dedVal:  { color: "#0B1F4E", fontWeight: 600 },
-  };
+  page: {
+    minHeight: "100vh",
+    background: "#F8FAFC",
+    padding: "40px 20px",
+    fontFamily: "'Inter', sans-serif",
+  },
 
+  wrap: {
+    maxWidth: 1000,
+    margin: "0 auto",
+  },
+
+  header: {
+    background:
+      "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "white",
+    borderRadius: 24,
+    padding: "40px",
+    marginBottom: 30,
+    boxShadow: "0 20px 40px rgba(37,99,235,.15)",
+  },
+
+  h1: {
+    fontSize: 32,
+    fontWeight: 800,
+    marginBottom: 10,
+  },
+
+  hSub: {
+    fontSize: 15,
+    opacity: 0.85,
+  },
+
+  card: {
+    background: "#FFFFFF",
+    borderRadius: 24,
+    padding: 30,
+    marginBottom: 24,
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 4px 20px rgba(15,23,42,.05)",
+  },
+
+  cardTitle: {
+    fontSize: 13,
+    fontWeight: 700,
+    color: "#2563EB",
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+    marginBottom: 20,
+  },
+
+  tabRow: {
+    display: "flex",
+    gap: 12,
+    marginBottom: 25,
+    flexWrap: "wrap",
+  },
+
+  tab: {
+    padding: "12px 20px",
+    borderRadius: 999,
+    border: "1px solid #CBD5E1",
+    background: "#FFFFFF",
+    color: "#64748B",
+    cursor: "pointer",
+    fontWeight: 600,
+    transition: ".2s",
+  },
+
+  tabOn: {
+    padding: "12px 20px",
+    borderRadius: 999,
+    border: "none",
+    background: "#2563EB",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: 700,
+    boxShadow: "0 6px 18px rgba(37,99,235,.3)",
+  },
+
+  row2: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
+    gap: 18,
+  },
+
+  field: {
+    marginBottom: 18,
+  },
+
+  label: {
+    display: "block",
+    fontSize: 14,
+    fontWeight: 600,
+    color: "#334155",
+    marginBottom: 8,
+  },
+
+  input: {
+    width: "100%",
+    padding: "14px 16px",
+    border: "1px solid #CBD5E1",
+    borderRadius: 14,
+    fontSize: 15,
+    background: "#FFFFFF",
+    transition: ".2s",
+    outline: "none",
+  },
+
+  select: {
+    width: "100%",
+    padding: "14px 16px",
+    border: "1px solid #CBD5E1",
+    borderRadius: 14,
+    fontSize: 15,
+    background: "#FFFFFF",
+  },
+
+  btn: {
+    width: "100%",
+    padding: "16px",
+    fontSize: 16,
+    fontWeight: 700,
+    borderRadius: 16,
+    border: "none",
+    cursor: "pointer",
+    background:
+      "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "white",
+    boxShadow: "0 10px 25px rgba(37,99,235,.25)",
+    marginBottom: 30,
+  },
+
+  metricGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+    gap: 18,
+    marginBottom: 24,
+  },
+
+  metric: {
+    background: "#FFFFFF",
+    borderRadius: 20,
+    padding: 24,
+    textAlign: "center",
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 4px 15px rgba(0,0,0,.04)",
+  },
+
+  mLabel: {
+    fontSize: 13,
+    color: "#64748B",
+    marginBottom: 10,
+  },
+
+  note: {
+    background: "#EFF6FF",
+    border: "1px solid #BFDBFE",
+    borderRadius: 14,
+    padding: "16px",
+    color: "#1E40AF",
+    marginTop: 16,
+    lineHeight: 1.7,
+  },
+
+  barTrack: {
+    height: 16,
+    background: "#E2E8F0",
+    borderRadius: 999,
+    overflow: "hidden",
+    marginBottom: 10,
+  },
+
+  barLabels: {
+    display: "flex",
+    justifyContent: "space-between",
+    fontSize: 13,
+    color: "#64748B",
+  },
+
+  tbl: {
+    width: "100%",
+    borderCollapse: "collapse",
+  },
+
+  th: {
+    background: "#EFF6FF",
+    color: "#1E40AF",
+    padding: "14px",
+    textAlign: "left",
+    fontWeight: 700,
+    borderBottom: "1px solid #DBEAFE",
+  },
+
+  td: {
+    padding: "14px",
+    borderBottom: "1px solid #F1F5F9",
+  },
+
+  tdActive: {
+    padding: "14px",
+    background: "#DBEAFE",
+    color: "#1D4ED8",
+    fontWeight: 700,
+    borderBottom: "1px solid #BFDBFE",
+  },
+
+  dedRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "14px 0",
+    borderBottom: "1px solid #F1F5F9",
+  },
+
+  dedRowTotal: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: 10,
+    padding: "16px",
+    borderRadius: 14,
+    background: "#EFF6FF",
+    fontWeight: 700,
+  },
+
+  dedVal: {
+    color: "#2563EB",
+    fontWeight: 700,
+  },
+};
   return (
     <div style={S.page}>
       <div style={S.wrap}>

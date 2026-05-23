@@ -10,9 +10,9 @@ const SPECIAL_TAX_RATES = {
   beer:         { label: "Beer (ស្រាបៀរ)",                     rate: 0.30 },
   cigarette:    { label: "Cigarette (បារី)",                   rate: 0.20 },
   cigar:        { label: "Cigar (សីហ្គា)",                     rate: 0.25 },
-  beverage:     { label: "Non-alcohol Beverage (លភ្សជ្ជៈ)",    rate: 0.10 },
-  cement:       { label: "Cement (សីម៉ងត៍)",                   rate: 0.05 },
-  air_ticket:   { label: "Air Ticket Service (សំបុត្រយន្ត)",   rate: 0.10 },
+  beverage:     { label: "Non-alcohol Beverage (ភេសជ្ជៈ)",     rate: 0.10 },
+  cement:       { label: "Cement (ស៊ីម៉ងត៍)",                   rate: 0.05 },
+  air_ticket:   { label: "Air Ticket Service (សំបុត្រយន្តហោះ)", rate: 0.10 },
   entertainment:{ label: "Entertainment Services (លំហែកម្សាន្ត)", rate: 0.10 },
   telecom:      { label: "Telecom Services (ទូរគមនាគមន៍)",     rate: 0.03 },
 };
@@ -20,43 +20,305 @@ const SPECIAL_TAX_RATES = {
 // ─── HELPERS ─────────────────────────────────────────────────
 function n(v) { return parseFloat(v) || 0; }
 function money(v) {
-  const rounded = Math.round(v * 100) / 100;
-  return "$" + rounded.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  // Riel typically does not use fractional cents/decimals in daily accounting
+  const rounded = Math.round(v);
+  return rounded.toLocaleString("en-US") + " ៛";
 }
 
-// ─── SHARED STYLES (same palette/font as SalaryTaxPage) ──────
 const S = {
-  page:       { minHeight:"100vh", background:"#f5f7fb", padding:"32px 16px", fontFamily:"Arial, sans-serif" },
-  wrap:       { maxWidth:720, margin:"0 auto" },
-  backBtn:    { background:"white", border:"1px solid #d1d5db", padding:"8px 18px", borderRadius:8, fontSize:14, cursor:"pointer", color:"#374151", marginBottom:20, fontWeight:500 },
-  header:     { background:"#0B1F4E", color:"white", borderRadius:12, padding:"22px 28px", marginBottom:24 },
-  h1:         { fontSize:20, fontWeight:700, marginBottom:6 },
-  hSub:       { fontSize:13, opacity:0.7 },
-  tabRow:     { display:"flex", gap:10, marginBottom:20, flexWrap:"wrap" },
-  tab:        { padding:"8px 18px", borderRadius:20, border:"1px solid #d1d5db", fontSize:14, cursor:"pointer", background:"white", color:"#6b7280" },
-  tabOn:      { padding:"8px 18px", borderRadius:20, border:"1px solid #0B1F4E", fontSize:14, cursor:"pointer", background:"#0B1F4E", color:"white" },
-  card:       { background:"white", border:"1px solid #e5e7eb", borderRadius:12, padding:24, marginBottom:20 },
-  cardTitle:  { fontSize:12, fontWeight:600, color:"#6b7280", textTransform:"uppercase", letterSpacing:"0.05em", marginBottom:16 },
-  row2:       { display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 },
-  field:      { marginBottom:16 },
-  label:      { display:"block", fontSize:13, color:"#6b7280", marginBottom:6 },
-  input:      { width:"100%", padding:"9px 12px", fontSize:14, border:"1px solid #d1d5db", borderRadius:8, background:"white", color:"#1a1a1a", outline:"none" },
-  select:     { width:"100%", padding:"9px 12px", fontSize:14, border:"1px solid #d1d5db", borderRadius:8, background:"white", color:"#1a1a1a" },
-  btn:        { width:"100%", padding:12, fontSize:15, fontWeight:700, background:"#0B1F4E", color:"white", border:"none", borderRadius:10, cursor:"pointer", marginBottom:24 },
-  metricGrid: { display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12, marginBottom:20 },
-  metric:     { background:"#f9fafb", border:"1px solid #e5e7eb", borderRadius:10, padding:16, textAlign:"center" },
-  mLabel:     { fontSize:12, color:"#6b7280", marginBottom:6 },
-  mVal:       { fontSize:18, fontWeight:700, color:"#0B1F4E" },
-  mValRed:    { fontSize:18, fontWeight:700, color:"#c0392b" },
-  mValGreen:  { fontSize:18, fontWeight:700, color:"#1a7a4a" },
-  barTrack:   { height:14, background:"#e5e7eb", borderRadius:7, overflow:"hidden", display:"flex", marginBottom:8 },
-  barLabels:  { display:"flex", justifyContent:"space-between", fontSize:12, color:"#6b7280" },
-  dedRow:     { display:"flex", justifyContent:"space-between", padding:"9px 0", borderBottom:"1px solid #f3f4f6", fontSize:14 },
-  dedTotal:   { display:"flex", justifyContent:"space-between", padding:"10px 8px", fontSize:14, fontWeight:700, background:"#f9fafb", borderRadius:6, marginTop:6 },
-  dedVal:     { color:"#0B1F4E", fontWeight:600 },
-  dedValRed:  { color:"#c0392b", fontWeight:700 },
-  note:       { background:"#eff6ff", borderLeft:"4px solid #0B1F4E", borderRadius:6, padding:"12px 16px", fontSize:13, color:"#374151", marginTop:14 },
-  infoBox:    { background:"#f9fafb", border:"1px solid #e5e7eb", borderRadius:8, padding:"14px 18px", marginBottom:20, fontSize:13, color:"#374151", lineHeight:1.7 },
+  page: {
+    minHeight: "100vh",
+    background: "#F8FAFC",
+    padding: "48px 32px",
+    fontFamily: "'Inter', sans-serif",
+  },
+
+  wrap: {
+    width: "100%",
+    maxWidth: 1400,
+    margin: "0 auto",
+    padding: "0 24px",
+  },
+
+  header: {
+    background:
+      "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "#FFFFFF",
+    borderRadius: 32,
+    padding: "50px 60px",
+    marginBottom: 32,
+    boxShadow: "0 20px 40px rgba(37,99,235,.15)",
+  },
+
+  h1: {
+    fontSize: 36,
+    fontWeight: 800,
+    marginBottom: 12,
+  },
+
+  hSub: {
+    fontSize: 16,
+    opacity: 0.9,
+  },
+
+  backBtn: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "linear-gradient(135deg,#2563EB,#1D4ED8)",
+    color: "#FFFFFF",
+    border: "none",
+    borderRadius: 14,
+    padding: "12px 24px",
+    fontSize: 14,
+    fontWeight: 700,
+    cursor: "pointer",
+    marginBottom: 24,
+    boxShadow: "0 8px 20px rgba(37,99,235,.25)",
+  },
+
+  infoBox: {
+    background: "#FFFFFF",
+    border: "1px solid #DBEAFE",
+    borderRadius: 18,
+    padding: 24,
+    marginBottom: 24,
+    lineHeight: 1.8,
+    boxShadow: "0 4px 15px rgba(0,0,0,.04)",
+  },
+
+  card: {
+    background: "#FFFFFF",
+    borderRadius: 28,
+    padding: 36,
+    marginBottom: 28,
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 8px 30px rgba(15,23,42,.06)",
+  },
+
+  cardTitle: {
+    fontSize: 13,
+    fontWeight: 700,
+    color: "#2563EB",
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+    marginBottom: 20,
+  },
+
+  tabRow: {
+    display: "flex",
+    justifyContent: "center",
+    gap: 16,
+    marginBottom: 30,
+    flexWrap: "wrap",
+  },
+
+  tab: {
+    minWidth: 260,
+    padding: "18px 24px",
+    borderRadius: 18,
+    border: "1px solid #CBD5E1",
+    background: "#FFFFFF",
+    color: "#64748B",
+    cursor: "pointer",
+    fontWeight: 600,
+    transition: ".2s",
+  },
+
+  tabOn: {
+    minWidth: 260,
+    padding: "18px 24px",
+    borderRadius: 18,
+    border: "none",
+    background:
+      "linear-gradient(135deg,#2563EB,#1D4ED8)",
+    color: "#FFFFFF",
+    cursor: "pointer",
+    fontWeight: 700,
+    boxShadow:
+      "0 10px 20px rgba(37,99,235,.25)",
+  },
+
+  row2: {
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit,minmax(280px,1fr))",
+    gap: 20,
+  },
+
+  field: {
+    marginBottom: 20,
+  },
+
+  label: {
+    display: "block",
+    fontSize: 14,
+    fontWeight: 600,
+    color: "#334155",
+    marginBottom: 8,
+  },
+
+  input: {
+    width: "100%",
+    boxSizing: "border-box",
+    padding: "16px 18px",
+    border: "1px solid #CBD5E1",
+    borderRadius: 16,
+    fontSize: 16,
+    background: "#FFFFFF",
+    outline: "none",
+  },
+
+  select: {
+    width: "100%",
+    boxSizing: "border-box",
+    padding: "16px 18px",
+    border: "1px solid #CBD5E1",
+    borderRadius: 16,
+    fontSize: 16,
+    background: "#FFFFFF",
+    outline: "none",
+  },
+
+  btn: {
+    width: "100%",
+    padding: "18px",
+    fontSize: 16,
+    fontWeight: 700,
+    borderRadius: 18,
+    border: "none",
+    cursor: "pointer",
+    background:
+      "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "#FFFFFF",
+    boxShadow:
+      "0 10px 25px rgba(37,99,235,.25)",
+    marginBottom: 30,
+  },
+
+  metricGrid: {
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit,minmax(240px,1fr))",
+    gap: 20,
+    marginBottom: 24,
+  },
+
+  metric: {
+    background: "#FFFFFF",
+    borderRadius: 24,
+    padding: 28,
+    textAlign: "center",
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 6px 20px rgba(0,0,0,.05)",
+  },
+
+  mLabel: {
+    fontSize: 13,
+    color: "#64748B",
+    marginBottom: 10,
+  },
+
+  mVal: {
+    fontSize: 30,
+    fontWeight: 800,
+    color: "#2563EB",
+  },
+
+  mValRed: {
+    fontSize: 30,
+    fontWeight: 800,
+    color: "#DC2626",
+  },
+
+  note: {
+    background: "#EFF6FF",
+    border: "1px solid #BFDBFE",
+    borderRadius: 14,
+    padding: 16,
+    color: "#1E40AF",
+    marginTop: 16,
+    lineHeight: 1.7,
+  },
+
+  barTrack: {
+    height: 16,
+    background: "#E2E8F0",
+    borderRadius: 999,
+    overflow: "hidden",
+    marginBottom: 10,
+  },
+
+  barLabels: {
+    display: "flex",
+    justifyContent: "space-between",
+    fontSize: 13,
+    color: "#64748B",
+  },
+
+  tbl: {
+    width: "100%",
+    borderCollapse: "collapse",
+  },
+
+  th: {
+    background: "#EFF6FF",
+    color: "#1E40AF",
+    padding: "14px",
+    textAlign: "left",
+    fontWeight: 700,
+    borderBottom: "1px solid #DBEAFE",
+  },
+
+  td: {
+    padding: "14px",
+    borderBottom: "1px solid #F1F5F9",
+  },
+
+  tdActive: {
+    padding: "14px",
+    background: "#DBEAFE",
+    color: "#1D4ED8",
+    fontWeight: 700,
+    borderBottom: "1px solid #BFDBFE",
+  },
+
+  dedRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "14px 0",
+    borderBottom: "1px solid #F1F5F9",
+  },
+
+  dedRowTotal: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: 10,
+    padding: 16,
+    borderRadius: 14,
+    background: "#EFF6FF",
+    fontWeight: 700,
+  },
+
+  dedTotal: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: 18,
+    borderRadius: 16,
+    background: "#EFF6FF",
+    marginTop: 10,
+    fontWeight: 700,
+  },
+
+  dedVal: {
+    color: "#2563EB",
+    fontWeight: 700,
+  },
+
+  dedValRed: {
+    color: "#DC2626",
+    fontWeight: 700,
+  },
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -124,8 +386,8 @@ function PLTPage() {
             </select>
           </div>
           <div style={S.field}>
-            <label style={S.label}>Sale price (ថ្លៃលក់) — USD</label>
-            <input style={S.input} type="number" placeholder="e.g. 10" value={totalPrice} onChange={e=>setTotalPrice(e.target.value)} />
+            <label style={S.label}>Sale price (ថ្លៃលក់) — KHR</label>
+            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 40000" value={totalPrice} onChange={e=>setTotalPrice(e.target.value)} />
           </div>
         </div>
 
@@ -227,8 +489,8 @@ function SpecialTaxPage() {
       {/* OVERVIEW */}
       <div style={S.infoBox}>
         <strong>អ្វីជាអាករពិសេស?</strong> អាករពិសេស អនុវត្តលើ ទំនិញ & សេវាមួយចំនួន។<br/>
-        អត្រា: សុរា 35% · ស្រាបៀរ 30% · បារី 20% · លភ្សជ្ជៈ 10% · សីម៉ងត៍ 5% · Telecom 3% · Entertainment 10%<br/>
-        <strong>Local goods:</strong> Base = 90% × (revenue ÷ 110% ÷ (1 + rate))
+        អត្រា: សុរា 35% · ស្រាបៀរ 30% · បារី 20% · ភេសជ្ជៈ 10% · ស៊ីម៉ងត៍ 5% · Telecom 3% · Entertainment 10%<br/>
+        <strong>Local goods:</strong> Base = 90% × (revenue ÷ 110% ÷ (1 + rate)) 
       </div>
 
       {/* GOODS / SOURCE */}
@@ -260,26 +522,26 @@ function SpecialTaxPage() {
           </select>
         </div>
 
-        <div style={S.cardTitle}>Sales Income (ចំណូលលក់)</div>
+        <div style={S.cardTitle}>Sales Income (ចំណូលលក់) — KHR</div>
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>Units sold (ចំនួនលក់)</label>
-            <input style={S.input} type="number" placeholder="e.g. 5000" value={saleQty} onChange={e=>setSaleQty(e.target.value)} />
+            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 5000" value={saleQty} onChange={e=>setSaleQty(e.target.value)} />
           </div>
           <div style={S.field}>
-            <label style={S.label}>Unit price incl. taxes (ថ្លៃ/ឯកតា)</label>
-            <input style={S.input} type="number" placeholder="e.g. 10" value={unitPrice} onChange={e=>setUnitPrice(e.target.value)} />
+            <label style={S.label}>Unit price incl. taxes (ថ្លៃ/ឯកតា) — KHR</label>
+            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 6000" value={unitPrice} onChange={e=>setUnitPrice(e.target.value)} />
           </div>
         </div>
 
-        <div style={S.cardTitle}>Gift / Credit Sales (អំណោយ / ជំពាក់)</div>
+        <div style={S.cardTitle}>Gift / Credit Sales (អំណោយ / ជំពាក់) — KHR</div>
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>Gift qty (ចំនួនអំណោយ)</label>
             <input style={S.input} type="number" placeholder="0" value={giftQty} onChange={e=>setGiftQty(e.target.value)} />
           </div>
           <div style={S.field}>
-            <label style={S.label}>Gift unit price (ថ្លៃ/ឯកតា)</label>
+            <label style={S.label}>Gift unit price (ថ្លៃ/ឯកតា) — KHR</label>
             <input style={S.input} type="number" placeholder="0" value={giftPrice} onChange={e=>setGiftPrice(e.target.value)} />
           </div>
         </div>
@@ -289,7 +551,7 @@ function SpecialTaxPage() {
             <input style={S.input} type="number" placeholder="0" value={creditQty} onChange={e=>setCreditQty(e.target.value)} />
           </div>
           <div style={S.field}>
-            <label style={S.label}>Credit unit price (ថ្លៃ/ឯកតា)</label>
+            <label style={S.label}>Credit unit price (ថ្លៃ/ឯកតា) — KHR</label>
             <input style={S.input} type="number" placeholder="0" value={creditPrice} onChange={e=>setCreditPrice(e.target.value)} />
           </div>
         </div>
@@ -403,18 +665,18 @@ function AccomTaxPage() {
           </select>
         </div>
 
-        <div style={S.cardTitle}>Revenue (ចំណូល) — USD/month</div>
+        <div style={S.cardTitle}>Revenue (ចំណូល) — KHR/month</div>
         <div style={S.field}>
-          <label style={S.label}>Room revenue for accommodation (ចំណូលបន្ទប់)</label>
-          <input style={S.input} type="number" placeholder="e.g. 1000" value={roomRev} onChange={e=>setRoomRev(e.target.value)} />
+          <label style={S.label}>Room revenue for accommodation (ចំណូលបន្ទប់) — KHR</label>
+          <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 25000000" value={roomRev} onChange={e=>setRoomRev(e.target.value)} />
         </div>
         <div style={S.row2}>
           <div style={S.field}>
-            <label style={S.label}>Conference / meeting room revenue (ចំណូលបន្ទប់ប្រជុំ)</label>
+            <label style={S.label}>Conference / meeting room revenue — KHR</label>
             <input style={S.input} type="number" placeholder="0" value={confRev} onChange={e=>setConfRev(e.target.value)} />
           </div>
           <div style={S.field}>
-            <label style={S.label}>Restaurant revenue (ភោជនីយដ្ឋាន — NOT taxed)</label>
+            <label style={S.label}>Restaurant revenue (ភោជនីយដ្ឋាន — NOT taxed) — KHR</label>
             <input style={S.input} type="number" placeholder="0" value={restRev} onChange={e=>setRestRev(e.target.value)} />
           </div>
         </div>
