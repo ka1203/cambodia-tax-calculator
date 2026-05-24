@@ -2,10 +2,11 @@ import { useState } from "react";
 
 const NAV_ITEMS = [
   { key: "home", label: "Home" },
-  { key: "cambodiaTaxCalc", label: "Cambodia Tax" },
+  { key: "cambodiaTaxCalc", label: "Generality of Taxation" },
   { key: "salary", label: "Salary Tax" },
   { key: "vat", label: "VAT" },
   { key: "OtherTaxpage", label: "Other Tax" },
+  { key: "lesson", label: "Lesson" },
 ];
 
 const SERVICES = [
@@ -33,8 +34,8 @@ const SERVICES = [
   {
     page: "cambodiaTaxCalc",
     icon: "📋",
-    title: "Business Tax",
-    titleKh: "ពន្ធអាជីវកម្ម",
+    title: "Generality of Taxation",
+    titleKh: "ពន្ធអំពីទូទៅ",
     desc: "Business registration and patent tax calculation.",
   },
 ];

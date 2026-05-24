@@ -715,8 +715,8 @@ export default function CambodiaTaxCalc() {
 
         {/* HEADER */}
         <div style={S.header}>
-          <div style={S.h1}>🇰🇭 ពន្ធដារកម្ពុជា — Cambodia Tax Calculator</div>
-          <div style={S.hSub}>TAX-01: Generality of Cambodian Taxation · ITC 2025–2026 · Dept. of Applied Mathematics & Statistics</div>
+          <div style={S.h1}>ពន្ធដារទូទៅកម្ពុជា Generality of Cambodian Taxation</div>
+          <div style={S.hSub}> Generality of Cambodian Taxation </div>
         </div>
 
         {/* TABS */}

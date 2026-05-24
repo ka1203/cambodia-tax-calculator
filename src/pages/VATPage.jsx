@@ -298,7 +298,8 @@ return (
         {/* HEADER */}
         <div style={S.header}>
           <h1 style={{ margin: 0 }}>
-            🇰🇭 VAT Calculator
+           Value Added Tax (VAT)
+អាករលើតម្លៃបន្ថែម
           </h1>
 
           <p style={{ opacity: 0.8 }}>

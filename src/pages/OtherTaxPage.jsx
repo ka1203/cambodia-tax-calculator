@@ -754,10 +754,10 @@ export default function OtherTaxPage({ setPage }) {
 
         {/* HEADER */}
         <div style={S.header}>
-          <div style={S.h1}>🇰🇭 TAX-03 — Other Taxes Calculator</div>
+          <div style={S.h1}> Other Taxes Calculator</div>
           <div style={S.hSub}>
             Public Lighting Tax (PLT) · Special Tax (ST) · Accommodation Tax (AT)
-            &nbsp;|&nbsp; ITC Economy for Engineer · 2025–2026
+            &nbsp;|&nbsp;អាករបំភ្លឺ · អាករពិសេស · អាករស្នាក់នៅ
           </div>
         </div>
 

@@ -7,6 +7,8 @@ import VATPage from "./pages/VATPage";
 import OtherTaxPage from "./pages/OtherTaxPage";
 
 import CambodiaTaxCalc from "./pages/tax calculator";
+import lesson from "./pages/lesson";
+
 
 function App() {
 
@@ -35,6 +37,12 @@ function App() {
         <OtherTaxPage setPage={setPage} />
       )}
 
+      {page === "lesson" && (
+        <lesson setPage={setPage} />
+      )}
+
+
+  
     </div>
   );
 }

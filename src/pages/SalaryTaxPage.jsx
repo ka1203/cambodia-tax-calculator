@@ -351,7 +351,7 @@ export default function SalaryTaxPage() {
 
         {/* HEADER */}
         <div style={S.header}>
-          <div style={S.h1}>🇰🇭 ពន្ធលើប្រាក់បៀវត្ស — Salary Tax Calculator</div>
+          <div style={S.h1}> ពន្ធលើប្រាក់បៀវត្ស — Salary Tax Calculator</div>
           <div style={S.hSub}>Cambodia · Sub-decree 48 (2024) · TAX-02 Lesson</div>
         </div>
          
