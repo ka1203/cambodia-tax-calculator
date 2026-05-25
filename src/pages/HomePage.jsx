@@ -1,47 +1,83 @@
 import { useState } from "react";
 
-const NAV_ITEMS = [
-  { key: "home", label: "Home" },
-  { key: "cambodiaTaxCalc", label: "Generality of Taxation" },
-  { key: "salary", label: "Salary Tax" },
-  { key: "vat", label: "VAT" },
-  { key: "OtherTaxpage", label: "Other Tax" },
-  { key: "lesson", label: "Lesson" },
-];
-
-const SERVICES = [
-  {
-    page: "salary",
-    icon: "💼",
-    title: "Salary Tax",
-    titleKh: "ពន្ធលើប្រាក់បៀវត្ស",
-    desc: "Calculate salary tax according to Cambodia tax regulations.",
+const LANGUAGES = {
+  kh: {
+    home: "ទំព័រដើម",
+    general: "ពន្ធអំពីទូទៅ",
+    salary: "ពន្ធលើប្រាក់បៀវត្ស",
+    vat: "អាករលើតម្លៃបន្ថែម",
+    other: "ពន្ធផ្សេងៗ",
+    lesson: "មេរៀន",
+    platform: "ប្រព័ន្ធពន្ធកម្ពុជា",
+    badge: "ប្រព័ន្ធពន្ធកម្ពុជា ឆ្នាំ២០២៦",
+    heroTitle1: "ប្រព័ន្ធគណនា",
+    heroTitle2: "ពន្ធឆ្លាតវៃ",
+    heroDesc:
+      "គណនាពន្ធកម្ពុជាបានយ៉ាងងាយស្រួល និងត្រឹមត្រូវ សម្រាប់សិស្ស និយោជិត និងអាជីវកម្ម។ បង្កើតឡើងតាមបទប្បញ្ញត្តិពន្ធកម្ពុជា និងច្បាប់ថ្មីៗ។",
+    start: "ចាប់ផ្ដើមគណនា",
+    learn: "សិក្សាបន្ថែម",
+    statTitle: "ស្ថិតិប្រព័ន្ធ",
+    modules: "ម៉ូឌុលពន្ធ",
+    updated: "ច្បាប់ថ្មី",
+    formula: "រូបមន្តត្រឹមត្រូវ",
+    access: "សម្រាប់សិស្ស",
+    calculators: "កម្មវិធីគណនាពន្ធ",
+    choose: "ជ្រើសរើសកម្មវិធីខាងក្រោម ដើម្បីចាប់ផ្ដើមគណនាពន្ធ។",
   },
-  {
-    page: "vat",
-    icon: "🧾",
-    title: "VAT",
-    titleKh: "អាករលើតម្លៃបន្ថែម",
-    desc: "Calculate VAT on goods and services.",
-  },
-  {
-    page: "OtherTaxpage",
-    icon: "🏮",
-    title: "Other Taxes",
-    titleKh: "ពន្ធផ្សេងៗ",
-    desc: "Accommodation tax, public lighting tax and more.",
-  },
-  {
-    page: "cambodiaTaxCalc",
-    icon: "📋",
-    title: "Generality of Taxation",
-    titleKh: "ពន្ធអំពីទូទៅ",
-    desc: "Business registration and patent tax calculation.",
-  },
-];
+};
 
 export default function HomePage({ setPage }) {
   const [activeNav, setActiveNav] = useState("home");
+  const t = LANGUAGES.kh;
+
+  // កំណត់ពុម្ពអក្សរ Khmer OS Battambong សម្រាប់គ្រប់ផ្នែកទាំងអស់
+  const khmerFont = "'Khmer OS Battambong', sans-serif";
+
+  const NAV_ITEMS = [
+    { key: "home", label: t.home },
+    { key: "cambodiaTaxCalc", label: t.general },
+    { key: "salary", label: t.salary },
+    { key: "vat", label: t.vat },
+    { key: "OtherTaxpage", label: t.other },
+    { key: "lesson", label: t.lesson },
+  ];
+
+  const SERVICES = [
+    {
+      page: "salary",
+      icon: "💼",
+      title: t.salary,
+      desc: "គណនាពន្ធលើប្រាក់បៀវត្សតាមច្បាប់ពន្ធកម្ពុជា។",
+    },
+    {
+      page: "vat",
+      icon: "🧾",
+      title: t.vat,
+      desc: "គណនាអាករលើតម្លៃបន្ថែមលើទំនិញ និងសេវាកម្ម។",
+    },
+    {
+      page: "OtherTaxpage",
+      icon: "🏮",
+      title: t.other,
+      desc: "ពន្ធស្នាក់នៅ ពន្ធភ្លើងបំភ្លឺសាធារណៈ និងពន្ធផ្សេងៗ។",
+    },
+    {
+      page: "cambodiaTaxCalc",
+      icon: "📋",
+      title: t.general,
+      desc: "ការចុះបញ្ជីអាជីវកម្ម និងការគណនាពន្ធប៉ាតង់។",
+    },
+
+    
+
+
+    {
+  page: "taxCalculator",
+  icon: "🧮",
+  title: "ពន្ធកាត់ទុក (WHT)", // នេះជាចំណងជើងដែលអ្នកចង់បាន
+  desc: "កម្មវិធីគណនាពន្ធសម្រាប់សិស្ស និងអាជីវកម្ម។",
+    }    
+  ];
 
   const go = (page) => {
     setActiveNav(page);
@@ -53,10 +89,10 @@ export default function HomePage({ setPage }) {
       style={{
         minHeight: "100vh",
         background: "#F8FAFC",
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: khmerFont,
       }}
     >
-      {/* NAVBAR */}
+      {/* របាររុករក (NAVBAR) */}
       <nav
         style={{
           background: "#ffffff",
@@ -78,17 +114,28 @@ export default function HomePage({ setPage }) {
             justifyContent: "space-between",
           }}
         >
+          {/* ចុចលើឈ្មោះប្រព័ន្ធដើម្បីត្រឡប់ទៅទំព័រដើមវិញ */}
           <div
+            onClick={() => go("home")}
             style={{
               fontWeight: 800,
               fontSize: 22,
               color: "#2563EB",
+              cursor: "pointer",
+              fontFamily: khmerFont,
             }}
           >
-            Cambodia Tax
+            {t.platform}
           </div>
 
-          <div style={{ display: "flex", gap: 10 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.key}
@@ -98,12 +145,11 @@ export default function HomePage({ setPage }) {
                   borderRadius: 12,
                   border: "none",
                   cursor: "pointer",
-                  background:
-                    activeNav === item.key ? "#2563EB" : "transparent",
-                  color:
-                    activeNav === item.key ? "#fff" : "#475569",
+                  background: activeNav === item.key ? "#2563EB" : "transparent",
+                  color: activeNav === item.key ? "#fff" : "#475569",
                   fontWeight: 600,
                   transition: ".2s",
+                  fontFamily: khmerFont,
                 }}
               >
                 {item.label}
@@ -113,11 +159,10 @@ export default function HomePage({ setPage }) {
         </div>
       </nav>
 
-      {/* HERO */}
+      {/* ផ្នែកបង្ហាញសំខាន់ (HERO) */}
       <section
         style={{
-          background:
-            "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
+          background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
           padding: "90px 24px",
         }}
       >
@@ -141,9 +186,10 @@ export default function HomePage({ setPage }) {
                 color: "#2563EB",
                 fontWeight: 700,
                 marginBottom: 20,
+                fontFamily: khmerFont,
               }}
             >
-              Cambodia Tax System 2026
+              {t.badge}
             </div>
 
             <h1
@@ -151,13 +197,14 @@ export default function HomePage({ setPage }) {
                 fontSize: "clamp(36px,5vw,64px)",
                 fontWeight: 800,
                 color: "#0F172A",
-                lineHeight: 1.1,
+                lineHeight: 1.3,
                 marginBottom: 20,
+                fontFamily: khmerFont,
               }}
             >
-              Smart Tax
+              {t.heroTitle1}
               <br />
-              Calculator Platform
+              {t.heroTitle2}
             </h1>
 
             <p
@@ -167,11 +214,10 @@ export default function HomePage({ setPage }) {
                 lineHeight: 1.8,
                 maxWidth: 600,
                 marginBottom: 30,
+                fontFamily: khmerFont,
               }}
             >
-              Easy and accurate Cambodia tax calculations for
-              students, employees and businesses. Built according
-              to Cambodia tax regulations and updated rules.
+              {t.heroDesc}
             </p>
 
             <div
@@ -181,7 +227,11 @@ export default function HomePage({ setPage }) {
                 flexWrap: "wrap",
               }}
             >
+              {/* ប៊ូតុង៖ ចុចដើម្បីអូសចុះក្រោមទៅកាន់ផ្នែកកម្មវិធីគណនា */}
               <button
+                onClick={() => {
+                  document.getElementById("calculators-section")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 style={{
                   background: "#2563EB",
                   color: "#fff",
@@ -190,12 +240,15 @@ export default function HomePage({ setPage }) {
                   borderRadius: 14,
                   cursor: "pointer",
                   fontWeight: 700,
+                  fontFamily: khmerFont,
                 }}
               >
-                Start Calculation
+                {t.start}
               </button>
 
+              {/* ប៊ូតុង៖ ចុចដើម្បីទៅកាន់ទំព័រមេរៀន */}
               <button
+                onClick={() => go("lesson")}
                 style={{
                   background: "#fff",
                   color: "#2563EB",
@@ -204,31 +257,32 @@ export default function HomePage({ setPage }) {
                   borderRadius: 14,
                   cursor: "pointer",
                   fontWeight: 700,
+                  fontFamily: khmerFont,
                 }}
               >
-                Learn More
+                {t.learn}
               </button>
             </div>
           </div>
 
-          {/* RIGHT SIDE CARD */}
+          {/* កាតបង្ហាញស្ថិតិនៅខាងស្តាំ */}
           <div>
             <div
               style={{
                 background: "#fff",
                 borderRadius: 24,
                 padding: 30,
-                boxShadow:
-                  "0 20px 40px rgba(37,99,235,.12)",
+                boxShadow: "0 20px 40px rgba(37,99,235,.12)",
               }}
             >
               <h3
                 style={{
                   color: "#0F172A",
                   marginBottom: 20,
+                  fontFamily: khmerFont,
                 }}
               >
-                Platform Statistics
+                {t.statTitle}
               </h3>
 
               <div
@@ -238,18 +292,19 @@ export default function HomePage({ setPage }) {
                   gap: 20,
                 }}
               >
-                <Stat value="4+" label="Tax Modules" />
-                <Stat value="2026" label="Updated Rules" />
-                <Stat value="100%" label="Accurate Formula" />
-                <Stat value="Free" label="Student Access" />
+                <Stat value="៤+" label={t.modules} fontStyle={khmerFont} />
+                <Stat value="២០២៦" label={t.updated} fontStyle={khmerFont} />
+                <Stat value="១០០%" label={t.formula} fontStyle={khmerFont} />
+                <Stat value="ឥតគិតថ្លៃ" label={t.access} fontStyle={khmerFont} />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SERVICES */}
+      {/* ផ្នែកម៉ូឌុលកម្មវិធីគណនា (SERVICES) */}
       <section
+        id="calculators-section"
         style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -262,9 +317,10 @@ export default function HomePage({ setPage }) {
               fontSize: 38,
               fontWeight: 800,
               color: "#0F172A",
+              fontFamily: khmerFont,
             }}
           >
-            Tax Calculators
+            {t.calculators}
           </h2>
 
           <p
@@ -272,18 +328,17 @@ export default function HomePage({ setPage }) {
               color: "#64748B",
               maxWidth: 600,
               margin: "10px auto 0",
+              fontFamily: khmerFont,
             }}
           >
-            Choose a calculator below to begin your tax
-            calculation.
+            {t.choose}
           </p>
         </div>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(260px,1fr))",
+            gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
             gap: 24,
           }}
         >
@@ -297,8 +352,7 @@ export default function HomePage({ setPage }) {
                 padding: 28,
                 cursor: "pointer",
                 border: "1px solid #E2E8F0",
-                boxShadow:
-                  "0 4px 20px rgba(37,99,235,.06)",
+                boxShadow: "0 4px 20px rgba(37,99,235,.06)",
                 transition: ".25s",
               }}
             >
@@ -321,26 +375,18 @@ export default function HomePage({ setPage }) {
               <h3
                 style={{
                   color: "#0F172A",
-                  marginBottom: 8,
+                  marginBottom: 12,
+                  fontFamily: khmerFont,
                 }}
               >
                 {service.title}
               </h3>
 
-              <div
-                style={{
-                  color: "#2563EB",
-                  fontWeight: 600,
-                  marginBottom: 10,
-                }}
-              >
-                {service.titleKh}
-              </div>
-
               <p
                 style={{
                   color: "#64748B",
                   lineHeight: 1.7,
+                  fontFamily: khmerFont,
                 }}
               >
                 {service.desc}
@@ -353,7 +399,7 @@ export default function HomePage({ setPage }) {
   );
 }
 
-function Stat({ value, label }) {
+function Stat({ value, label, fontStyle }) {
   return (
     <div
       style={{
@@ -364,9 +410,10 @@ function Stat({ value, label }) {
     >
       <div
         style={{
-          fontSize: 28,
+          fontSize: 26,
           fontWeight: 800,
           color: "#2563EB",
+          fontFamily: fontStyle,
         }}
       >
         {value}
@@ -376,6 +423,7 @@ function Stat({ value, label }) {
         style={{
           color: "#64748B",
           marginTop: 5,
+          fontFamily: fontStyle,
         }}
       >
         {label}

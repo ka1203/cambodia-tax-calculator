@@ -1,65 +1,356 @@
 import { useState } from "react";
 
+const S = {
+  page: {
+    minHeight: "100vh",
+    background: "#F8FAFC",
+    padding: "32px 20px", 
+    fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
+  },
+
+  wrap: {
+    width: "100%",
+    maxWidth: 1200, 
+    margin: "0 auto",
+    padding: "0 16px",
+  },
+
+  backBtn: {
+    marginBottom: 24,
+    padding: "12px 18px",
+    borderRadius: 12,
+    border: "1px solid #E2E8F0",
+    background: "#FFFFFF",
+    color: "#475569",
+    fontWeight: 600,
+    cursor: "pointer",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    fontSize: 14,
+    transition: ".2s",
+    boxShadow: "0 2px 8px rgba(0,0,0,.04)",
+  },
+
+  /* ===== HEADER (FIXED + SOFT BLUE) ===== */
+  header: {
+    background: "linear-gradient(135deg,#F0F9FF 0%,#DBEAFE 50%,#BFDBFE 100%)",
+    color: "#1E3A8A",
+    borderRadius: 24,
+    padding: "28px 32px",
+    marginBottom: 24,
+    border: "1px solid #BFDBFE",
+    boxShadow: "0 6px 20px rgba(59,130,246,.10)",
+  },
+
+  h1: {
+    fontSize: 28,   // 🔥 bigger header text
+    fontWeight: 800,
+    marginBottom: 8,
+    lineHeight: 1.3,
+    color: "#1D4ED8",
+    fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
+  },
+
+  hSub: {
+    fontSize: 15,
+    fontWeight: 500,
+    color: "#475569",
+    lineHeight: 1.6,
+    fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
+  },
+
+  infoBox: {
+    background: "#FFFFFF",
+    border: "1px solid #DBEAFE",
+    borderRadius: 18,
+    padding: 24,
+    marginBottom: 24,
+    lineHeight: 1.8,
+    boxShadow: "0 4px 15px rgba(0,0,0,.04)",
+  },
+
+  card: {
+    background: "#FFFFFF",
+    borderRadius: 24,
+    padding: 28,
+    marginBottom: 24,
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 6px 20px rgba(15,23,42,.06)",
+  },
+
+  cardTitle: {
+    fontSize: 14,
+    fontWeight: 700,
+    color: "#1D4ED8",
+    letterSpacing: "0.5px",
+    marginBottom: 16,
+  },
+
+  statusCard: {
+    textAlign: "center",
+    padding: "40px 28px",
+    borderRadius: 24,
+    background: "#FFFFFF",
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 6px 20px rgba(15,23,42,.06)",
+    marginBottom: 24,
+  },
+
+  statusLabel: {
+    fontSize: 18,
+    color: "#8E9AA8",
+    fontWeight: 500,
+    marginBottom: 12,
+    display: "block",
+  },
+
+  statusTextRed: {
+    fontSize: 44,
+    fontWeight: 800,
+    color: "#E52E2E",
+  },
+
+  statusTextGold: {
+    fontSize: 44,
+    fontWeight: 800,
+    color: "#D97706",
+  },
+
+  tabRow: {
+    display: "flex",
+    gap: 12,
+    flexWrap: "wrap",
+    marginBottom: 24,
+  },
+
+  tab: {
+    padding: "12px 22px",
+    borderRadius: 999,
+    border: "1px solid #CBD5E1",
+    background: "#FFFFFF",
+    color: "#64748B",
+    fontWeight: 600,
+    cursor: "pointer",
+    fontSize: 14,
+  },
+
+  tabOn: {
+    padding: "12px 22px",
+    borderRadius: 999,
+    border: "none",
+    background: "linear-gradient(135deg,#60A5FA,#3B82F6)",
+    color: "#FFFFFF",
+    fontWeight: 700,
+    cursor: "pointer",
+    fontSize: 14,
+    boxShadow: "0 6px 18px rgba(37,99,235,.25)",
+  },
+
+  row2: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: 18,
+  },
+
+  field: {
+    marginBottom: 18,
+  },
+
+  label: {
+    display: "block",
+    fontSize: 14,
+    fontWeight: 600,
+    color: "#334155",
+    marginBottom: 8,
+  },
+
+  input: {
+    width: "100%",
+    boxSizing: "border-box",
+    padding: "14px 16px",
+    border: "1px solid #CBD5E1",
+    borderRadius: 14,
+    fontSize: 15,
+    background: "#FFFFFF",
+    outline: "none",
+  },
+
+  btn: {
+    width: "100%",
+    padding: "16px",
+    fontSize: 16,
+    fontWeight: 700,
+    borderRadius: 16,
+    border: "none",
+    cursor: "pointer",
+    background: "linear-gradient(135deg,#60A5FA,#3B82F6)",
+    color: "#FFFFFF",
+    boxShadow: "0 10px 25px rgba(37,99,235,.20)",
+    marginBottom: 24,
+  },
+
+  metricGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 18,
+    marginBottom: 24,
+  },
+
+  metric: {
+    background: "#FFFFFF",
+    borderRadius: 20,
+    padding: 24,
+    textAlign: "center",
+    border: "1px solid #E2E8F0",
+    boxShadow: "0 4px 14px rgba(0,0,0,.05)",
+  },
+
+  mLabel: {
+    fontSize: 13,
+    color: "#64748B",
+    marginBottom: 8,
+  },
+
+  mValBlue: {
+    fontSize: 26,
+    fontWeight: 800,
+    color: "#2563EB",
+  },
+
+  mValGreen: {
+    fontSize: 26,
+    fontWeight: 800,
+    color: "#16A34A",
+  },
+
+  mValRed: {
+    fontSize: 26,
+    fontWeight: 800,
+    color: "#DC2626",
+  },
+
+  mValGold: {
+    fontSize: 26,
+    fontWeight: 800,
+    color: "#D97706",
+  },
+
+  barTrack: {
+    height: 14,
+    background: "#E2E8F0",
+    borderRadius: 999,
+    overflow: "hidden",
+    display: "flex",
+    marginBottom: 12,
+    marginTop: 10,
+  },
+
+  note: {
+    background: "#EFF6FF",
+    border: "1px solid #BFDBFE",
+    borderRadius: 14,
+    padding: 16,
+    color: "#1E40AF",
+    marginTop: 16,
+    lineHeight: 1.7,
+  },
+
+  dedRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "12px 0",
+    borderBottom: "1px solid #F1F5F9",
+    fontSize: 14,
+  },
+
+  dedRowTotalPayable: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: 16,
+    borderRadius: 14,
+    background: "#FEF2F2",
+    border: "1px solid #FEE2E2",
+    color: "#991B1B",
+    marginTop: 14,
+    fontWeight: 700,
+  },
+
+  dedRowTotalCredit: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: 16,
+    borderRadius: 14,
+    background: "#F0FDF4",
+    border: "1px solid #DCFCE7",
+    color: "#166534",
+    marginTop: 14,
+    fontWeight: 700,
+  },
+
+  dedVal: {
+    color: "#2563EB",
+    fontWeight: 700,
+  },
+};
+
 const lessons = [
   {
     id: 0,
     icon: "🏛️",
-    title: "Generality of Cambodian Taxation",
-    sub: "TAX 01 · Overview",
-    tag: "Foundational",
-    tagColor: { bg: "#E6F1FB", text: "#0C447C" },
+    title: "សេចក្តីផ្តើមទូទៅអំពីពន្ធដារ",
+    sub: "មេរៀនទី ១ · ប្រព័ន្ធពន្ធដារកម្ពុជា",
+    tag: "ចំណេះដឹងគ្រឹះ",
+    tagColor: { bg: "#E0F2FE", text: "#0369A1" },
     sections: [
       {
-        title: "History of GDT",
+        title: "ប្រវត្តិនៃអគ្គនាយកដ្ឋានពន្ធដារ (អពដ)",
         items: [
-          "1953: GDT established (previously called 'suay sar' or revenue duty)",
-          "1975–1979: Tax system abolished under Khmer Rouge (collective ownership era)",
-          "1980–1993: Industrial & Commercial Tax Dept under Ministry of Finance",
-          "1993–2008: General Department of Taxation under Ministry of Economy & Finance",
-          "2008–present: Upgraded to full General Department (current GDT structure)",
+          "ឆ្នាំ ១៩៥៣៖ ត្រូវបានបង្កើតឡើងក្រោយទទួលបានឯករាជ្យ ដោយដើមឡើយហៅថា «សួយសារអាករ» ឬវិភាគទានចំណូលរដ្ឋ។",
+          "ឆ្នាំ ១៩៧៥–១៩៧៩៖ ប្រព័ន្ធពន្ធដារ និងរូបិយវត្ថុត្រូវបានលុបបំបាត់ចោលទាំងស្រុងក្នុងរបបកម្ពុជាប្រជាធិបតេយ្យ (របបសមូហភាព)។",
+          "ឆ្នាំ ១៩៨០–១៩៩៣៖ ដំណើរការឡើងវិញក្រោមឈ្មោះថា «នាយកដ្ឋានពន្ធដារឧស្សាហពាណិជ្ជ» ស្ថិតក្រោមការគ្រប់គ្រងរបស់ក្រសួងហិរញ្ញវត្ថុ។",
+          "ឆ្នាំ ១៩៩៣–២០០៨៖ ប្តូរឈ្មោះមកជា «នាយកដ្ឋានពន្ធដារ» ស្ថិតក្រោមរចនាសម្ព័ន្ធផ្លូវការរបស់ក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ។",
+          "ឆ្នាំ ២០០៨–បច្ចុប្បន្ន៖ ត្រូវបានដំឡើងកម្រិតរចនាសម្ព័ន្ធទៅជា «អគ្គនាយកដ្ឋានពន្ធដារ» ដើម្បីបង្កើនប្រសិទ្ធភាពទំនើបកម្មនៃការប្រមូលចំណូលពន្ធ។",
         ],
       },
       {
-        title: "Definition of Tax",
+        title: "និយមន័យ និងតួនាទីនៃពន្ធដារ",
         items: [
-          "Tax (ពន្ធ) refers to tax and duties — both direct and indirect taxes",
-          "Tax is the mandatory contribution of citizens to the national budget",
-          "Citizens pay tax in exchange for public goods and services from the state",
-          "Tax is a government tool to collect revenue for national budget expenditures",
+          "ពន្ធដារ គឺជាកាតព្វកិច្ចហិរញ្ញវត្ថុជាធរមានកំណត់ដោយច្បាប់ លើរូបវន្តបុគ្គល ឬនីតិបុគ្គល ដើម្បីបង់ចូលថវិកាជាតិដោយគ្មានការបង្វរមកវិញផ្ទាល់ឡើយ។",
+          "ពន្ធដារត្រូវបានបែងចែកជាពីរប្រភេទធំៗគឺ៖ ពន្ធផ្ទាល់ (បង់ដោយផ្ទាល់ពីចំណូល/ប្រាក់ចំណេញ) និងពន្ធប្រយោល (ប្រមូលតាមរយៈការប្រើប្រាស់ទំនិញ/សេវា)។",
+          "តួនាទីសេដ្ឋកិច្ច៖ ប្រើប្រាស់សម្រាប់ទ្រទ្រង់ការចំណាយសាធារណៈរបស់រដ្ឋ ដូចជាការកសាងហេដ្ឋារចនាសម្ព័ន្ធ វិស័យអប់រំ សុខាភិបាល និងការពារជាតិ។",
         ],
       },
       {
-        title: "Types of Tax",
+        title: "ការបែងចែកប្រភេទពន្ធនៅកម្ពុជា",
         table: {
-          cols: ["National Budget Taxes", "Sub-national Budget Taxes"],
+          cols: ["ពន្ធថវិកាថ្នាក់ជាតិ (National Taxes)", "ពន្ធថវិការដ្ឋបាលថ្នាក់ក្រោមជាតិ (Local Taxes)"],
           rows: [
-            ["Tax on income", "Public lighting tax"],
-            ["Tax on salary", "Tax on accommodation"],
-            ["VAT (Value Added Tax)", "Vehicle transportation tax"],
-            ["Special tax", "Patent tax"],
-            ["Minimum tax", "Tax on land & buildings"],
-            ["Withholding tax", "Tax on property transfer"],
-            ["Tax on immovable property", "Tax on unused land / property"],
+            ["ពន្ធលើប្រាក់ចំណូល (ពន្ធលើប្រាក់ចំណេញ)", "អាករសម្រាប់បំភ្លឺសាធារណៈ (PLT)"],
+            ["ពន្ធលើប្រាក់បៀវត្ស (TOS)", "អាករលើការស្នាក់នៅ (ToA)"],
+            ["អាករលើតម្លៃបន្ថែម (VAT)", "ពន្ធលើមធ្យោបាយដឹកជញ្ជូននិងយានជំនិះគ្រប់ប្រភេទ"],
+            ["អាករពិសេសលើទំនិញនិងសេវាមួយចំនួន", "ពន្ធប៉ាតង់ (សម្រាប់ការបើកអាជីវកម្មប្រចាំឆ្នាំ)"],
+            ["ពន្ធអប្បបរមា (Minimum Tax)", "ពន្ធលើអចលនទ្រព្យ / ពន្ធប្រថាប់ត្រា"],
+            ["ពន្ធកាត់ទុក (Withholding Tax - WHT)", "ពន្ធលើដីធ្លីមិនបានប្រើប្រាស់"],
           ],
         },
       },
       {
-        title: "Tax Regime (Self-Assessment)",
+        title: "របបពន្ធដារបច្ចុប្បន្ន (របបស្វ័យប្រកាស)",
         items: [
-          "Before 2016: 3 regimes — Real, Simplified, and Estimated",
-          "From 2016 onward: Cambodia uses only the Real (Self-Assessment) regime",
-          "Small taxpayers: annual turnover 250M–700M KHR, 10–50 staff",
-          "Medium taxpayers: turnover 700M–4,000M KHR, 51–100 staff, or licensed companies",
-          "Large taxpayers: turnover above 4,000M KHR, multinationals, or QIP holders",
+          "ចាប់តាំងពីឆ្នាំ ២០១៦ មក ប្រទេសកម្ពុជាបានលុបចោលរបបពន្ធប៉ាន់ស្មាន និងរបបសម្រួល ដោយប្រើប្រាស់តែ «របបស្វ័យប្រកាស» តែមួយគត់។",
+          "អ្នកជាប់ពន្ធតូច៖ ផលរបរ (ចំណូល) ប្រចាំឆ្នាំចាប់ពី ២៥០ លាន ដល់ ៧០០ លានរៀល ឬមានបុគ្គលិកពី ១០ ដល់ ៥០ នាក់។",
+          "អ្នកជាប់ពន្ធមធ្យម៖ ផលរបរប្រចាំឆ្នាំចាប់ពី ៧០០ លាន ដល់ ៤,០០០ លានរៀល ឬមានបុគ្គលិកពី ៥១ ដល់ ១០០ នាក់ ឬជានីតិបុគ្គលចុះបញ្ជី។",
+          "អ្នកជាប់ពន្ធធំ៖ ផលរបរប្រចាំឆ្នាំលើសពី ៤,០០០ លានរៀល ឡើងទៅ បុគ្គលិកលើសពី ១០០ នាក់ ឬជាក្រុមហ៊ុនពហុជាតិសាសន៍ និងគម្រោង QIP។",
         ],
       },
       {
-        title: "Tax Declaration Deadlines",
+        title: "កាលបរិច្ឆេទកំណត់នៃការប្រកាសពន្ធ",
         items: [
-          "Monthly declaration: by the 20th of the following month",
-          "Patent tax (annual): by 31 March of each year",
-          "Income tax (annual): by 31 March of the following year",
-          "Billboard/signage tax: by 31 March of each year",
+          "ការប្រកាសពន្ធប្រចាំខែ៖ ត្រូវធ្វើឡើងយ៉ាងយូរបំផុតត្រឹមថ្ងៃទី ២០ នៃខែបន្ទាប់ (សម្រាប់ទម្រង់អេឡិចត្រូនិច e-Filing)។",
+          "ពន្ធប៉ាតង់ (ប្រចាំឆ្នាំ)៖ ត្រូវប្រកាស និងបង់ប្រាក់ចាប់ពីថ្ងៃទី ០១ ខែមករា រហូតដល់ថ្ងៃទី ៣១ ខែមីនា នៃឆ្នាំនីមួយៗ។",
+          "ពន្ធលើប្រាក់ចំណូលប្រចាំឆ្នាំ (ToI)៖ ត្រូវប្រកាសយ៉ាងយូរបំផុតត្រឹមថ្ងៃទី ៣១ ខែមីនា នៃឆ្នាំបន្ទាប់។",
+          "ពន្ធលើផ្លូវ និងមធ្យោបាយដឹកជញ្ជូន៖ ត្រូវប្រកាសបង់ជាប្រចាំឆ្នាំ ចាប់ពីថ្ងៃទី ០១ ខែមិថុនា ដល់ថ្ងៃទី ៣០ ខែកញ្ញា។",
         ],
       },
     ],
@@ -67,228 +358,206 @@ const lessons = [
   {
     id: 1,
     icon: "💰",
-    title: "Tax on Salary",
-    sub: "TAX 02 · TOS",
-    tag: "Core Tax",
-    tagColor: { bg: "#E1F5EE", text: "#085041" },
+    title: "ពន្ធលើប្រាក់បៀវត្ស",
+    sub: "មេរៀនទី ២ · កាតព្វកិច្ចកាត់ទុកលើប្រាក់ឈ្នួល",
+    tag: "ពន្ធស្នូល",
+    tagColor: { bg: "#FFE4E6", text: "#9F1239" },
     sections: [
       {
-        title: "Definition & Scope",
+        title: "គោលការណ៍ទូទៅ និងវិសាលភាពអនុវត្ត",
         items: [
-          "TOS is a monthly tax on salary received from employment activities",
-          "All salary income from employment is subject to TOS",
-          "Collected via withholding by the employer when paying salary",
-          "Employer = any institution or resident individual registered with GDT",
-          "Employee = any individual receiving salary, including directors and elected officials",
+          "ពន្ធលើប្រាក់បៀវត្ស (TOS) គឺជាពន្ធប្រចាំខែដែលកំណត់លើប្រាក់ចំណូលទទួលបានពីសកម្មភាពបំពេញការងាររបស់បុគ្គល។",
+          "យន្តការកាត់ទុក៖ និយោជកមានកាតព្វកិច្ចកាត់ទុកពន្ធនេះជាមុន នៅពេលបើកប្រាក់បៀវត្សជូននិយោជិត រួចយកទៅប្រកាសបង់ជូនរដ្ឋ។",
+          "វិសាលភាព៖ អនុវត្តលើរូបវន្តបុគ្គលទាំងអស់ដែលទទួលប្រាក់បៀវត្ស រួមទាំងប្រធានក្រុមហ៊ុន ឬអ្នកតំណាងដែលទទួលបានការតែងតាំង។",
         ],
       },
       {
-        title: "What Counts as Salary",
+        title: "មូលដ្ឋានគិតពន្ធ និងអត្ថប្រយោជន៍បន្ថែម (Fringe Benefits)",
         items: [
-          "Wages, allowances, bonuses, overtime pay, extra pay, compensation",
-          "Fringe benefits: goods, services, or cash given by employer for employment activities",
-          "Fringe benefits are taxed at 20% of their market value (including all taxes)",
+          "ប្រាក់បៀវត្សជាប់ពន្ធរួមមាន៖ ប្រាក់ឈ្នួលមូលដ្ឋាន ប្រាក់ម៉ោងបន្ថែម (Overtime) ប្រាក់រង្វាន់ (Bonus) ថ្លៃតំណែង និងប្រាក់ឧបត្ថម្ភផ្សេងៗ។",
+          "អត្ថប្រយោជន៍បន្ថែម (Fringe Benefits)៖ រួមមានការផ្តល់កន្លែងស្នាក់នៅ ឡានជិះផ្ទាល់ខ្លួន ការបង់ថ្លៃសិក្សាជំនួស ឬការផ្តល់ប្រាក់កម្ចីការប្រាក់ទាប។",
+          "អត្រាពន្ធលើអត្ថប្រយោជន៍បន្ថែម៖ ត្រូវកំណត់ជាប់ពន្ធក្នុងអត្រាថេរ ២០% នៃតម្លៃទីផ្សារសរុប ដោយគ្មានការកាត់កងបុគ្គលក្នុងបន្ទុកឡើយ។",
         ],
       },
       {
-        title: "Non-Taxable Items",
+        title: "ការលើកលែងមិនជាប់ពន្ធ",
         items: [
-          "Actual expense reimbursements with invoices paid for business purposes",
-          "Severance pay within limits set by Labor Law",
-          "NSSF contributions as required by law",
-          "Health/life insurance premiums paid uniformly to all workers",
-          "Transportation allowance per Labor Law",
-          "Pre-2019 seniority indemnity (for Khmer workers)",
-          "From 2020 onward: salary up to 4,000,000 KHR/year exempted",
+          "ការទូទាត់សងការចំណាយក្នុងបេសកកម្មការងារ (មានវិក្កយបត្រត្រឹមត្រូវ និងប្រើប្រាស់សម្រាប់តែផលប្រយោជន៍អាជីវកម្ម)។",
+          "ប្រាក់ថ្លៃបំណាច់ការងារ (Severance Pay) ក្នុងកម្រិតដែលកំណត់ដោយច្បាប់ស្តីពីការងារ។",
+          "វិភាគទានសន្តិសុខសង្គម (Bf/NSSF) ដែលកំណត់ដោយច្បាប់ជាធរមាន។",
+          "ប្រាក់ថ្លៃធ្វើដំណើរ (Transportation Allowance) និងការធានារ៉ាប់រងសុខភាពដែលផ្តល់ជូនកម្មករ/បុគ្គលិកស្មើៗគ្នាទូទាំងក្រុមហ៊ុន។",
         ],
       },
       {
-        title: "Resident vs Non-Resident",
+        title: "និវាសនជន និងអនិវាសនជន (Resident vs Non-Resident)",
         items: [
-          "Resident: permanent home in Cambodia, or stays >182 days in 12 months",
-          "Non-resident: flat 20% tax on Cambodia-source salary only",
-          "Residents: taxed on Cambodia + foreign salary at progressive rates",
-          "Non-residents: no dependent deductions allowed",
+          "និវាសនជន៖ បុគ្គលដែលមានលំនៅឋានជាគោលដើមនៅក្នុងប្រទេសកម្ពុជា ឬមានវត្តមាននៅក្នុងប្រទេសលើសពី ១៨២ ថ្ងៃ ក្នុងរយៈពេល ១២ ខែ។ ត្រូវជាប់ពន្ធតាមអត្រាកើនតាមថ្នាក់ពី ០% ដល់ ២០% លើប្រភពចំណូលទូទាំងពិភពលោក។",
+          "អនិវាសនជន៖ បុគ្គលដែលមិនបំពេញលក្ខខណ្ឌខាងលើ។ ត្រូវជាប់ពន្ធក្នុងអត្រាថេរ ២០% តែម្តង លើប្រភពចំណូលនៅកម្ពុជា ដោយមិនទទួលបានការអនុគ្រោះកាត់បន្ថយស្ថានភាពគ្រួសារឡើយ។",
         ],
       },
       {
-        title: "Dependent Deductions (Residents Only)",
+        title: "ការអនុគ្រោះបុគ្គលក្នុងបន្ទុក (សម្រាប់និវាសនជន)",
         items: [
-          "Non-working spouse: deduct 150,000 KHR/month",
-          "Each dependent child (under 14, or student under 25): deduct 150,000 KHR/month",
+          "សហព័ទ្ធ (ប្តី ឬប្រពន្ធដែលគ្មានការងារធ្វើ និងអាស្រ័យលើការចិញ្ចឹមរបស់អ្នកជាប់ពន្ធ)៖ ១៥០,០០០ រៀល / ខែ។",
+          "កូនក្នុងបន្ទុក (អាយុក្រោម ១៤ ឆ្នាំ ឬជានិស្សិតរហូតដល់ ២៥ ឆ្នាំ ដែលកំពុងសិក្សាពេញម៉ោង)៖ ១៥០,០០០ រៀល / ម្នាក់ក្នុងមួយខែ។",
         ],
       },
       {
-        title: "TOS Rate Table",
+        title: "តារាងអត្រាពន្ធលើប្រាក់បៀវត្សប្រចាំខែ (គិតចាប់ពីឆ្នាំ ២០២៣ ឡើងទៅ)",
         table: {
-          cols: ["Monthly Salary (KHR)", "Rate", "Formula"],
+          cols: ["ប្រាក់បៀវត្សជាប់ពន្ធប្រចាំខែ (រៀល)", "អត្រាពន្ធ", "រូបមន្តគណនារហ័ស"],
           rows: [
-            ["0 – 1,500,000", "0%", "0"],
-            ["1,500,001 – 2,000,000", "5%", "Salary × 5% − 75,000"],
-            ["2,000,001 – 8,500,000", "10%", "Salary × 10% − 175,000"],
-            ["8,500,001 – 12,500,000", "15%", "Salary × 15% − 600,000"],
-            ["Above 12,500,000", "20%", "Salary × 20% − 1,225,000"],
+            ["០ – ១,៥០០,០០០", "០%", "ប្រាក់ពន្ធ = ០"],
+            ["១,៥០០,០០១ – ២,០០០,០០០", "៥%", "(ប្រាក់បៀវត្សជាប់ពន្ធ × ៥%) − ៧៥,០០០"],
+            ["២,០០០,០០១ – ៨,៥០០,០០០", "១០%", "(ប្រាក់បៀវត្សជាប់ពន្ធ × ១០%) − ១៧៥,០០០"],
+            ["៨,៥០០,០០១ – ១២,៥០០,០០០", "១៥%", "(ប្រាក់បៀវត្សជាប់ពន្ធ × ១៥%) − ៦០០,០០០"],
+            ["លើសពី ១២,៥០០,០០០ ឡើងទៅ", "២០%", "(ប្រាក់បៀវត្សជាប់ពន្ធ × ២០%) − ១,២២៥,០០០"],
           ],
         },
       },
       {
-        title: "Formula",
+        title: "រូបមន្តនៃការគណនា",
         formula:
-          "TOS = Taxable Base × Rate − Offset\n\nTaxable Base = Gross Salary − Dependent Deductions",
+          "ការស្វែងរកមូលដ្ឋានជាប់ពន្ធ៖\nប្រាក់បៀវត្សជាប់ពន្ធ = ប្រាក់បៀវត្សសរុប − ប្រាក់លើកលែងពន្ធ − ការអនុគ្រោះបុគ្គលក្នុងបន្ទុក\n\nប្រាក់ពន្ធត្រូវបង់សរុប = (ប្រាក់បៀវត្សជាប់ពន្ធ × អត្រាពន្ធតាមថ្នាក់) − ចំនួនទឹកប្រាក់ត្រូវដកចេញ (Offset)",
       },
       {
-        title: "Examples",
+        title: "លំហាត់គំរូអនុវត្ត",
         items: [
-          "Salary 2,500,000 (single) → TOS = 2,500,000 × 10% − 175,000 = 75,000 KHR",
-          "Salary 2,500,000 (spouse + 3 kids) → Deduction 600,000 → Base 1,900,000 → TOS = 20,000 KHR",
-          "Salary 12,600,000 (single) → TOS = 12,600,000 × 20% − 1,225,000 = 1,295,000 KHR",
+          "ឧទាហរណ៍ទី ១៖ បុគ្គលិកនៅលីវម្នាក់មានប្រាក់បៀវត្ស ២,៥០០,០០០ រៀល។ ប្រាក់ជាប់ពន្ធ ២,៥០០,០០០ រៀល (ថ្នាក់ ១០%)។ ប្រាក់ពន្ធ = (២,៥០០,០០០ × ១០%) − ១content៧៥,០០០ = ៧៥,០០០ រៀល។",
+          "ឧទហរណ៍ទី ២៖ បុគ្គលិកម្នាក់ប្រាក់បៀវត្ស ២,៥០០,០០០ រៀល មានប្រពន្ធមេផ្ទះ និងកូន ៣ នាក់ក្នុងបន្ទុក។ ទទួលបានការអនុគ្រោះ៖ ៤ × ១៥០,០០០ = ៦០០,០០០ រៀល។ មូលដ្ឋានគិតពន្ធ = ២,៥០០,០០០ − ៦០០,០០០ = ១,៩០០,០០០ រៀល (ថ្នាក់ ៥%)។ ប្រាក់ពន្ធ = (១,៩០០,០០០ × ៥%) − ៧៥,០០០ = ២Base០,០០០ រៀល។",
         ],
       },
     ],
   },
   {
     id: 2,
-    icon: "⚠️",
-    title: "Tax Penalties & Violations",
-    sub: "TAX 01 · Enforcement",
-    tag: "Compliance",
-    tagColor: { bg: "#FAEEDA", text: "#633806" },
+    icon: "🛒",
+    title: "អាករលើតម្លៃបន្ថែម (VAT) និង ប្រាក់រំដោះពន្ធ",
+    sub: "មេរៀនទី ៣ · ពន្ធប្រយោល និងកាតព្វកិច្ចក្រុមហ៊ុន",
+    tag: "ពន្ធសហគ្រាស",
+    tagColor: { bg: "#CCFBF1", text: "#115E59" },
     sections: [
       {
-        title: "Minor Violation — Fine 2,000,000 KHR",
+        title: "គោលការណ៍គ្រឹះ និងយន្តការរបស់ VAT",
         items: [
-          "No accounting records or invoices for business transactions",
-          "Refusing GDT inspection of accounting records or documents",
-          "Not registering with GDT",
-          "Not notifying GDT about changes in registration information",
-          "Creating or maintaining false records or documents",
-          "Hiding or intentionally destroying accounting records",
-          "Obstructing tax assessment or collection",
-          "Failing to file tax declaration within 30 days after deadline",
+          "អាករលើតម្លៃបន្ថែម (VAT) គឺជាពន្ធប្រយោលដែលប្រមូលបន្ថែមនៅលើការប្រើប្រាស់ទំនិញ ឬសេវាកម្ម នៅគ្រប់ដំណាក់កាលនៃចង្វាក់ចែកចាយ។",
+          "បន្ទុកពន្ធ៖ សហគ្រាសអាជីវកម្មគ្រាន់តែជាអ្នកប្រមូលជំនួសរដ្ឋប៉ុណ្ណោះ ចំណែកឯអ្នករងបន្ទុកបង់ពន្ធពិតប្រាកដគឺ អ្នកប្រើប្រាស់ចុងក្រោយ។",
+          "អត្រាស្តង់ដារនៅកម្ពុជា៖ ១០% សម្រាប់ការផ្គត់ផ្គង់ក្នុងស្រុក និង ០% សម្រាប់ការនាំចេញ (Export) ឬឧស្សាហកម្មគាំទ្រនាំចេញ។",
         ],
       },
       {
-        title: "Negligent Underpayment — 10% + 1.5%/month interest",
+        title: "ពន្ធធាតុចូល និងពន្ធធាតុចេញ (Input vs Output VAT)",
         items: [
-          "Tax paid is less than GDT-assessed amount by ≤10%",
-          "Failure to file declaration or pay tax by the prescribed deadline",
+          "អាករធាតុចេញ (Output VAT)៖ ជាអាករ ១០% ដែលអាជីវកម្មប្រមូលពីអតិថិជននៅពេលលក់ទំនិញ ឬសេវាកម្មចេញ។",
+          "អាករធាតុចូល (Input VAT)៖ ជាអាករ ១០% ដែលអាជីវកម្មបានបង់ទៅឱ្យអ្នកផ្គត់ផ្គង់នៅពេលទិញទំនិញ វត្ថុធាតុដើម ឬទ្រព្យសកម្មចូល។",
+          "ការទូទាត់សងរដ្ឋ៖ ប្រសិនបើ Output VAT > Input VAT ក្រុមហ៊ុនត្រូវបង់ប្រាក់ខ្វះជូនរដ្ឋ។ ប្រសិនបើ Input VAT > Output VAT ទឹកប្រាក់ដែលលើសអាចរក្សាទុកកាត់កងខែក្រោយ (Credit Forward)។",
         ],
       },
       {
-        title: "Serious Underpayment — 25% + 1.5%/month interest",
+        title: "ប្រាក់រំដោះពន្ធលើប្រាក់ចំណូល (Prepayment of ToI)",
         items: [
-          "Tax paid is less than GDT-assessed amount by more than 10%",
+          "ប្រាក់រំដោះពន្ធលើប្រាក់ចំណូល គឺជាកាតព្វកិច្ចបង់ពន្ធជាមុនប្រចាំខែ ក្នុងអត្រា ១% នៃផលរបរ (Turnover) សរុបរួមបញ្ចូលទាំងពន្ធដារដទៃទៀត (លើកលែងតែ VAT)។",
+          "ទឹកប្រាក់ដែលបានបង់ប្រចាំខែនេះ នឹងត្រូវយកទៅកាត់កងជាមួយកាតព្វកិច្ចពន្ធលើប្រាក់ចំណូលប្រចាំឆ្នាំ (ToI) នៅចុងឆ្នាំ។",
         ],
       },
       {
-        title: "Unilateral Assessment — 40% + 1.5%/month interest",
-        items: [
-          "Taxpayer fails to cooperate during tax audit",
-          "No proper accounting records maintained",
-          "GDT has insufficient information for standard assessment",
-        ],
+        title: "រូបមន្ត និងការគណនា",
+        formula:
+          "រូបមន្តទូទាត់ VAT ប្រចាំខែ៖\nVAT ត្រូវបង់/កាត់កង = Output VAT − Input VAT\n\nរូបមន្តប្រាក់រំដោះពន្ធលើប្រាក់ចំណូលប្រចាំខែ៖\nប្រាក់រំដោះពន្ធ (១%) = ផលរបរលក់សរុបប្រចាំខែ (មិនគិត Output VAT) × ១%",
       },
     ],
   },
   {
     id: 3,
-    icon: "📋",
-    title: "Tax Dispute Resolution",
-    sub: "TAX 01 · Appeals",
-    tag: "Legal Process",
-    tagColor: { bg: "#FCEBEB", text: "#791F1F" },
+    icon: "⚠️",
+    title: "ទោសទណ្ឌពន្ធដារ និងបទល្មើស",
+    sub: "មេរៀនទី ៤ · ការអនុវត្តច្បាប់ និងការផាកពិន័យ",
+    tag: "ការអនុលោមភាព",
+    tagColor: { bg: "#FEF3C7", text: "#92400E" },
     sections: [
       {
-        title: "Filing a Complaint",
+        title: "បទល្មើសស្រាល ឬការរំលោភបំពានបទប្បញ្ញត្តិ — ពិន័យ ២,០០០,០០០ រៀល",
         items: [
-          "Must be filed within 30 days of receiving GDT decision",
-          "Subjects: tax assessment, re-assessment, collection, or other tax measures",
-          "Grounds: new facts or information not included in original assessment",
+          "មិនបានរក្សាទុកកំណត់ត្រាគណនេយ្យ ឬវិក្កយបត្រត្រឹមត្រូវតាមច្បាប់អាជីវកម្ម។",
+          "បដិសេធមិនផ្តល់ឯកសារ ឬរារាំងមន្ត្រីពន្ធដារក្នុងការចុះធ្វើការត្រួតពិនិត្យ។",
+          "មិនបានចុះបញ្ជីពន្ធដារជាមួយអគ្គនាយកដ្ឋានពន្ធដារក្នុងរយៈពេលកំណត់។",
+          "មិនបានជូនដំណឹងអំពីការផ្លាស់ប្តូរព័ត៌មានក្រុមហ៊ុន (ដូចជា អាសយដ្ឋាន ម្ចាស់ភាគហ៊ុន ឬសកម្មភាពអាជីវកម្ម) ក្នុងរយៈពេល ២ អាទិត្យ។",
+          "ការខកខានមិនបានដាក់លិខិតប្រកាសពន្ធក្នុងរយៈពេល ៣០ ថ្ងៃ ក្រោយកាលបរិច្ឆេទកំណត់។",
         ],
       },
       {
-        title: "Required Content",
+        title: "ការបង់ពន្ធតិចដោយអចេតនា (Negligent Underpayment)",
         items: [
-          "Date of decision being contested",
-          "Taxpayer identification (VAT TIN and/or PIN)",
-          "Address, phone number, and/or email",
-          "Reference to the specific tax letter/decision contested",
-          "Grounds and legal basis for the taxpayer's claim",
-          "Signature of authorized representative",
+          "កើតឡើងនៅពេលទឹកប្រាក់ដែលបានប្រកាសបង់ តិចជាងចំនួនទឹកប្រាក់ដែលរកឃើញដោយសវនកម្មពន្ធដារ ក្នុងកម្រិតមិនលើសពី ១០%។",
+          "ទោសទណ្ឌ៖ ផាកពិន័យ ១០% នៃប្រាក់ពន្ធដែលខ្វះខាត បូករួមទាំងការគិតការប្រាក់យឺតយ៉ាវ ១.៥% ក្នុងមួយខែ។",
         ],
       },
       {
-        title: "Grounds for Rejection",
+        title: "ការបង់ពន្ធតិចដោយចេតនា ឬធ្ងន់ធ្ងរ (Serious Underpayment)",
         items: [
-          "Complaint filed after the 30-day deadline",
-          "Complaint is incomplete — missing required content or information",
-          "Missing supporting documents or evidence",
+          "កើតឡើងនៅពេលទឹកប្រាក់ដែលបានប្រកាសបង់ តិចជាងចំនួនទឹកប្រាក់ដែលរកឃើញដោយសវនកម្ម លើសពី ១០%។",
+          "ទោសទណ្ឌ៖ ផាកពិន័យ ២៥% នៃប្រាក់ពន្ធដែលខ្វះខាត បូករួមទាំងការគិតការប្រាក់យឺតយ៉ាវ ១.៥% ក្នុងមួយខែ។",
         ],
       },
       {
-        title: "Resolution Timeline & Appeals",
+        title: "ការវាយតម្លៃពន្ធឯកតោភាគី (Unilateral Assessment)",
         items: [
-          "GDT must issue decision within 60 days of receiving the complaint",
-          "If unsatisfied: appeal to Tax Arbitration Committee (TAC) within 30 days",
-          "TAC acceptance suspends enforcement of GDT's original decision",
-          "If unsatisfied with TAC: appeal to court within 30 days",
-          "Court appeal does NOT suspend TAC decision (tax must be deposited first)",
+          "អនុវត្តក្នុងករណីដែលអ្នកជាប់ពន្ធមិនសហការជាមួយសវនករ មិនមានសៀវភៅបញ្ជីគណនេយ្យ ឬអពដមិនមានព័ត៌មានគ្រប់គ្រាន់ក្នុងការគិតពន្ធធម្មតា។",
+          "ទោសទណ្ឌ៖ ផាកពិន័យជាអតិបរមា ៤០% នៃប្រាក់ពន្ធដែលបានវាយតម្លៃ បូករួមទាំងការគិតការប្រាក់យឺតយ៉ាវ ១.៥% ក្នុងមួយខែ។",
         ],
       },
     ],
   },
   {
     id: 4,
-    icon: "🧮",
-    title: "Worked Examples & Exercises",
-    sub: "TAX 01 + 02 · Practice",
-    tag: "Exercises",
-    tagColor: { bg: "#E6F1FB", text: "#0C447C" },
+    icon: "📋",
+    title: "ដោះស្រាយវិវាទពន្ធដារ",
+    sub: "មេរៀនទី ៥ · នីតិវិធីតវ៉ា និងការប្តឹងឧទ្ធរណ៍",
+    tag: "ដំណើរការច្បាប់",
+    tagColor: { bg: "#F3E8FF", text: "#6B21A8" },
     sections: [
       {
-        title: "Example 1 — MBR Cambodia (Patent Tax Penalty)",
+        title: "ការដាក់ពាក្យបណ្តឹងតវ៉ា (Filing a Complaint)",
         items: [
-          "Registered Oct 12, 2022 · No business activity (zero revenue)",
-          "Still obligated to file monthly & annual declarations (even if zero revenue)",
-          "Patent tax/year: 1,200,000 KHR (2022 patent paid at registration)",
-          "2023 patent overdue → Penalty (10%): 120,000 KHR",
-          "Interest (1.5% × 11 months): 1,200,000 × 1.5% × 11 = 198,000 KHR",
-          "2024 patent tax: 1,200,000 KHR",
-          "Minor violation fine: 2,000,000 KHR",
+          "ត្រូវតែដាក់ពាក្យបណ្តឹងតវ៉ាក្នុងរយៈពេលយ៉ាងយូរបំផុត ៣០ ថ្ងៃ គិតចាប់ពីថ្ងៃដែលបានទទួលលិខិតជូនដំណឹងស្តីពីការវាយតម្លៃពន្ធ (Notice of Tax Assessment)។",
+          "កម្មវត្ថុនៃបណ្តឹង៖ តវ៉ាលើការកំណត់ពន្ធឡើងវិញរបស់សវនករ ឬវិធានការណ៍បង្ខំផ្សេងៗ។",
+          "មូលដ្ឋានតវ៉ា៖ ត្រូវផ្អែកលើអង្គហេតុថ្មី ភស្តុតាង និងច្បាប់ពន្ធដារជាធរមានដែលសវនករអាចនឹងយល់ច្រឡំ។",
         ],
       },
       {
-        title: "Example 2 — MBR Phnom Penh (Income Tax Penalty)",
+        title: "ខ្លឹមសារចាំបាច់នៃលិខិតតវ៉ា",
         items: [
-          "Declared income tax 2021: 100,000,000 KHR",
-          "Audit found non-deductible expenses → underpaid by 8,000,000 KHR",
-          "Penalty (10%): 8,000,000 × 10% = 800,000 KHR",
-          "Interest (1.5% × 22 months to Jan 2024): 8,000,000 × 1.5% × 22 = 2,640,000 KHR",
+          "កាលបរិច្ឆេទនៃលិខិតជូនដំណឹងស្តីពីការកំណត់ពន្ធដែលចង់តវ៉ា។",
+          "ព័ត៌មានអត្តសញ្ញាណអ្នកជាប់ពន្ធ (លេខអត្តសញ្ញាណកម្មសារពើពន្ធ VAT TIN ឬ PIN)។",
+          "អាសយដ្ឋាន លេខទូរស័ព្ទទំនាក់ទំនង និងអ៊ីមែលផ្លូវការ។",
+          "មូលហេតុ និងសំអាងហេតុផ្លូវច្បាប់ច្បាស់លាស់ដែលបង្ហាញថាកាគណនារបស់សវនករមិនត្រឹមត្រូវ។",
+          "ហត្ថលេខាផ្ទាល់របស់តំណាងស្របច្បាប់ ឬម្ចាស់សហគ្រាស។",
         ],
       },
       {
-        title: "Example 3 — MBR Gold (Non-cooperation Penalty)",
+        title: "មូលហេតុដែលបណ្តឹងអាចត្រូវបដិសេធចោល (Rejection Grounds)",
         items: [
-          "2020 audit: no proper accounting records, 250,000,000 KHR income tax unpaid",
-          "Penalty (25% serious): 250,000,000 × 25% = 62,500,000 KHR",
-          "Interest (1.5% × 34 months, Apr 2021 to Jan 2024): 250,000,000 × 1.5% × 34 = 127,500,000 KHR",
-          "Minor violation fine: 2,000,000 KHR",
+          "បណ្តឹងត្រូវបានដាក់ហួសកាលកំណត់ ៣០ ថ្ងៃ។",
+          "ពាក្យបណ្តឹងមិនមានខ្លឹមសារគ្រប់គ្រាន់ ឬខ្វះព័ត៌មានសំខាន់ៗដែលច្បាប់តម្រូវ។",
+          "មិនមានឯកសារភស្តុតាង ឬកំណត់ត្រាគណនេយ្យមកបង្ហាញគាំទ្រការអះអាងរបស់ខ្លួន។",
         ],
       },
       {
-        title: "TOS Exercise 1 — Salary 1,900,000 KHR (includes 100,000 travel allowance)",
+        title: "កាលវិភាគដោះស្រាយ និងការបន្តប្តឹងឧទ្ធរណ៍",
         items: [
-          "Taxable salary = 1,900,000 − 100,000 = 1,800,000 KHR",
-          "Case A (single): TOS = 1,800,000 × 5% − 75,000 = 15,000 KHR",
-          "Case B (spouse + 3 kids): Deduction 600,000 → Base 1,200,000 → TOS = 0 KHR",
+          "អគ្គនាយកដ្ឋានពន្ធដារត្រូវចេញសេចក្តីសម្រេចលើបណ្តឹងតវ៉ាក្នុងរយៈពេល ៦០ ថ្ងៃ ក្រោយទទួលបានបណ្តឹង។",
+          "ប្រសិនបើមិនសុខចិត្តនឹងសេចក្តីសម្រេច៖ អាចបន្តប្តឹងទៅ គណៈកម្មការអាជ្ញាកណ្តាលពន្ធដារ (TAC) ក្នុងរយៈពេល ៣០ ថ្ងៃបន្ទាប់។",
+          "ការទទួលយកបណ្តឹងពី TAC នឹងធ្វើការព្យួរជាបណ្តោះអាសន្ននូវវិធានការបង្ខំទារពន្ធរបស់ អពដ។",
+          "ប្រសិនបើនៅតែមិនសុខចិត្តនឹង TAC៖ អាចបន្តប្តឹងទៅតុលាការសេដ្ឋកិច្ច/រដ្ឋបាលក្នុងរយៈពេល ៣០ ថ្ងៃ ប៉ុន្តែមិនព្យួរវិធានការបង់ពន្ធឡើយ (ត្រូវកក់ប្រាក់ពន្ធទុកនៅធនាគារជាតិជាមុនសិន)។",
         ],
-      },
-      {
-        title: "TOS Exercise 2 — Manager Salary 8,700,000 KHR",
-        items: [
-          "Case A (single): TOS = 8,700,000 × 10% − 175,000 = 695,000 KHR",
-          "Case B (spouse + 3 kids): Deduction 600,000 → Base 8,100,000 → TOS = 8,100,000 × 10% − 175,000 = 635,000 KHR",
-        ],
+        table: {
+          cols: ["ដំណាក់កាល", "ស្ថាប័នទទួលបន្ទុក", "កាលកំណត់ដាក់បណ្តឹង"],
+          rows: [
+            ["ថ្នាក់ទី ១", "អគ្គនាយកដ្ឋានពន្ធដារ (GDT)", "ក្នុងរយៈពេល ៣០ ថ្ងៃក្រោយទទួលដីកាពន្ធ"],
+            ["ថ្នាក់ទី ២", "គណៈកម្មការអាជ្ញាកណ្តាលពន្ធដារ (TAC)", "ក្នុងរយៈពេល ៣០ ថ្ងៃក្រោយទទួលសេចក្តីសម្រេចទី ១"],
+            ["ថ្នាក់ទី ៣", "សាលាដំបូង/តុលាការមានសមត្ថកិច្ច", "ក្នុងរយៈពេល ៣០ ថ្ងៃក្រោយទទួលសេចក្តីសម្រេចទី ២"],
+          ],
+        },
       },
     ],
   },
@@ -300,11 +569,12 @@ function Badge({ label, color }) {
       style={{
         display: "inline-block",
         fontSize: 11,
-        padding: "2px 8px",
-        borderRadius: 20,
-        fontWeight: 500,
+        padding: "3px 10px",
+        borderRadius: 999,
+        fontWeight: 700,
         background: color.bg,
         color: color.text,
+        letterSpacing: "0.5px",
       }}
     >
       {label}
@@ -317,39 +587,56 @@ function LessonCard({ lesson, active, onClick }) {
     <div
       onClick={onClick}
       style={{
-        background: active ? "#E6F1FB" : "#fff",
-        border: active ? "1.5px solid #185FA5" : "0.5px solid rgba(0,0,0,0.15)",
-        borderRadius: 12,
-        padding: "1rem 1.1rem",
+        background: active
+          ? "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)"
+          : "#FFFFFF",
+        border: active ? "none" : "1px solid #E2E8F0",
+        borderRadius: 24,
+        padding: "22px 20px",
         cursor: "pointer",
-        transition: "border-color 0.15s, background 0.15s",
+        boxShadow: active
+          ? "0 10px 30px rgba(37,99,235,.3)"
+          : "0 4px 20px rgba(15,23,42,.05)",
+        transition: "all 0.2s ease",
       }}
     >
-      <div style={{ fontSize: 24, marginBottom: 8 }}>{lesson.icon}</div>
-      <Badge label={lesson.tag} color={lesson.tagClass || lesson.tagColor} />
-      <div style={{ fontSize: 13, fontWeight: 500, marginTop: 6, lineHeight: 1.4 }}>
+      <div style={{ fontSize: 26, marginBottom: 10 }}>{lesson.icon}</div>
+      <Badge
+        label={lesson.tag}
+        color={
+          active
+            ? { bg: "rgba(255,255,255,0.2)", text: "#fff" }
+            : lesson.tagColor
+        }
+      />
+      <div
+        style={{
+          fontSize: 14,
+          fontWeight: 700,
+          marginTop: 10,
+          lineHeight: 1.4,
+          color: active ? "#fff" : "#0F172A",
+        }}
+      >
         {lesson.title}
       </div>
-      <div style={{ fontSize: 12, color: "#888", marginTop: 3 }}>{lesson.sub}</div>
+      <div
+        style={{
+          fontSize: 12,
+          marginTop: 6,
+          color: active ? "rgba(255,255,255,0.75)" : "#64748B",
+        }}
+      >
+        {lesson.sub}
+      </div>
     </div>
   );
 }
 
 function SectionBlock({ section }) {
   return (
-    <div style={{ marginBottom: "1.25rem" }}>
-      <div
-        style={{
-          fontSize: 11,
-          fontWeight: 500,
-          color: "#888",
-          textTransform: "uppercase",
-          letterSpacing: "0.06em",
-          marginBottom: 8,
-        }}
-      >
-        {section.title}
-      </div>
+    <div style={{ marginBottom: "1.8rem" }}>
+      <div style={S.cardTitle}>{section.title}</div>
 
       {section.items &&
         section.items.map((item, i) => (
@@ -357,41 +644,27 @@ function SectionBlock({ section }) {
             key={i}
             style={{
               display: "flex",
-              gap: 8,
+              gap: 10,
               fontSize: 14,
-              lineHeight: 1.6,
-              marginBottom: 4,
-              color: "#1a1a1a",
+              lineHeight: 1.7,
+              marginBottom: 8,
+              color: "#334155",
             }}
           >
-            <span style={{ color: "#aaa", flexShrink: 0 }}>—</span>
+            <span style={{ color: "#2563EB", flexShrink: 0, fontWeight: 700 }}>
+              —
+            </span>
             <span>{item}</span>
           </div>
         ))}
 
       {section.table && (
-        <div style={{ overflowX: "auto", marginTop: 8 }}>
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              fontSize: 13,
-            }}
-          >
+        <div style={{ overflowX: "auto", marginTop: 12 }}>
+          <table style={S.tbl}>
             <thead>
               <tr>
                 {section.table.cols.map((col, i) => (
-                  <th
-                    key={i}
-                    style={{
-                      background: "#f5f5f3",
-                      fontWeight: 500,
-                      padding: "7px 10px",
-                      textAlign: "left",
-                      border: "0.5px solid rgba(0,0,0,0.12)",
-                      color: "#555",
-                    }}
-                  >
+                  <th key={i} style={S.th}>
                     {col}
                   </th>
                 ))}
@@ -401,14 +674,7 @@ function SectionBlock({ section }) {
               {section.table.rows.map((row, i) => (
                 <tr key={i}>
                   {row.map((cell, j) => (
-                    <td
-                      key={j}
-                      style={{
-                        padding: "7px 10px",
-                        border: "0.5px solid rgba(0,0,0,0.12)",
-                        background: i % 2 === 1 ? "#fafafa" : "#fff",
-                      }}
-                    >
+                    <td key={j} style={i % 2 === 1 ? S.tdActive : S.td}>
                       {cell}
                     </td>
                   ))}
@@ -420,20 +686,19 @@ function SectionBlock({ section }) {
       )}
 
       {section.formula && (
-        <div
-          style={{
-            background: "#f5f5f3",
-            borderLeft: "3px solid #185FA5",
-            borderRadius: "0 8px 8px 0",
-            padding: "10px 14px",
-            fontSize: 13,
-            fontFamily: "monospace",
-            marginTop: 8,
-            lineHeight: 1.7,
-            whiteSpace: "pre-line",
-          }}
-        >
-          {section.formula}
+        <div style={S.note}>
+          <pre
+            style={{
+              margin: 0,
+              fontFamily: "monospace",
+              fontSize: 13,
+              whiteSpace: "pre-line",
+              color: "#1E40AF",
+              lineHeight: 1.6,
+            }}
+          >
+            {section.formula}
+          </pre>
         </div>
       )}
     </div>
@@ -450,73 +715,83 @@ export default function TaxLessons() {
   const activelesson = lessons.find((l) => l.id === active);
 
   return (
-    <div style={{ fontFamily: "sans-serif", maxWidth: 780, margin: "0 auto", padding: "1.5rem 1rem" }}>
-      {/* Header */}
-      <div style={{ marginBottom: "1.25rem" }}>
-        <h1 style={{ fontSize: 20, fontWeight: 500, margin: 0 }}>
-          Cambodia Taxation — Course Lessons
-        </h1>
-        <p style={{ fontSize: 13, color: "#888", marginTop: 4 }}>
-          Department of Applied Mathematics and Statistics, ITC · Academic year 2025–2026
-        </p>
-      </div>
+    <div style={S.page}>
+      <div style={S.wrap}>
 
-      {/* Card Grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
-          gap: 10,
-          marginBottom: "1.5rem",
-        }}
-      >
-        {lessons.map((l) => (
-          <LessonCard
-            key={l.id}
-            lesson={l}
-            active={active === l.id}
-            onClick={() => handleCard(l.id)}
-          />
-        ))}
-      </div>
+        {/* Header */}
+        <div style={S.header}>
+          <h1 style={S.h1}>ប្រព័ន្ធពន្ធដារកម្ពុជា — មេរៀនសង្ខេប</h1>
+          <p style={S.hSub}>
+            ដេប៉ាតឺម៉ង់គណិតវិទ្យាអនុវត្ត និងស្ថិតិ (ITC) · ឆ្នាំសិក្សា ២០២៥–២០២៦
+          </p>
+        </div>
 
-      {/* Detail Panel */}
-      {activelesson && (
-        <div
-          style={{
-            background: "#fff",
-            border: "0.5px solid rgba(0,0,0,0.15)",
-            borderRadius: 12,
-            padding: "1.25rem 1.5rem",
-          }}
-        >
-          {/* Detail Header */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              marginBottom: "1rem",
-              paddingBottom: "0.75rem",
-              borderBottom: "0.5px solid rgba(0,0,0,0.12)",
-            }}
-          >
-            <span style={{ fontSize: 28 }}>{activelesson.icon}</span>
-            <div>
-              <div style={{ fontSize: 17, fontWeight: 500 }}>{activelesson.title}</div>
-              <Badge
-                label={`${activelesson.tag} · ${activelesson.sub}`}
-                color={activelesson.tagColor}
-              />
-            </div>
-          </div>
-
-          {/* Sections */}
-          {activelesson.sections.map((s, i) => (
-            <SectionBlock key={i} section={s} />
+        {/* Card Grid */}
+        <div style={S.row2}>
+          {lessons.map((l) => (
+            <LessonCard
+              key={l.id}
+              lesson={l}
+              active={active === l.id}
+              onClick={() => handleCard(l.id)}
+            />
           ))}
         </div>
-      )}
+
+        {/* Detail Panel */}
+        {activelesson && (
+          <div style={{ ...S.card, marginTop: 24 }}>
+            {/* Detail Header */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                marginBottom: "1.25rem",
+                paddingBottom: "1rem",
+                borderBottom: "1px solid #E2E8F0",
+              }}
+            >
+              <div
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 16,
+                  background: "#EFF6FF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 26,
+                }}
+              >
+                {activelesson.icon}
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 800,
+                    color: "#0F172A",
+                    marginBottom: 6,
+                  }}
+                >
+                  {activelesson.title}
+                </div>
+                <Badge
+                  label={`${activelesson.tag} · ${activelesson.sub}`}
+                  color={activelesson.tagColor}
+                />
+              </div>
+            </div>
+
+            {/* Sections */}
+            {activelesson.sections.map((s, i) => (
+              <SectionBlock key={i} section={s} />
+            ))}
+          </div>
+        )}
+
+      </div>
     </div>
   );
 }
