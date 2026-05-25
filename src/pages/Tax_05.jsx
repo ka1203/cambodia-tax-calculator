@@ -16,19 +16,19 @@ const TAX_TYPES = [
 
 // ─── រចនាបទ (Styles) ────────────────────────────────────────────────────────
 const S = {
-  page: { minHeight: "100vh", background: "#F8FAFC", padding: "32px 20px", fontFamily: "'Khmer OS Battambang', sans-serif" },
+  page: { minHeight: "100vh", background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)", padding: "32px 20px", fontFamily: "'Khmer OS Battambang', sans-serif" },
   wrap: { width: "100%", maxWidth: 900, margin: "0 auto" },
   backBtn: { marginBottom: 24, padding: "12px 18px", borderRadius: 12, border: "1px solid #E2E8F0", background: "#FFFFFF", color: "#475569", fontWeight: 600, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, transition: ".2s", boxShadow: "0 2px 8px rgba(0,0,0,.04)" },
-  header: { background: "linear-gradient(135deg,#F0F9FF 0%,#DBEAFE 50%,#BFDBFE 100%)", color: "#1E3A8A", borderRadius: 24, padding: "28px 32px", marginBottom: 24, border: "1px solid #BFDBFE", boxShadow: "0 6px 20px rgba(59,130,246,.10)" },
-  h1: { fontSize: 28, fontWeight: 800, marginBottom: 8, color: "#1D4ED8" },
+  header: { background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)", color: "#FFFFFF", borderRadius: 24, padding: "28px 32px", marginBottom: 24, border: "1px solid #BFDBFE", boxShadow: "0 6px 20px rgba(59,130,246,.10)" },
+  h1: { fontSize: 28, fontWeight: 800, marginBottom: 8, color: "#FFFFFF" },
   card: { background: "#FFFFFF", borderRadius: 24, padding: 28, marginBottom: 24, border: "1px solid #E2E8F0", boxShadow: "0 6px 20px rgba(15,23,42,.06)" },
   cardTitle: { fontSize: 14, fontWeight: 700, color: "#1D4ED8", letterSpacing: "0.5px", marginBottom: 16 },
   tabRow: { display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 20 },
   tab: { padding: "12px 22px", borderRadius: 999, border: "1px solid #CBD5E1", background: "#FFFFFF", color: "#64748B", fontWeight: 600, cursor: "pointer", fontSize: 14 },
-  tabOn: { padding: "12px 22px", borderRadius: 999, border: "none", background: "linear-gradient(135deg,#60A5FA,#3B82F6)", color: "#FFFFFF", fontWeight: 700, cursor: "pointer", fontSize: 14, boxShadow: "0 6px 18px rgba(37,99,235,.25)" },
+  tabOn: { padding: "12px 22px", borderRadius: 999, border: "none", background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)", color: "#FFFFFF", fontWeight: 700, cursor: "pointer", fontSize: 14, boxShadow: "0 6px 18px rgba(37,99,235,.25)" },
   input: { width: "100%", boxSizing: "border-box", padding: "14px 16px", border: "1px solid #CBD5E1", borderRadius: 14, fontSize: 15, marginBottom: 20 },
-  btn: { width: "100%", padding: "16px", fontSize: 16, fontWeight: 700, borderRadius: 16, border: "none", cursor: "pointer", background: "linear-gradient(135deg,#60A5FA,#3B82F6)", color: "#FFFFFF", boxShadow: "0 10px 25px rgba(37,99,235,.20)" },
-  metric: { background: "#F8FAFC", borderRadius: 20, padding: 20, textAlign: "center", border: "1px solid #E2E8F0" },
+  btn: { width: "100%", padding: "16px", fontSize: 16, fontWeight: 700, borderRadius: 16, border: "none", cursor: "pointer", background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)", color: "#FFFFFF", boxShadow: "0 10px 25px rgba(37,99,235,.20)" },
+  metric: { background: "#FFFFFF", borderRadius: 20, padding: 20, textAlign: "center", border: "1px solid #E2E8F0" },
   mLabel: { fontSize: 13, color: "#64748B", marginBottom: 8 },
   dedRow: { display: "flex", justifyContent: "space-between", padding: "16px 0", borderBottom: "1px solid #F1F5F9", fontSize: 15 }
 };

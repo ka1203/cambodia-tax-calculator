@@ -39,9 +39,10 @@ const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'I
  const S = {
   page: {
     minHeight: "100vh",
-    background: "#F8FAFC",
+    background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
     padding: "32px 20px", 
     fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
+    
   },
 
   wrap: {
@@ -70,8 +71,8 @@ const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'I
 
   /* ===== HEADER (FIXED + SOFT BLUE) ===== */
   header: {
-    background: "linear-gradient(135deg,#F0F9FF 0%,#DBEAFE 50%,#BFDBFE 100%)",
-    color: "#1E3A8A",
+    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "#FFFFFF",
     borderRadius: 24,
     padding: "28px 32px",
     marginBottom: 24,
@@ -84,14 +85,14 @@ const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'I
     fontWeight: 800,
     marginBottom: 8,
     lineHeight: 1.3,
-    color: "#1D4ED8",
+    color: "#FFFFFF",
     fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
   },
 
   hSub: {
     fontSize: 15,
     fontWeight: 500,
-    color: "#475569",
+    color: "#FFFFFF",
     lineHeight: 1.6,
     fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
   },

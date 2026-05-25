@@ -11,7 +11,7 @@ const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'I
 const S = {
   page: {
     minHeight: "100vh",
-    background: "#F8FAFC",
+    background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
     padding: "24px 16px", 
     fontFamily: FONT_SET,
   },
@@ -110,7 +110,7 @@ const S = {
     padding: "12px 20px",
     borderRadius: 12,
     border: "none",
-    background: "linear-gradient(135deg,#2563EB,#1D4ED8)",
+    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
     color: "#FFFFFF",
     cursor: "pointer",
     fontWeight: 700,

@@ -115,248 +115,225 @@ export default function SalaryTaxPage({ setPage }) {
     });
   }
 
- const S = {
+ // ស្ទាយរួមដែលបានកែសម្រួល Font Family ឱ្យត្រូវស្តង់ដារ
+const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'Inter', sans-serif";
+
+const S = {
   page: {
     minHeight: "100vh",
-    background: "#F8FAFC",
-    padding: "24px 16px",
-    fontFamily: "'Kantumruy Pro', 'Inter', sans-serif",
+    background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
+    padding: "24px 16px", 
+    fontFamily: FONT_SET,
   },
 
-  // ───────────────── WRAPPER ─────────────────
   wrap: {
     width: "100%",
-    maxWidth: 1280,
+    maxWidth: 1200, 
     margin: "0 auto",
-    paddingLeft: 12,
-    paddingRight: 12,
   },
 
-  // ───────────────── HEADER ─────────────────
+  topBar: {
+    display: "flex",
+    justifyContent: "flex-start",
+    marginBottom: 16,
+  },
+
+  backBtn: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "8px 16px",
+    background: "#FFFFFF",
+    border: "1px solid #E2E8F0",
+    borderRadius: "12px",
+    color: "#334155",
+    fontSize: 14,
+    fontWeight: 600,
+    cursor: "pointer",
+    transition: ".2s",
+    boxShadow: "0 2px 5px rgba(0,0,0,.04)",
+    fontFamily: FONT_SET,
+  },
+
   header: {
-    background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
-    color: "#0F172A",
-    borderRadius: 24,
-    padding: "32px 36px",
+    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "#FFFFFF",
+    borderRadius: 20, 
+    padding: "24px 30px", 
     marginBottom: 24,
-    border: "1px solid #BFDBFE",
-    boxShadow: "0 4px 12px rgba(59,130,246,0.08)",
+    boxShadow: "0 10px 25px rgba(37,99,235,.1)",
   },
 
   h1: {
-    fontSize: 28,
+    fontSize: 24, 
     fontWeight: 800,
-    marginBottom: 10,
-    color: "#1D4ED8",
+    marginBottom: 8,
+    fontFamily: FONT_SET,
   },
 
   hSub: {
-    fontSize: 14,
-    color: "#475569",
-    lineHeight: 1.6,
+    fontSize: 14, 
+    opacity: 0.9,
+    fontFamily: FONT_SET,
   },
 
-  // ───────────────── BACK BUTTON ─────────────────
-  backBtn: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "#FFFFFF",
-    color: "#2563EB",
-    border: "1px solid #DBEAFE",
-    borderRadius: 14,
-    padding: "10px 18px",
-    fontSize: 14,
-    fontWeight: 700,
-    cursor: "pointer",
-    marginBottom: 18,
-    boxShadow: "0 2px 8px rgba(0,0,0,.04)",
-  },
-
-  // ───────────────── INFO BOX ─────────────────
-  infoBox: {
-    background: "#FFFFFF",
-    border: "1px solid #E2E8F0",
-    borderRadius: 18,
-    padding: 22,
-    marginBottom: 22,
-    lineHeight: 1.8,
-    color: "#334155",
-    boxShadow: "0 2px 10px rgba(0,0,0,.03)",
-  },
-
-  // ───────────────── CARD ─────────────────
   card: {
     background: "#FFFFFF",
-    borderRadius: 22,
-    padding: 24,
-    marginBottom: 22,
+    borderRadius: 20,
+    padding: 24, 
+    marginBottom: 20,
     border: "1px solid #E2E8F0",
-    boxShadow: "0 4px 16px rgba(15,23,42,.04)",
+    boxShadow: "0 4px 20px rgba(15,23,42,.04)",
   },
 
   cardTitle: {
     fontSize: 13,
     fontWeight: 700,
     color: "#2563EB",
-    letterSpacing: ".4px",
+    letterSpacing: "0.5px",
     marginBottom: 16,
-    textTransform: "uppercase",
+    fontFamily: FONT_SET,
   },
 
-  // ───────────────── TABS ─────────────────
   tabRow: {
     display: "flex",
-    gap: 12,
+    justifyContent: "flex-start",
+    gap: 10,
     marginBottom: 24,
     flexWrap: "wrap",
   },
 
   tab: {
-    minWidth: 220,
-    padding: "14px 18px",
-    borderRadius: 16,
-    border: "1px solid #CBD5E1",
+    padding: "12px 20px",
+    borderRadius: 12,
+    border: "1px solid #E2E8F0",
     background: "#FFFFFF",
     color: "#64748B",
     cursor: "pointer",
     fontWeight: 600,
+    fontSize: 14,
     transition: ".2s",
+    fontFamily: FONT_SET,
   },
 
   tabOn: {
-    minWidth: 220,
-    padding: "14px 18px",
-    borderRadius: 16,
-    border: "1px solid #BFDBFE",
-    background: "linear-gradient(135deg,#BFDBFE,#93C5FD)",
-    color: "#1D4ED8",
+    padding: "12px 20px",
+    borderRadius: 12,
+    border: "none",
+    background: "linear-gradient(135deg,#2563EB,#1D4ED8)",
+    color: "#FFFFFF",
     cursor: "pointer",
     fontWeight: 700,
-    boxShadow: "0 4px 12px rgba(59,130,246,.10)",
+    fontSize: 14,
+    boxShadow: "0 4px 12px rgba(37,99,235,.2)",
+    fontFamily: FONT_SET,
   },
 
-  // ───────────────── GRID ─────────────────
   row2: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
-    gap: 18,
+    gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
+    gap: 16,
   },
 
   field: {
-    marginBottom: 18,
+    marginBottom: 16,
   },
 
-  // ───────────────── INPUTS ─────────────────
   label: {
     display: "block",
     fontSize: 13,
     fontWeight: 600,
     color: "#475569",
     marginBottom: 6,
+    fontFamily: FONT_SET,
   },
 
   input: {
     width: "100%",
     boxSizing: "border-box",
-    padding: "14px 16px",
+    padding: "12px 14px",
     border: "1px solid #CBD5E1",
-    borderRadius: 14,
+    borderRadius: 12,
     fontSize: 14,
     background: "#FFFFFF",
     outline: "none",
+    fontFamily: FONT_SET,
   },
 
   select: {
     width: "100%",
     boxSizing: "border-box",
-    padding: "14px 16px",
+    padding: "12px 14px",
     border: "1px solid #CBD5E1",
-    borderRadius: 14,
+    borderRadius: 12,
     fontSize: 14,
     background: "#FFFFFF",
     outline: "none",
+    fontFamily: FONT_SET,
   },
 
-  // ───────────────── BUTTON ─────────────────
   btn: {
     width: "100%",
-    padding: "16px",
+    padding: "14px",
     fontSize: 15,
     fontWeight: 700,
-    borderRadius: 16,
+    borderRadius: 12,
     border: "none",
     cursor: "pointer",
-    background: "linear-gradient(135deg,#93C5FD,#60A5FA)",
+    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
     color: "#FFFFFF",
-    boxShadow: "0 4px 12px rgba(59,130,246,.12)",
+    boxShadow: "0 4px 12px rgba(37,99,235,.15)",
     marginBottom: 24,
+    fontFamily: FONT_SET,
   },
 
-  // ───────────────── METRICS ─────────────────
   metricGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-    gap: 18,
-    marginBottom: 22,
+    gap: 16,
+    marginBottom: 20,
   },
 
   metric: {
     background: "#FFFFFF",
-    borderRadius: 18,
-    padding: 22,
+    borderRadius: 16,
+    padding: 20,
     textAlign: "center",
     border: "1px solid #E2E8F0",
-    boxShadow: "0 4px 10px rgba(0,0,0,.03)",
+    boxShadow: "0 4px 12px rgba(0,0,0,.03)",
   },
 
   mLabel: {
     fontSize: 12,
     color: "#64748B",
     marginBottom: 8,
+    fontFamily: FONT_SET,
   },
 
-  mVal: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#2563EB",
-  },
-
-  mValRed: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#DC2626",
-  },
-
-  // ───────────────── NOTE ─────────────────
   note: {
     background: "#EFF6FF",
     border: "1px solid #BFDBFE",
-    borderRadius: 14,
+    borderRadius: 12,
     padding: 14,
     color: "#1E40AF",
-    marginTop: 14,
-    lineHeight: 1.7,
+    marginTop: 12,
+    lineHeight: 1.6,
     fontSize: 13,
+    fontFamily: FONT_SET,
   },
 
-  // ───────────────── BAR ─────────────────
-  barTrack: {
-    height: 14,
-    background: "#E2E8F0",
-    borderRadius: 999,
-    overflow: "hidden",
-    marginBottom: 10,
+  noteWarn: {
+    background: "#FEF2F2",
+    border: "1px solid #FCA5A5",
+    borderRadius: 12,
+    padding: 14,
+    color: "#991B1B",
+    marginTop: 12,
+    lineHeight: 1.6,
+    fontSize: 13,
+    fontFamily: FONT_SET,
   },
 
-  barLabels: {
-    display: "flex",
-    justifyContent: "space-between",
-    fontSize: 12,
-    color: "#64748B",
-  },
-
-  // ───────────────── TABLE ─────────────────
   tbl: {
     width: "100%",
     borderCollapse: "collapse",
@@ -364,57 +341,41 @@ export default function SalaryTaxPage({ setPage }) {
 
   th: {
     background: "#EFF6FF",
-    color: "#1D4ED8",
-    padding: "14px",
+    color: "#1E40AF",
+    padding: "12px",
     textAlign: "left",
     fontWeight: 700,
-    borderBottom: "1px solid #DBEAFE",
     fontSize: 13,
+    borderBottom: "1px solid #DBEAFE",
+    fontFamily: FONT_SET,
   },
 
   td: {
-    padding: "14px",
+    padding: "12px",
+    fontSize: 13,
     borderBottom: "1px solid #F1F5F9",
-    fontSize: 13,
-    color: "#334155",
+    fontFamily: FONT_SET,
   },
 
-  tdActive: {
-    padding: "14px",
-    background: "#EFF6FF",
-    color: "#1D4ED8",
-    fontWeight: 700,
-    borderBottom: "1px solid #BFDBFE",
-    fontSize: 13,
-  },
-
-  // ───────────────── BREAKDOWN ─────────────────
   dedRow: {
     display: "flex",
     justifyContent: "space-between",
-    padding: "14px 0",
+    padding: "12px 0",
+    fontSize: 13,
     borderBottom: "1px solid #F1F5F9",
-    fontSize: 14,
-  },
-
-  dedTotal: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: 16,
-    borderRadius: 14,
-    background: "#EFF6FF",
-    marginTop: 10,
-    fontWeight: 700,
+    fontFamily: FONT_SET,
   },
 
   dedRowTotal: {
     display: "flex",
     justifyContent: "space-between",
-    padding: 16,
-    borderRadius: 14,
-    background: "#EFF6FF",
     marginTop: 10,
+    padding: 14,
+    borderRadius: 12,
+    background: "#EFF6FF",
     fontWeight: 700,
+    fontSize: 14,
+    fontFamily: FONT_SET,
   },
 
   dedVal: {

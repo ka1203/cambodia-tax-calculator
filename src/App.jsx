@@ -7,6 +7,9 @@ import OtherTaxPage from "./pages/OtherTaxPage";
 import CambodiaTaxCalc from "./pages/tax calculator";
 import LessonCard from "./pages/lesson";
 import TaxCalculator from "./pages/Tax_05";
+import PLTCalculator from "./pages/PLT";
+import SpecialTaxPage from "./pages/ST";
+import AccomTaxPage from "./pages/AT";
 
 function App() {
   const [page, setPage] = useState("home");
@@ -68,6 +71,30 @@ function App() {
 
       {page === "taxCalculator" && (
         <TaxCalculator
+          setPage={setPage}
+          lang={lang}
+          setLang={setLang}
+        />
+      )}
+
+      {page === "plt" && (
+        <PLTCalculator
+          setPage={setPage}
+          lang={lang}
+          setLang={setLang}
+        />
+      )}
+
+      {page === "ST" && (
+        <SpecialTaxPage
+          setPage={setPage}
+          lang={lang}
+          setLang={setLang}
+        />
+      )}
+
+      {page === "AT" && (
+        <AccomTaxPage
           setPage={setPage}
           lang={lang}
           setLang={setLang}

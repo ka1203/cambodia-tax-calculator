@@ -1,299 +1,278 @@
 import { useState } from "react";
 
+// ស្ទាយរួមដែលបានកែសម្រួល Font Family ឱ្យត្រូវស្តង់ដារ
+const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'Inter', sans-serif";
+
 const S = {
   page: {
     minHeight: "100vh",
-    background: "#F8FAFC",
-    padding: "32px 20px", 
-    fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
+    background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
+    padding: "24px 16px", 
+    fontFamily: FONT_SET,
   },
 
   wrap: {
     width: "100%",
     maxWidth: 1200, 
     margin: "0 auto",
-    padding: "0 16px",
+  },
+
+  topBar: {
+    display: "flex",
+    justifyContent: "flex-start",
+    marginBottom: 16,
   },
 
   backBtn: {
-    marginBottom: 24,
-    padding: "12px 18px",
-    borderRadius: 12,
-    border: "1px solid #E2E8F0",
-    background: "#FFFFFF",
-    color: "#475569",
-    fontWeight: 600,
-    cursor: "pointer",
-    display: "inline-flex",
+    display: "flex",
     alignItems: "center",
     gap: 8,
+    padding: "8px 16px",
+    background: "#FFFFFF",
+    border: "1px solid #E2E8F0",
+    borderRadius: "12px",
+    color: "#334155",
     fontSize: 14,
+    fontWeight: 600,
+    cursor: "pointer",
     transition: ".2s",
-    boxShadow: "0 2px 8px rgba(0,0,0,.04)",
+    boxShadow: "0 2px 5px rgba(0,0,0,.04)",
+    fontFamily: FONT_SET,
   },
 
-  /* ===== HEADER (FIXED + SOFT BLUE) ===== */
   header: {
-    background: "linear-gradient(135deg,#F0F9FF 0%,#DBEAFE 50%,#BFDBFE 100%)",
-    color: "#1E3A8A",
-    borderRadius: 24,
-    padding: "28px 32px",
+    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
+    color: "#FFFFFF",
+    borderRadius: 20, 
+    padding: "24px 30px", 
     marginBottom: 24,
-    border: "1px solid #BFDBFE",
-    boxShadow: "0 6px 20px rgba(59,130,246,.10)",
+    boxShadow: "0 10px 25px rgba(37,99,235,.1)",
   },
 
   h1: {
-    fontSize: 28,   // 🔥 bigger header text
+    fontSize: 24, 
     fontWeight: 800,
     marginBottom: 8,
-    lineHeight: 1.3,
-    color: "#1D4ED8",
-    fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
+    fontFamily: FONT_SET,
   },
 
   hSub: {
-    fontSize: 15,
-    fontWeight: 500,
-    color: "#475569",
-    lineHeight: 1.6,
-    fontFamily: "'Khmer OS Battambang', 'Inter', sans-serif",
-  },
-
-  infoBox: {
-    background: "#FFFFFF",
-    border: "1px solid #DBEAFE",
-    borderRadius: 18,
-    padding: 24,
-    marginBottom: 24,
-    lineHeight: 1.8,
-    boxShadow: "0 4px 15px rgba(0,0,0,.04)",
+    fontSize: 14, 
+    opacity: 0.9,
+    fontFamily: FONT_SET,
   },
 
   card: {
     background: "#FFFFFF",
-    borderRadius: 24,
-    padding: 28,
-    marginBottom: 24,
+    borderRadius: 20,
+    padding: 24, 
+    marginBottom: 20,
     border: "1px solid #E2E8F0",
-    boxShadow: "0 6px 20px rgba(15,23,42,.06)",
+    boxShadow: "0 4px 20px rgba(15,23,42,.04)",
   },
 
   cardTitle: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 700,
-    color: "#1D4ED8",
+    color: "#2563EB",
     letterSpacing: "0.5px",
     marginBottom: 16,
-  },
-
-  statusCard: {
-    textAlign: "center",
-    padding: "40px 28px",
-    borderRadius: 24,
-    background: "#FFFFFF",
-    border: "1px solid #E2E8F0",
-    boxShadow: "0 6px 20px rgba(15,23,42,.06)",
-    marginBottom: 24,
-  },
-
-  statusLabel: {
-    fontSize: 18,
-    color: "#8E9AA8",
-    fontWeight: 500,
-    marginBottom: 12,
-    display: "block",
-  },
-
-  statusTextRed: {
-    fontSize: 44,
-    fontWeight: 800,
-    color: "#E52E2E",
-  },
-
-  statusTextGold: {
-    fontSize: 44,
-    fontWeight: 800,
-    color: "#D97706",
+    fontFamily: FONT_SET,
   },
 
   tabRow: {
     display: "flex",
-    gap: 12,
-    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    gap: 10,
     marginBottom: 24,
+    flexWrap: "wrap",
   },
 
   tab: {
-    padding: "12px 22px",
-    borderRadius: 999,
-    border: "1px solid #CBD5E1",
+    padding: "12px 20px",
+    borderRadius: 12,
+    border: "1px solid #E2E8F0",
     background: "#FFFFFF",
     color: "#64748B",
-    fontWeight: 600,
     cursor: "pointer",
+    fontWeight: 600,
     fontSize: 14,
+    transition: ".2s",
+    fontFamily: FONT_SET,
   },
 
   tabOn: {
-    padding: "12px 22px",
-    borderRadius: 999,
+    padding: "12px 20px",
+    borderRadius: 12,
     border: "none",
-    background: "linear-gradient(135deg,#60A5FA,#3B82F6)",
+    background: "linear-gradient(135deg,#2563EB,#1D4ED8)",
     color: "#FFFFFF",
-    fontWeight: 700,
     cursor: "pointer",
+    fontWeight: 700,
     fontSize: 14,
-    boxShadow: "0 6px 18px rgba(37,99,235,.25)",
+    boxShadow: "0 4px 12px rgba(37,99,235,.2)",
+    fontFamily: FONT_SET,
   },
 
   row2: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: 18,
+    gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
+    gap: 16,
   },
 
   field: {
-    marginBottom: 18,
+    marginBottom: 16,
   },
 
   label: {
     display: "block",
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 600,
-    color: "#334155",
-    marginBottom: 8,
+    color: "#475569",
+    marginBottom: 6,
+    fontFamily: FONT_SET,
   },
 
   input: {
     width: "100%",
     boxSizing: "border-box",
-    padding: "14px 16px",
+    padding: "12px 14px",
     border: "1px solid #CBD5E1",
-    borderRadius: 14,
-    fontSize: 15,
+    borderRadius: 12,
+    fontSize: 14,
     background: "#FFFFFF",
     outline: "none",
+    fontFamily: FONT_SET,
+  },
+
+  select: {
+    width: "100%",
+    boxSizing: "border-box",
+    padding: "12px 14px",
+    border: "1px solid #CBD5E1",
+    borderRadius: 12,
+    fontSize: 14,
+    background: "#FFFFFF",
+    outline: "none",
+    fontFamily: FONT_SET,
   },
 
   btn: {
     width: "100%",
-    padding: "16px",
-    fontSize: 16,
+    padding: "14px",
+    fontSize: 15,
     fontWeight: 700,
-    borderRadius: 16,
+    borderRadius: 12,
     border: "none",
     cursor: "pointer",
-    background: "linear-gradient(135deg,#60A5FA,#3B82F6)",
+    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
     color: "#FFFFFF",
-    boxShadow: "0 10px 25px rgba(37,99,235,.20)",
+    boxShadow: "0 4px 12px rgba(37,99,235,.15)",
     marginBottom: 24,
+    fontFamily: FONT_SET,
   },
 
   metricGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-    gap: 18,
-    marginBottom: 24,
+    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+    gap: 16,
+    marginBottom: 20,
   },
 
   metric: {
     background: "#FFFFFF",
-    borderRadius: 20,
-    padding: 24,
+    borderRadius: 16,
+    padding: 20,
     textAlign: "center",
     border: "1px solid #E2E8F0",
-    boxShadow: "0 4px 14px rgba(0,0,0,.05)",
+    boxShadow: "0 4px 12px rgba(0,0,0,.03)",
   },
 
   mLabel: {
-    fontSize: 13,
+    fontSize: 12,
     color: "#64748B",
     marginBottom: 8,
-  },
-
-  mValBlue: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#2563EB",
-  },
-
-  mValGreen: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#16A34A",
-  },
-
-  mValRed: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#DC2626",
-  },
-
-  mValGold: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#D97706",
-  },
-
-  barTrack: {
-    height: 14,
-    background: "#E2E8F0",
-    borderRadius: 999,
-    overflow: "hidden",
-    display: "flex",
-    marginBottom: 12,
-    marginTop: 10,
+    fontFamily: FONT_SET,
   },
 
   note: {
     background: "#EFF6FF",
     border: "1px solid #BFDBFE",
-    borderRadius: 14,
-    padding: 16,
+    borderRadius: 12,
+    padding: 14,
     color: "#1E40AF",
-    marginTop: 16,
-    lineHeight: 1.7,
+    marginTop: 12,
+    lineHeight: 1.6,
+    fontSize: 13,
+    fontFamily: FONT_SET,
+  },
+
+  noteWarn: {
+    background: "#FEF2F2",
+    border: "1px solid #FCA5A5",
+    borderRadius: 12,
+    padding: 14,
+    color: "#991B1B",
+    marginTop: 12,
+    lineHeight: 1.6,
+    fontSize: 13,
+    fontFamily: FONT_SET,
+  },
+
+  tbl: {
+    width: "100%",
+    borderCollapse: "collapse",
+  },
+
+  th: {
+    background: "#EFF6FF",
+    color: "#1E40AF",
+    padding: "12px",
+    textAlign: "left",
+    fontWeight: 700,
+    fontSize: 13,
+    borderBottom: "1px solid #DBEAFE",
+    fontFamily: FONT_SET,
+  },
+
+  td: {
+    padding: "12px",
+    fontSize: 13,
+    borderBottom: "1px solid #F1F5F9",
+    fontFamily: FONT_SET,
   },
 
   dedRow: {
     display: "flex",
     justifyContent: "space-between",
     padding: "12px 0",
+    fontSize: 13,
     borderBottom: "1px solid #F1F5F9",
+    fontFamily: FONT_SET,
+  },
+
+  dedRowTotal: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: 10,
+    padding: 14,
+    borderRadius: 12,
+    background: "#EFF6FF",
+    fontWeight: 700,
     fontSize: 14,
-  },
-
-  dedRowTotalPayable: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: 16,
-    borderRadius: 14,
-    background: "#FEF2F2",
-    border: "1px solid #FEE2E2",
-    color: "#991B1B",
-    marginTop: 14,
-    fontWeight: 700,
-  },
-
-  dedRowTotalCredit: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: 16,
-    borderRadius: 14,
-    background: "#F0FDF4",
-    border: "1px solid #DCFCE7",
-    color: "#166534",
-    marginTop: 14,
-    fontWeight: 700,
+    fontFamily: FONT_SET,
   },
 
   dedVal: {
     color: "#2563EB",
     fontWeight: 700,
   },
-};
 
+  dedValRed: {
+    color: "#DC2626",
+    fontWeight: 700,
+  },
+};
 const lessons = [
   {
     id: 0,
