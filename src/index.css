@@ -1,20 +1,15 @@
+@font-face {
+  font-family: "Khmer OS Siemreap";
+  src: url("/fonts/KhmerOSsiemreap.ttf") format("truetype");
+}
+
 html,
 body,
 #root {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: Inter, Arial, sans-serif;
-
-   @font-face {
-  font-family: 'Khmer OS Siemreap';
-  src: url('/fonts/KhmerOSsiemreap.ttf') format('truetype');
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
+  font-family: "Khmer OS Siemreap", "Khmer OS Battambang", "Battambang", Inter, Arial, sans-serif;
 }
 
 * {
@@ -23,6 +18,32 @@ body {
 
 button {
   font: inherit;
+}
+
+body {
+  background: #f7f8fb;
+  color: #111827;
+}
+
+.app-shell,
+.page-transition {
+  min-height: 100vh;
+}
+
+.page-transition {
+  animation: pageEnter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .home-page {

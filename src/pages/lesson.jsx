@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 // ស្ទាយរួមដែលបានកែសម្រួល Font Family ឱ្យត្រូវស្តង់ដារ
-const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'Inter', sans-serif";
+const FONT_SET = "'Khmer OS Siemreap', 'Khmer OS Battambang', 'Khmer OS Battambong', 'Battambang', Inter, sans-serif";
+const CARD_RADIUS = 20;
+const CARD_PADDING = 24;
 
 const S = {
   page: {
@@ -50,22 +52,24 @@ const S = {
   },
 
   h1: {
-    fontSize: 24, 
+    fontSize: 24,
+    lineHeight: 1.35,
     fontWeight: 800,
     marginBottom: 8,
     fontFamily: FONT_SET,
   },
 
   hSub: {
-    fontSize: 14, 
+    fontSize: 14,
+    lineHeight: 1.7,
     opacity: 0.9,
     fontFamily: FONT_SET,
   },
 
   card: {
     background: "#FFFFFF",
-    borderRadius: 20,
-    padding: 24, 
+    borderRadius: CARD_RADIUS,
+    padding: CARD_PADDING,
     marginBottom: 20,
     border: "1px solid #E2E8F0",
     boxShadow: "0 4px 20px rgba(15,23,42,.04)",
@@ -75,7 +79,8 @@ const S = {
     fontSize: 13,
     fontWeight: 700,
     color: "#2563EB",
-    letterSpacing: "0.5px",
+    letterSpacing: 0,
+    lineHeight: 1.5,
     marginBottom: 16,
     fontFamily: FONT_SET,
   },
@@ -181,7 +186,7 @@ const S = {
 
   metric: {
     background: "#FFFFFF",
-    borderRadius: 16,
+    borderRadius: CARD_RADIUS,
     padding: 20,
     textAlign: "center",
     border: "1px solid #E2E8F0",
@@ -238,7 +243,19 @@ const S = {
   td: {
     padding: "12px",
     fontSize: 13,
+    lineHeight: 1.6,
     borderBottom: "1px solid #F1F5F9",
+    fontFamily: FONT_SET,
+  },
+
+  tdActive: {
+    padding: "12px",
+    fontSize: 13,
+    lineHeight: 1.6,
+    borderBottom: "1px solid #DBEAFE",
+    background: "#EFF6FF",
+    color: "#1E40AF",
+    fontWeight: 700,
     fontFamily: FONT_SET,
   },
 
@@ -553,7 +570,8 @@ function Badge({ label, color }) {
         fontWeight: 700,
         background: color.bg,
         color: color.text,
-        letterSpacing: "0.5px",
+        letterSpacing: 0,
+        lineHeight: 1.5,
       }}
     >
       {label}
@@ -566,17 +584,20 @@ function LessonCard({ lesson, active, onClick }) {
     <div
       onClick={onClick}
       style={{
+        minHeight: 196,
         background: active
           ? "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)"
           : "#FFFFFF",
         border: active ? "none" : "1px solid #E2E8F0",
-        borderRadius: 24,
-        padding: "22px 20px",
+        borderRadius: CARD_RADIUS,
+        padding: CARD_PADDING,
         cursor: "pointer",
         boxShadow: active
           ? "0 10px 30px rgba(37,99,235,.3)"
           : "0 4px 20px rgba(15,23,42,.05)",
         transition: "all 0.2s ease",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <div style={{ fontSize: 26, marginBottom: 10 }}>{lesson.icon}</div>
@@ -590,10 +611,10 @@ function LessonCard({ lesson, active, onClick }) {
       />
       <div
         style={{
-          fontSize: 14,
+          fontSize: 15,
           fontWeight: 700,
           marginTop: 10,
-          lineHeight: 1.4,
+          lineHeight: 1.55,
           color: active ? "#fff" : "#0F172A",
         }}
       >
@@ -601,8 +622,9 @@ function LessonCard({ lesson, active, onClick }) {
       </div>
       <div
         style={{
-          fontSize: 12,
+          fontSize: 13,
           marginTop: 6,
+          lineHeight: 1.6,
           color: active ? "rgba(255,255,255,0.75)" : "#64748B",
         }}
       >
@@ -625,7 +647,7 @@ function SectionBlock({ section }) {
               display: "flex",
               gap: 10,
               fontSize: 14,
-              lineHeight: 1.7,
+              lineHeight: 1.8,
               marginBottom: 8,
               color: "#334155",
             }}
@@ -735,7 +757,7 @@ export default function TaxLessons() {
                 style={{
                   width: 56,
                   height: 56,
-                  borderRadius: 16,
+              borderRadius: 16,
                   background: "#EFF6FF",
                   display: "flex",
                   alignItems: "center",
@@ -748,7 +770,8 @@ export default function TaxLessons() {
               <div>
                 <div
                   style={{
-                    fontSize: 18,
+                  fontSize: 18,
+                  lineHeight: 1.45,
                     fontWeight: 800,
                     color: "#0F172A",
                     marginBottom: 6,

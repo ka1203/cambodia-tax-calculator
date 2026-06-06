@@ -10,96 +10,118 @@ import TaxCalculator from "./pages/Tax_05";
 import PLTCalculator from "./pages/PLT";
 import SpecialTaxPage from "./pages/ST";
 import AccomTaxPage from "./pages/AT";
+import IncomeTaxCalculator from "./pages/Tax06IncomeTax";
+import LandDontUsePage from "./pages/land_dont use";
+import ProthabtraTaxPage from "./pages/prothab_tax";
+import AdvertisementTaxPage from "./pages/advertiment";
+import TransportTaxPage from "./pages/transport_tax";
+
+
+function PageFrame({ name, children }) {
+  return (
+    <div key={name} className="page-transition">
+      {children}
+    </div>
+  );
+}
 
 function App() {
   const [page, setPage] = useState("home");
-
-  // 🌍 GLOBAL LANGUAGE (IMPORTANT)
   const [lang, setLang] = useState("kh");
+  const pageProps = { setPage, lang, setLang };
 
   return (
-    <div>
+    <div className="app-shell">
       {page === "home" && (
-        <HomePage
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <HomePage {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "cambodiaTaxCalc" && (
-        <CambodiaTaxCalc
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <CambodiaTaxCalc {...pageProps} />
+        </PageFrame>
       )}
 
-    
-
       {page === "salary" && (
-        <SalaryTaxPage
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <SalaryTaxPage {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "vat" && (
-        <VATPage
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <VATPage {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "OtherTaxpage" && (
-        <OtherTaxPage
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <OtherTaxPage {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "lesson" && (
-        <LessonCard
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <LessonCard {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "taxCalculator" && (
-        <TaxCalculator
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <TaxCalculator {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "plt" && (
-        <PLTCalculator
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <PLTCalculator {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "ST" && (
-        <SpecialTaxPage
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <SpecialTaxPage {...pageProps} />
+        </PageFrame>
       )}
 
       {page === "AT" && (
-        <AccomTaxPage
-          setPage={setPage}
-          lang={lang}
-          setLang={setLang}
-        />
+        <PageFrame name={page}>
+          <AccomTaxPage {...pageProps} />
+        </PageFrame>
       )}
+
+      {page === "land_dont_use" && (
+        <PageFrame name={page}>
+          <LandDontUsePage {...pageProps} />
+        </PageFrame>
+      )}      
+
+{page === "Tax06IncomeTax" && (
+  <PageFrame name={page}>
+    <IncomeTaxCalculator />
+  </PageFrame>
+)}
+
+{page === "prothab_tax" && (
+        <PageFrame name={page}>
+          <ProthabtraTaxPage {...pageProps} />
+        </PageFrame>
+      )}
+
+{page === "advertiment" && (
+        <PageFrame name={page}>
+          <AdvertisementTaxPage {...pageProps} />
+        </PageFrame>
+      )}
+
+{page==="transport_tax" && (
+  <PageFrame name={page}>
+    <TransportTaxPage {...pageProps} />
+  </PageFrame>
+)}
+
     </div>
   );
 }

@@ -1,697 +1,652 @@
 import { useState } from "react";
 
-// ─── CONSTANTS ───────────────────────────────────────────────
-const VAT_RATE = 0.10;
+const FONT = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Siemreap', sans-serif";
 
-const SPECIAL_TAX_RATES = {
-  liquor:       { label: "សុរា / ស្រាទំពាំងបាយជូរ", rate: 0.35 },
-  beer:         { label: "ស្រាបៀរ", rate: 0.30 },
-  cigarette:    { label: "បារី", rate: 0.20 },
-  cigar:        { label: "សីហ្គា", rate: 0.25 },
-  beverage:     { label: "ភេសជ្ជៈគ្មានជាតិអាកុល", rate: 0.10 },
-  cement:       { label: "ស៊ីម៉ងត៍", rate: 0.05 },
-  air_ticket:   { label: "សេវាសំបុត្រយន្តហោះ", rate: 0.10 },
-  entertainment:{ label: "សេវាកម្សាន្ត", rate: 0.10 },
-  telecom:      { label: "សេវាទូរគមនាគមន៍", rate: 0.03 },
-};
-
-// ─── HELPERS ─────────────────────────────────────────────────
-function n(v) {
-  return parseFloat(v) || 0;
+function fmt(v) {
+  return v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
-
-function money(v) {
-  const rounded = Math.round(v);
-  return rounded.toLocaleString("en-US") + " ៛";
+function fmtKHR(v) {
+  return Math.round(v).toLocaleString("en-US") + " ៛";
 }
+function n(v) { return parseFloat(v) || 0; }
 
+// ── SPECIAL TAX RATES ─────────────────────────────────────────
+const GOODS_RATES = [
+  { id: "wine",       label: "ស្រា (Wine/Spirits) — គ្រប់ប្រភេទ",                rate: 0.35, base: "domestic", note: "×90% Invoice" },
+  { id: "beer",       label: "ស្រាបៀរ — គ្រប់ប្រភេទ",                            rate: 0.30, base: "domestic", note: "×90% Invoice" },
+  { id: "cigar",      label: "ស៊ីហ្គា — គ្រប់ប្រភេទ",                            rate: 0.25, base: "domestic", note: "×90% Invoice" },
+  { id: "cigarette",  label: "បារី — គ្រប់ប្រភេទ",                               rate: 0.20, base: "domestic", note: "×90% Invoice" },
+  { id: "energy",     label: "ភេស្ជៈប៉ូវកម្លាំង (Energy Drink)",                 rate: 0.15, base: "domestic", note: "×90% Invoice" },
+  { id: "softdrink",  label: "ភេស្ជៈគ្មានជាតិសុរា (Soft Drink)",                 rate: 0.10, base: "domestic", note: "×90% Invoice" },
+  { id: "juice",      label: "ទឹកផ្លែឈើ (Fruit Juice)",                          rate: 0.05, base: "domestic", note: "×90% Invoice" },
+  { id: "plastic",    label: "ផលិតផលប្លាស្ទិក",                                   rate: 0.10, base: "domestic", note: "×90% Invoice" },
+  { id: "cement",     label: "ស៊ីម៉ងត៍ — គ្រប់ប្រភេទ",                           rate: 0.05, base: "domestic", note: "×90% Invoice" },
+  { id: "electronic", label: "គ្រឿងអេឡិចត្រូនិក",                                rate: null, base: "domestic", note: "អត្រាកំណត់ដាច់ដោយឡែក" },
+  { id: "moto",       label: "ទោចក្រយានយន្ត",                                    rate: null, base: "domestic", note: "អត្រាកំណត់ដាច់ដោយឡែក" },
+  { id: "car",        label: "រថយន្ត",                                              rate: null, base: "domestic", note: "អត្រាកំណត់ដាច់ដោយឡែក" },
+  { id: "sparepart",  label: "គ្រឿងបន្លាស់យានយន្ត",                               rate: null, base: "domestic", note: "អត្រាកំណត់ដាច់ដោយឡែក" },
+  { id: "cosmetic",   label: "ផលិតផលគ្រឿងសម្អាង (Cosmetics)",                    rate: null, base: "domestic", note: "អត្រាកំណត់ដាច់ដោយឡែក" },
+  { id: "glass",      label: "ផលិតផលកញ្ចក់ — គ្រឿងសំណង់",                       rate: null, base: "domestic", note: "អត្រាកំណត់ដាច់ដោយឡែក" },
+];
 
-// ស្ទាយរួមដែលបានកែសម្រួល Font Family ឱ្យត្រូវស្តង់ដារ
-const FONT_SET = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Battambong', 'Inter', sans-serif";
+const SERVICE_RATES = [
+  { id: "telecom",    label: "សេវាទូរគមនាគមន៍ (Telecom)",                         rate: 0.03, base: "service" },
+  { id: "airline",    label: "សេវាដឹកជញ្ជូន អ្នកដំណើរ (Airline)",               rate: 0.10, base: "service" },
+  { id: "entertain",  label: "សេវាលំហែកម្សាន្ត (Entertainment)",                 rate: 0.10, base: "service" },
+];
 
+const IMPORT_RATES = [
+  { id: "wine_i",      label: "ស្រា (Wine/Spirits) — នាំចូល",                    rate: 0.35 },
+  { id: "beer_i",      label: "ស្រាបៀរ — នាំចូល",                                 rate: 0.30 },
+  { id: "cigar_i",     label: "ស៊ីហ្គា — នាំចូល",                                 rate: 0.25 },
+  { id: "cig_i",       label: "បារី — នាំចូល",                                     rate: 0.20 },
+  { id: "energy_i",    label: "ភេស្ជៈប៉ូវកម្លាំង — នាំចូល",                      rate: 0.15 },
+  { id: "soft_i",      label: "ភេស្ជៈគ្មានជាតិសុរា — នាំចូល",                    rate: 0.10 },
+  { id: "juice_i",     label: "ទឹកផ្លែឈើ — នាំចូល",                              rate: 0.05 },
+  { id: "plastic_i",   label: "ផលិតផលប្លាស្ទិក — នាំចូល",                        rate: 0.10 },
+  { id: "cement_i",    label: "ស៊ីម៉ងត៍ — នាំចូល",                                rate: 0.05 },
+  { id: "electronic_i",label: "គ្រឿងអេឡិចត្រូនិក — នាំចូល",                     rate: null },
+  { id: "moto_i",      label: "ទោចក្រយានយន្ត — នាំចូល",                          rate: null },
+  { id: "car_i",       label: "រថយន្ត — នាំចូល",                                   rate: null },
+  { id: "sparepart_i", label: "គ្រឿងបន្លាស់យានយន្ត — នាំចូល",                    rate: null },
+  { id: "cosmetic_i",  label: "ផលិតផលគ្រឿងសម្អាង — នាំចូល",                      rate: null },
+  { id: "glass_i",     label: "ផលិតផលកញ្ចក់ (គ្រឿងសំណង់) — នាំចូល",             rate: null },
+];
+
+// ── DEFINITIONS ───────────────────────────────────────────────
+const DEFS = [
+  {
+    term: "អាករពិសេស (Special Tax / Excise Tax)",
+    color: "#0B1F4E", bg: "#EFF6FF", border: "#BFDBFE",
+    body: `អាករពិសេស ត្រូវប្រមូលលើទំនិញ ឬ សេវាដែលមាន
+លក្ខណៈប្រណីត ឬ ប៉ះពាល់ដល់សុខភាព/បរិស្ថាន។
+• អនុវត្តលើ: ការនាំចូល · ការផលិត · ការចែកចាយ
+• ជំនួស: អ្នកនាំចូល ឬ អ្នកផលិត ឬ អ្នកផ្គត់ផ្គង់
+• ប្រកាស: ប្រចាំខែ យ៉ាងយូរ ថ្ងៃទី ២០ (ផ្ទាល់)
+          ឬ ថ្ងៃទី ២៥ (Online) នៃខែបន្ទាប់
+• បង់: ធនាគារដៃគូ GDT · e-Payment · Prefiling App`,
+  },
+  {
+    term: "មូលដ្ឋានគិតអាករ — ទំនិញក្នុងស្រុក",
+    color: "#166534", bg: "#F0FDF4", border: "#BBF7D0",
+    body: `មូលដ្ឋានគិតអាករ = ៩០% × តម្លៃផ្គត់ផ្គង់
+(ដោយ មិន រួមបញ្ចូល VAT · PLT · អាករពិសេសខ្លួនឯង)
+
+ឧទាហរណ៍: ស្រាបៀរ ១,០០០ ករ តម្លៃ $10,000
+→ មូលដ្ឋាន = $10,000 × ៩០% = $9,000
+→ អាករ = $9,000 × ៣០% = $2,700
+
+ហេតុអ្វី × ៩០%?
+→ ស្មើនឹងដក Margin ១០% ដែលជា profit/overhead
+→ ដើម្បីមិនអាករពីរដង (Double Taxation)`,
+  },
+  {
+    term: "មូលដ្ឋានគិតអាករ — ទំនិញនាំចូល",
+    color: "#92400E", bg: "#FFFBEB", border: "#FDE68A",
+    body: `មូលដ្ឋានគិតអាករ = CIF + ពន្ធនាំចូល
+(CIF = Cost + Insurance + Freight)
+→ គណនាតាម Custom Valuation Law
+→ មិន × ៩០% ដូចទំនិញក្នុងស្រុក
+
+ឧទាហរណ៍: CIF $5,000 + ពន្ធនាំចូល $500 = $5,500
+→ អាករពិសេស (ស្រា) = $5,500 × ៣៥% = $1,925`,
+  },
+  {
+    term: "មូលដ្ឋានគិតអាករ — សេវា",
+    color: "#6B21A8", bg: "#FAF5FF", border: "#DDD6FE",
+    body: `មូលដ្ឋានគិតអាករ = ថ្លៃសេវាក្នុង Invoice
+(ដោយ មិន ទាន់គិត VAT + អាករពិសេស)
+
+• Telecom: ៣% × ថ្លៃ Call/Data/SMS
+• Airline: ១០% × ថ្លៃសំបុត្រ
+• Entertainment: ១០% × ថ្លៃចូល/សេវា
+
+ឧទាហរណ៍: សំបុត្រយន្តហោះ $1,000
+→ អាករ = $1,000 × ១០% = $100`,
+  },
+  {
+    term: "ករណីលើកលែង (Personal Allowance)",
+    color: "#991B1B", bg: "#FEF2F2", border: "#FCA5A5",
+    body: `បុគ្គលគ្មានកាតព្វកិច្ចចុះបញ្ជីពន្ធ
+អាចនាំចូលដោយមិនជាប់អាករពិសេស:
+• បារី: ២០០ ដើម
+• ស៊ីហ្គា: ៥០ ដើម
+• ស្រា: ២ លីត្រ
+→ លើសពីនេះ → ជាប់អាករពិសេស`,
+  },
+];
+
+// ── SHARED STYLES ─────────────────────────────────────────────
 const S = {
-  page: {
-    minHeight: "100vh",
-    background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)",
-    padding: "24px 16px", 
-    fontFamily: FONT_SET,
-  },
-
-  wrap: {
-    width: "100%",
-    maxWidth: 1280,
-    margin: "0 auto",
-    paddingLeft: 12,
-    paddingRight: 12,
-  },
-
-  header: {
-    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
-  
-    color: "#FFFFFF",
-    borderRadius: 24,
-    padding: "32px 36px",
-    marginBottom: 24,
-    border: "1px solid #BFDBFE",
-    boxShadow: "0 4px 12px rgba(59,130,246,0.08)",
-  },
-
-  h1: {
-    fontSize: 24,
-    fontWeight: 800,
-    marginBottom: 10,
-    color: "#FFFFFF",
-  },
-
-  hSub: {
-    fontSize: 14,
-    color: "#FFFFFF",
-    lineHeight: 1.6,
-  },
-
-  backBtn: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "#FFFFFF",
-    color: "#2563EB",
-    border: "1px solid #DBEAFE",
-    borderRadius: 14,
-    padding: "10px 18px",
-    fontSize: 14,
-    fontWeight: 700,
-    cursor: "pointer",
-    marginBottom: 18,
-    boxShadow: "0 2px 8px rgba(0,0,0,.04)",
-  },
-
-  infoBox: {
-    background: "#FFFFFF",
-    border: "1px solid #E2E8F0",
-    borderRadius: 18,
-    padding: 22,
-    marginBottom: 22,
-    lineHeight: 1.8,
-    color: "#334155",
-    boxShadow: "0 2px 10px rgba(0,0,0,.03)",
-  },
-
-  card: {
-    background: "#FFFFFF",
-    borderRadius: 22,
-    padding: 24,
-    marginBottom: 22,
-    border: "1px solid #E2E8F0",
-    boxShadow: "0 4px 16px rgba(15,23,42,.04)",
-  },
-
-  cardTitle: {
-    fontSize: 13,
-    fontWeight: 700,
-    color: "#2563EB",
-    letterSpacing: ".4px",
-    marginBottom: 16,
-    textTransform: "uppercase",
-  },
-
-  row2: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
-    gap: 18,
-  },
-
-  field: {
-    marginBottom: 18,
-  },
-
-  label: {
-    display: "block",
-    fontSize: 13,
-    fontWeight: 600,
-    color: "#475569",
-    marginBottom: 6,
-  },
-
-  input: {
-    width: "100%",
-    boxSizing: "border-box",
-    padding: "14px 16px",
-    border: "1px solid #CBD5E1",
-    borderRadius: 14,
-    fontSize: 14,
-    background: "#FFFFFF",
-    outline: "none",
-  },
-
-  select: {
-    width: "100%",
-    boxSizing: "border-box",
-    padding: "14px 16px",
-    border: "1px solid #CBD5E1",
-    borderRadius: 14,
-    fontSize: 14,
-    background: "#FFFFFF",
-    outline: "none",
-  },
-
-  btn: {
-    width: "100%",
-    padding: "16px",
-    fontSize: 15,
-    fontWeight: 700,
-    borderRadius: 16,
-    border: "none",
-    cursor: "pointer",
-    background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)",
-    color: "#FFFFFF",
-    boxShadow: "0 4px 12px rgba(59,130,246,.12)",
-    marginBottom: 24,
-  },
-
-  metricGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-    gap: 18,
-    marginBottom: 22,
-  },
-
-  metric: {
-    background: "#FFFFFF",
-    borderRadius: 18,
-    padding: 22,
-    textAlign: "center",
-    border: "1px solid #E2E8F0",
-    boxShadow: "0 4px 10px rgba(0,0,0,.03)",
-  },
-
-  mLabel: {
-    fontSize: 12,
-    color: "#64748B",
-    marginBottom: 8,
-  },
-
-  mVal: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#2563EB",
-  },
-
-  mValRed: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#DC2626",
-  },
-
-  note: {
-    background: "#EFF6FF",
-    border: "1px solid #BFDBFE",
-    borderRadius: 14,
-    padding: 14,
-    color: "#1E40AF",
-    marginTop: 14,
-    lineHeight: 1.7,
-    fontSize: 13,
-  },
-
-  barTrack: {
-    height: 14,
-    background: "#E2E8F0",
-    borderRadius: 999,
-    overflow: "hidden",
-    marginBottom: 10,
-    display: "flex",
-  },
-
-  barLabels: {
-    display: "flex",
-    justifyContent: "space-between",
-    fontSize: 12,
-    color: "#64748B",
-  },
-
-  dedRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "14px 0",
-    borderBottom: "1px solid #F1F5F9",
-    fontSize: 14,
-  },
-
-  dedTotal: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: 16,
-    borderRadius: 14,
-    background: "#EFF6FF",
-    marginTop: 10,
-    fontWeight: 700,
-  },
-
-  dedVal: {
-    color: "#2563EB",
-    fontWeight: 700,
-  },
-
-  dedValRed: {
-    color: "#DC2626",
-    fontWeight: 700,
-  },
+  page: { minHeight: "100vh", background: "linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%)", padding: "24px 16px", fontFamily: FONT },
+  wrap: { width: "100%", maxWidth: 1200, margin: "0 auto" },
+  topBar: { display: "flex", justifyContent: "flex-start", marginBottom: 16 },
+  backBtn: { display: "flex", alignItems: "center", gap: 8, padding: "8px 16px", background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "12px", color: "#334155", fontSize: 14, fontWeight: 600, cursor: "pointer", boxShadow: "0 2px 5px rgba(0,0,0,.04)", fontFamily: FONT },
+  header: { background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)", color: "#FFFFFF", borderRadius: 20, padding: "24px 30px", marginBottom: 24, boxShadow: "0 10px 25px rgba(37,99,235,.1)" },
+  h1: { fontSize: 24, lineHeight: 1.35, fontWeight: 800, marginBottom: 8, fontFamily: FONT },
+  hSub: { fontSize: 14, lineHeight: 1.7, opacity: 0.9, fontFamily: FONT },
+  infoGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 14, marginBottom: 24 },
+  infoCard: { background: "#FFFFFF", borderRadius: 16, padding: "16px 18px", border: "1px solid #E2E8F0", boxShadow: "0 2px 8px rgba(15,23,42,.04)" },
+  infoCardInner: { display: "flex", alignItems: "flex-start", gap: 12 },
+  infoCardDot: { width: 36, height: 36, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, flexShrink: 0 },
+  infoCardBody: { flex: 1 },
+  infoCardTitle: { fontSize: 12, fontWeight: 700, color: "#475569", marginBottom: 4, fontFamily: FONT },
+  infoCardValue: { fontSize: 15, fontWeight: 800, color: "#0B1F4E", fontFamily: FONT, lineHeight: 1.4 },
+  infoCardNote: { fontSize: 11, color: "#64748B", marginTop: 3, fontFamily: FONT, lineHeight: 1.5 },
+  tabRow: { display: "flex", justifyContent: "flex-start", gap: 10, marginBottom: 24, flexWrap: "wrap" },
+  tab: { padding: "12px 20px", borderRadius: 12, border: "1px solid #E2E8F0", background: "#FFFFFF", color: "#64748B", cursor: "pointer", fontWeight: 600, fontSize: 14, fontFamily: FONT },
+  tabOn: { padding: "12px 20px", borderRadius: 12, border: "none", background: "linear-gradient(135deg,#2563EB,#1D4ED8)", color: "#FFFFFF", cursor: "pointer", fontWeight: 700, fontSize: 14, boxShadow: "0 4px 12px rgba(37,99,235,.2)", fontFamily: FONT },
+  card: { background: "#FFFFFF", borderRadius: 20, padding: 24, marginBottom: 20, border: "1px solid #E2E8F0", boxShadow: "0 4px 20px rgba(15,23,42,.04)" },
+  cardTitle: { fontSize: 13, fontWeight: 700, color: "#2563EB", marginBottom: 16, fontFamily: FONT },
+  row2: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 16 },
+  field: { marginBottom: 16 },
+  label: { display: "block", fontSize: 13, fontWeight: 600, color: "#475569", marginBottom: 6, fontFamily: FONT },
+  input: { width: "100%", boxSizing: "border-box", padding: "12px 14px", border: "1px solid #CBD5E1", borderRadius: 12, fontSize: 14, background: "#FFFFFF", outline: "none", fontFamily: FONT },
+  select: { width: "100%", boxSizing: "border-box", padding: "12px 14px", border: "1px solid #CBD5E1", borderRadius: 12, fontSize: 14, background: "#FFFFFF", outline: "none", fontFamily: FONT },
+  note: { background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: 12, padding: 14, color: "#1E40AF", marginTop: 12, lineHeight: 1.6, fontSize: 13, fontFamily: FONT },
+  noteGreen: { background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 12, padding: 14, color: "#166534", marginTop: 12, lineHeight: 1.6, fontSize: 13, fontFamily: FONT },
+  btn: { width: "100%", padding: "14px", fontSize: 15, fontWeight: 700, borderRadius: 12, border: "none", cursor: "pointer", background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)", color: "#FFFFFF", boxShadow: "0 4px 12px rgba(37,99,235,.15)", marginBottom: 24, fontFamily: FONT },
+  metricGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 16, marginBottom: 20 },
+  metric: { background: "#FFFFFF", borderRadius: 20, padding: 20, textAlign: "center", border: "1px solid #E2E8F0", boxShadow: "0 4px 12px rgba(0,0,0,.03)" },
+  mLabel: { fontSize: 12, color: "#64748B", marginBottom: 8, fontFamily: FONT },
+  barTrack: { height: 16, borderRadius: 999, overflow: "hidden", display: "flex", background: "#E2E8F0", marginBottom: 10 },
+  barLabels: { display: "flex", justifyContent: "space-between", gap: 12, fontSize: 13, color: "#475569", flexWrap: "wrap", fontFamily: FONT },
+  tbl: { width: "100%", borderCollapse: "collapse" },
+  th: { background: "#EFF6FF", color: "#1E40AF", padding: "12px", textAlign: "left", fontWeight: 700, fontSize: 13, borderBottom: "1px solid #DBEAFE", fontFamily: FONT },
+  td: { padding: "12px", fontSize: 13, lineHeight: 1.6, borderBottom: "1px solid #F1F5F9", fontFamily: FONT },
+  dedTotal: { display: "flex", justifyContent: "space-between", marginTop: 10, padding: 14, borderRadius: 12, background: "#FEF2F2", border: "1px solid #FEE2E2", color: "#991B1B", fontWeight: 700, fontSize: 14, fontFamily: FONT },
 };
 
-// ═══════════════════════════════════════════════════════════════
-// SPECIAL TAX (ST)
-// ═══════════════════════════════════════════════════════════════
-export default function SpecialTaxPage({ setPage }) {
+const INFO_CARDS = [
+  { icon: "🍷", bg: "#FEF2F2", title: "ស្រា / Wine",        value: "៣៥%",  note: "អត្រាអាករពិសេសខ្ពស់បំផុត" },
+  { icon: "🍺", bg: "#FFFBEB", title: "ស្រាបៀរ",            value: "៣០%",  note: "លើ ៩០% × តម្លៃផ្គត់ផ្គង់" },
+  { icon: "🚬", bg: "#F0FDF4", title: "បារី / ស៊ីហ្គា",     value: "២០–២៥%", note: "ស៊ីហ្គា ២៥% · បារី ២០%" },
+  { icon: "✈️", bg: "#EFF6FF", title: "សំបុត្រ Airline",    value: "១០%",  note: "ថ្លៃសំបុត្រ (មិនរួម VAT)" },
+  { icon: "📅", bg: "#FAF5FF", title: "ថ្ងៃប្រកាស",          value: "ទី ២០/២៥", note: "ផ្ទាល់: ២០ · Online: ២៥ ខែបន្ទាប់" },
+];
+
+// ── DEFINITION ACCORDION ──────────────────────────────────────
+function DefSection() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div onClick={() => setOpen(o => !o)} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 16, padding: "14px 20px", cursor: "pointer", marginBottom: open ? 14 : 0, boxShadow: "0 2px 8px rgba(15,23,42,.04)", fontFamily: FONT }}>
+        <span style={{ fontSize: 14, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>📖 និយមន័យ និងការពន្យល់ — អាករពិសេស</span>
+        <span style={{ fontSize: 18, color: "#64748B", display: "inline-block", transform: open ? "rotate(180deg)" : "none", transition: "transform .2s" }}>▼</span>
+      </div>
+      {open && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 14 }}>
+          {DEFS.map((d, i) => (
+            <div key={i} style={{ borderRadius: 16, padding: "16px 18px", background: d.bg, border: `1px solid ${d.border}`, lineHeight: 1.7, fontFamily: FONT }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: d.color, marginBottom: 8, fontFamily: FONT }}>{d.term}</div>
+              <div style={{ fontSize: 12.5, whiteSpace: "pre-line", color: d.color + "BB", fontFamily: FONT }}>{d.body}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── RESULT BLOCK ──────────────────────────────────────────────
+function ResultBlock({ label, invoiceAmt, taxBase, taxAmt, taxRate, baseType, currency }) {
+  const taxPct = invoiceAmt > 0 ? Math.min((taxAmt / invoiceAmt) * 100, 100) : 0;
+  const netPct = 100 - taxPct;
+  const c = currency === "KHR" ? fmtKHR : (v => "$" + fmt(v));
+
+  return (
+    <>
+      <div style={S.metricGrid}>
+        <div style={S.metric}>
+          <div style={S.mLabel}>ចំនួនទឹកប្រាក់ Invoice</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{c(invoiceAmt)}</div>
+        </div>
+        <div style={S.metric}>
+          <div style={S.mLabel}>មូលដ្ឋានគិតអាករ</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{c(taxBase)}</div>
+        </div>
+        <div style={S.metric}>
+          <div style={S.mLabel}>អាករពិសេស ({(taxRate * 100).toFixed(0)}%)</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{c(taxAmt)}</div>
+        </div>
+      </div>
+
+      <div style={S.card}>
+        <div style={S.cardTitle}>ប្រៀបធៀបអាករពិសេស vs តម្លៃ</div>
+        <div style={S.barTrack}>
+          <div style={{ width: taxPct.toFixed(1) + "%", background: "#c0392b", height: "100%", transition: "width .4s" }} />
+          <div style={{ width: netPct.toFixed(1) + "%", background: "#1a7a4a", height: "100%", transition: "width .4s" }} />
+        </div>
+        <div style={S.barLabels}>
+          <span>🔴 អាករពិសេស: {taxPct.toFixed(1)}%</span>
+          <span>🟢 តម្លៃក្រោយដក: {netPct.toFixed(1)}%</span>
+        </div>
+      </div>
+
+      <div style={S.card}>
+        <div style={S.cardTitle}>តារាងលម្អិត</div>
+        <table style={S.tbl}>
+          <thead><tr><th style={S.th}>បរិយាយ</th><th style={S.th}>ការគណនា</th><th style={S.th}>ទឹកប្រាក់</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style={S.td}>ចំនួនទឹកប្រាក់ Invoice (excl. ET)</td>
+              <td style={S.td}>—</td>
+              <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{c(invoiceAmt)}</td>
+            </tr>
+            <tr>
+              <td style={S.td}>
+                {baseType === "domestic"
+                  ? "មូលដ្ឋានគិតអាករ (× ៩០%)"
+                  : baseType === "import"
+                  ? "មូលដ្ឋានគិតអាករ (CIF + ពន្ធនាំចូល)"
+                  : "មូលដ្ឋានគិតអាករ (ថ្លៃសេវា)"}
+              </td>
+              <td style={S.td}>
+                {baseType === "domestic"
+                  ? `${c(invoiceAmt)} × ៩០%`
+                  : baseType === "import"
+                  ? "CIF + Import Duty"
+                  : c(invoiceAmt)}
+              </td>
+              <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{c(taxBase)}</td>
+            </tr>
+            <tr>
+              <td style={S.td}>អត្រាអាករពិសេស</td>
+              <td style={S.td}>{(taxRate * 100).toFixed(0)}%</td>
+              <td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{c(taxAmt)}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style={S.dedTotal}>
+          <span>អាករពិសេសត្រូវបង់ ({c(taxBase)} × {(taxRate * 100).toFixed(0)}%)</span>
+          <span>{c(taxAmt)}</span>
+        </div>
+        <div style={S.note}>
+          <strong>រូបមន្ត:</strong><br />
+          {baseType === "domestic"
+            ? <>• មូលដ្ឋាន = {c(invoiceAmt)} × ៩០% = {c(taxBase)}<br /></>
+            : baseType === "import"
+            ? <>• មូលដ្ឋាន = CIF + ពន្ធនាំចូល = {c(taxBase)}<br /></>
+            : <>• មូលដ្ឋាន = ថ្លៃសេវា = {c(taxBase)}<br /></>
+          }
+          • អាករ = {c(taxBase)} × {(taxRate * 100).toFixed(0)}% = <strong>{c(taxAmt)}</strong><br /><br />
+          ប្រកាស និងបង់ ប្រចាំខែ — ផ្ទាល់: <strong>ថ្ងៃទី ២០</strong> | Online: <strong>ថ្ងៃទី ២៥</strong> នៃខែបន្ទាប់
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// TAB 1 — DOMESTIC GOODS
+// ══════════════════════════════════════════════════════════════
+function DomesticTab() {
   const [goodsType, setGoodsType] = useState("beer");
-  const [sourceType, setSourceType] = useState("local");
-  const [priceIncl, setPriceIncl] = useState("yes");
-
-  const [saleQty, setSaleQty] = useState("");
-  const [unitPrice, setUnitPrice] = useState("");
-
-  const [giftQty, setGiftQty] = useState("");
-  const [giftPrice, setGiftPrice] = useState("");
-
-  const [creditQty, setCreditQty] = useState("");
-  const [creditPrice, setCreditPrice] = useState("");
-
-  const [result, setResult] = useState(null);
-
-  const rate = SPECIAL_TAX_RATES[goodsType]?.rate || 0;
-  const rateLabel = (rate * 100).toFixed(0) + "%";
+  const [amount,    setAmount]    = useState("");
+  const [currency,  setCurrency]  = useState("USD");
+  const [result,    setResult]    = useState(null);
 
   function calculate() {
-    const saleTotal = n(saleQty) * n(unitPrice);
-    const giftTotal = n(giftQty) * n(giftPrice);
-    const creditTotal = n(creditQty) * n(creditPrice);
-
-    const totalRev = saleTotal + giftTotal + creditTotal;
-
-    let base, tax;
-
-    if (sourceType === "local") {
-      base =
-        priceIncl === "yes"
-          ? 0.90 * (totalRev / 1.10 / (1 + rate))
-          : 0.90 * totalRev;
-
-      tax = base * rate;
-    } else if (sourceType === "imported") {
-      base = totalRev;
-      tax = base * rate;
-    } else {
-      base =
-        priceIncl === "yes"
-          ? totalRev / (1 + VAT_RATE + rate)
-          : totalRev;
-
-      tax = base * rate;
+    const amt = n(amount);
+    if (!amt) return;
+    const gr = GOODS_RATES.find(r => r.id === goodsType);
+    if (!gr.rate) {
+      setResult({ noRate: true, label: gr.label });
+      return;
     }
-
-    setResult({
-      totalRev,
-      saleTotal,
-      giftTotal,
-      creditTotal,
-      base,
-      tax,
-      rate,
-      sourceType,
-    });
+    const taxBase = amt * 0.90;
+    const taxAmt  = taxBase * gr.rate;
+    setResult({ invoiceAmt: amt, taxBase, taxAmt, taxRate: gr.rate, currency });
   }
 
-  const taxPct =
-    result && result.totalRev > 0
-      ? Math.min((result.tax / result.totalRev) * 100, 100)
-      : 0;
+  const selectedRate = GOODS_RATES.find(r => r.id === goodsType);
+
+  return (
+    <>
+      <div style={S.card}>
+        <div style={S.cardTitle}>ព័ត៌មានទំនិញ — ផលិត/ចែកចាយក្នុងស្រុក</div>
+        <div style={S.row2}>
+          <div style={S.field}>
+            <label style={S.label}>ប្រភេទទំនិញ</label>
+            <select style={S.select} value={goodsType} onChange={e => { setGoodsType(e.target.value); setResult(null); }}>
+              {GOODS_RATES.map(r => <option key={r.id} value={r.id}>{r.label} {r.rate ? `(${(r.rate * 100).toFixed(0)}%)` : "(អត្រាផ្ទាល់)"}</option>)}
+            </select>
+          </div>
+          <div style={S.field}>
+            <label style={S.label}>រូបិយប័ណ្ណ</label>
+            <select style={S.select} value={currency} onChange={e => { setCurrency(e.target.value); setResult(null); }}>
+              <option value="USD">ដុល្លារ ($)</option>
+              <option value="KHR">រៀល (៛)</option>
+            </select>
+          </div>
+        </div>
+        <div style={S.field}>
+          <label style={S.label}>
+            តម្លៃផ្គត់ផ្គង់ក្នុង Invoice ({currency === "USD" ? "$" : "៛"}) — មិនរួម VAT · PLT · ET
+          </label>
+          <input style={S.input} type="number"
+            placeholder={currency === "USD" ? "ឧ: 10000" : "ឧ: 40000000"}
+            value={amount} onChange={e => { setAmount(e.target.value); setResult(null); }} />
+        </div>
+        <div style={S.note}>
+          • មូលដ្ឋានគិតអាករ = <strong>៩០%</strong> × តម្លៃ Invoice<br />
+          {selectedRate && !selectedRate.rate
+            ? <><strong style={{ color: "#92400E" }}>⚠ ទំនិញប្រភេទនេះ: អត្រាកំណត់ដាច់ដោយឡែក — សូមពិនិត្យ Prakas GDT</strong></>
+            : <>• អាករ = មូលដ្ឋាន × <strong>{selectedRate ? (selectedRate.rate * 100).toFixed(0) : "—"}%</strong></>
+          }<br />
+          • មិន​រួម​ VAT · PLT · អាករពិសេស​ខ្លួន​ឯ​ង ក្នុង​ Invoice
+        </div>
+      </div>
+      <button style={S.btn} onClick={calculate}>គណនាអាករពិសេស — ទំនិញក្នុងស្រុក</button>
+      {result && result.noRate ? (
+        <div style={{ ...S.card }}>
+          <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: 16, color: "#92400E", lineHeight: 1.7, fontSize: 13, fontFamily: FONT }}>
+            ⚠ <strong>{result.label}</strong><br />
+            ទំនិញប្រភេទនេះ ជាប់អាករពិសេស តែ <strong>អត្រាត្រូវកំណត់ដាច់ដោយឡែក</strong> ដោយ Prakas GDT
+            (Sub-decree / Announcement) ដែលមិនបានចុះក្នុងបញ្ជីអត្រាទូទៅ។<br />
+            → សូមពិនិត្យ Prakas ពន្ធដារ ឬ ទំនាក់ទំនង GDT ដើម្បីបញ្ជាក់អត្រា។
+          </div>
+        </div>
+      ) : result ? (
+        <ResultBlock {...result} baseType="domestic" label="ទំនិញក្នុងស្រុក" />
+      ) : null}
+    </>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// TAB 2 — IMPORTED GOODS
+// ══════════════════════════════════════════════════════════════
+function ImportTab() {
+  const [goodsType,   setGoodsType]   = useState("beer_i");
+  const [cifAmount,   setCifAmount]   = useState("");
+  const [importDuty,  setImportDuty]  = useState("");
+  const [currency,    setCurrency]    = useState("USD");
+  const [result,      setResult]      = useState(null);
+
+  function calculate() {
+    const cif  = n(cifAmount);
+    const duty = n(importDuty);
+    if (!cif) return;
+    const gr = IMPORT_RATES.find(r => r.id === goodsType);
+    if (!gr.rate) {
+      setResult({ noRate: true, label: gr.label });
+      return;
+    }
+    const taxBase = cif + duty;
+    const taxAmt  = taxBase * gr.rate;
+    setResult({ invoiceAmt: cif, taxBase, taxAmt, taxRate: gr.rate, currency, duty });
+  }
+
+  const selectedRate = IMPORT_RATES.find(r => r.id === goodsType);
+
+  return (
+    <>
+      <div style={S.card}>
+        <div style={S.cardTitle}>ព័ត៌មានទំនិញ — នាំចូល</div>
+        <div style={S.row2}>
+          <div style={S.field}>
+            <label style={S.label}>ប្រភេទទំនិញ</label>
+            <select style={S.select} value={goodsType} onChange={e => { setGoodsType(e.target.value); setResult(null); }}>
+              {IMPORT_RATES.map(r => <option key={r.id} value={r.id}>{r.label} {r.rate ? `(${(r.rate * 100).toFixed(0)}%)` : "(អត្រាផ្ទាល់)"}</option>)}
+            </select>
+          </div>
+          <div style={S.field}>
+            <label style={S.label}>រូបិយប័ណ្ណ</label>
+            <select style={S.select} value={currency} onChange={e => { setCurrency(e.target.value); setResult(null); }}>
+              <option value="USD">ដុល្លារ ($)</option>
+              <option value="KHR">រៀល (៛)</option>
+            </select>
+          </div>
+        </div>
+        <div style={S.row2}>
+          <div style={S.field}>
+            <label style={S.label}>តម្លៃ CIF ({currency === "USD" ? "$" : "៛"})</label>
+            <input style={S.input} type="number" placeholder="ឧ: 5000"
+              value={cifAmount} onChange={e => { setCifAmount(e.target.value); setResult(null); }} />
+          </div>
+          <div style={S.field}>
+            <label style={S.label}>ពន្ធនាំចូល ({currency === "USD" ? "$" : "៛"})</label>
+            <input style={S.input} type="number" placeholder="ឧ: 500"
+              value={importDuty} onChange={e => { setImportDuty(e.target.value); setResult(null); }} />
+          </div>
+        </div>
+        <div style={S.note}>
+          • មូលដ្ឋានគិតអាករ = <strong>CIF + ពន្ធនាំចូល</strong> (គ្មាន × ៩០%)<br />
+          {selectedRate && !selectedRate.rate
+            ? <><strong style={{ color: "#92400E" }}>⚠ ទំនិញប្រភេទនេះ: អត្រាកំណត់ដាច់ដោយឡែក — សូមពិនិត្យ Prakas GDT</strong></>
+            : <>• អាករ = (CIF + ពន្ធនាំចូល) × <strong>{selectedRate ? (selectedRate.rate * 100).toFixed(0) : "—"}%</strong></>
+          }<br />
+          • CIF = Cost + Insurance + Freight
+        </div>
+      </div>
+      <button style={S.btn} onClick={calculate}>គណនាអាករពិសេស — ទំនិញនាំចូល</button>
+      {result && result.noRate ? (
+        <div style={S.card}>
+          <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: 16, color: "#92400E", lineHeight: 1.7, fontSize: 13, fontFamily: FONT }}>
+            ⚠ <strong>{result.label}</strong><br />
+            ទំនិញប្រភេទនេះ ជាប់អាករពិសេស តែ <strong>អត្រាត្រូវកំណត់ដាច់ដោយឡែក</strong> ដោយ Prakas GDT។<br />
+            → សូមពិនិត្យ Prakas ពន្ធដារ ឬ ទំនាក់ទំនង GDT ដើម្បីបញ្ជាក់អត្រា។
+          </div>
+        </div>
+      ) : result ? (
+        <>
+          <div style={S.metricGrid}>
+            <div style={S.metric}>
+              <div style={S.mLabel}>CIF</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{result.currency === "KHR" ? fmtKHR(result.invoiceAmt) : "$" + fmt(result.invoiceAmt)}</div>
+            </div>
+            <div style={S.metric}>
+              <div style={S.mLabel}>ពន្ធនាំចូល</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#f97316", fontFamily: FONT }}>{result.currency === "KHR" ? fmtKHR(result.duty) : "$" + fmt(result.duty)}</div>
+            </div>
+            <div style={S.metric}>
+              <div style={S.mLabel}>មូលដ្ឋានគិតអាករ</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{result.currency === "KHR" ? fmtKHR(result.taxBase) : "$" + fmt(result.taxBase)}</div>
+            </div>
+            <div style={S.metric}>
+              <div style={S.mLabel}>អាករពិសេស ({(result.taxRate * 100).toFixed(0)}%)</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{result.currency === "KHR" ? fmtKHR(result.taxAmt) : "$" + fmt(result.taxAmt)}</div>
+            </div>
+          </div>
+          <div style={S.card}>
+            <div style={S.cardTitle}>តារាងលម្អិត</div>
+            <table style={S.tbl}>
+              <thead><tr><th style={S.th}>បរិយាយ</th><th style={S.th}>ទឹកប្រាក់</th></tr></thead>
+              <tbody>
+                <tr><td style={S.td}>CIF (Cost + Insurance + Freight)</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{result.currency === "KHR" ? fmtKHR(result.invoiceAmt) : "$" + fmt(result.invoiceAmt)}</td></tr>
+                <tr><td style={S.td}>+ ពន្ធនាំចូល (Import Duty)</td><td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{result.currency === "KHR" ? fmtKHR(result.duty) : "$" + fmt(result.duty)}</td></tr>
+                <tr><td style={{ ...S.td, fontWeight: 700 }}>= មូលដ្ឋានគិតអាករ</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{result.currency === "KHR" ? fmtKHR(result.taxBase) : "$" + fmt(result.taxBase)}</td></tr>
+              </tbody>
+            </table>
+            <div style={S.dedTotal}>
+              <span>អាករពិសេសត្រូវបង់ × {(result.taxRate * 100).toFixed(0)}%</span>
+              <span>{result.currency === "KHR" ? fmtKHR(result.taxAmt) : "$" + fmt(result.taxAmt)}</span>
+            </div>
+            <div style={S.note}>
+              <strong>រូបមន្ត:</strong><br />
+              • មូលដ្ឋាន = {result.currency === "KHR" ? fmtKHR(result.invoiceAmt) : "$" + fmt(result.invoiceAmt)} + {result.currency === "KHR" ? fmtKHR(result.duty) : "$" + fmt(result.duty)} = {result.currency === "KHR" ? fmtKHR(result.taxBase) : "$" + fmt(result.taxBase)}<br />
+              • អាករ = {result.currency === "KHR" ? fmtKHR(result.taxBase) : "$" + fmt(result.taxBase)} × {(result.taxRate * 100).toFixed(0)}% = <strong>{result.currency === "KHR" ? fmtKHR(result.taxAmt) : "$" + fmt(result.taxAmt)}</strong><br /><br />
+              ប្រកាស/បង់ — ផ្ទាល់: <strong>ថ្ងៃទី ២០</strong> | Online: <strong>ថ្ងៃទី ២៥</strong> នៃខែបន្ទាប់
+            </div>
+          </div>
+        </>
+      ) : null}
+    </>
+  );
+}
+// ══════════════════════════════════════════════════════════════
+function ServiceTab() {
+  const [svcType,  setSvcType]  = useState("airline");
+  const [amount,   setAmount]   = useState("");
+  const [currency, setCurrency] = useState("USD");
+  const [result,   setResult]   = useState(null);
+
+  function calculate() {
+    const amt = n(amount);
+    if (!amt) return;
+    const sr     = SERVICE_RATES.find(r => r.id === svcType);
+    const taxAmt = amt * sr.rate;
+    setResult({ invoiceAmt: amt, taxBase: amt, taxAmt, taxRate: sr.rate, currency });
+  }
+
+  const selectedRate = SERVICE_RATES.find(r => r.id === svcType);
+
+  return (
+    <>
+      <div style={S.card}>
+        <div style={S.cardTitle}>ព័ត៌មានសេវា</div>
+        <div style={S.row2}>
+          <div style={S.field}>
+            <label style={S.label}>ប្រភេទសេវា</label>
+            <select style={S.select} value={svcType} onChange={e => { setSvcType(e.target.value); setResult(null); }}>
+              {SERVICE_RATES.map(r => <option key={r.id} value={r.id}>{r.label} ({(r.rate * 100).toFixed(0)}%)</option>)}
+            </select>
+          </div>
+          <div style={S.field}>
+            <label style={S.label}>រូបិយប័ណ្ណ</label>
+            <select style={S.select} value={currency} onChange={e => { setCurrency(e.target.value); setResult(null); }}>
+              <option value="USD">ដុល្លារ ($)</option>
+              <option value="KHR">រៀល (៛)</option>
+            </select>
+          </div>
+        </div>
+        <div style={S.field}>
+          <label style={S.label}>
+            ថ្លៃសេវាក្នុង Invoice ({currency === "USD" ? "$" : "៛"}) — មិនរួម VAT · ET
+          </label>
+          <input style={S.input} type="number"
+            placeholder={currency === "USD" ? "ឧ: 1000" : "ឧ: 4000000"}
+            value={amount} onChange={e => { setAmount(e.target.value); setResult(null); }} />
+        </div>
+        <div style={S.note}>
+          • មូលដ្ឋានគិតអាករ = <strong>ថ្លៃសេវា Invoice</strong> (គ្មាន × ៩០%)<br />
+          • អាករ = ថ្លៃសេវា × <strong>{selectedRate ? (selectedRate.rate * 100).toFixed(0) : "—"}%</strong><br />
+          • ឧ: Telecom ៣% · Airline ១០% · Entertainment ១០%
+        </div>
+      </div>
+      <button style={S.btn} onClick={calculate}>គណនាអាករពិសេស — សេវា</button>
+      {result && <ResultBlock {...result} baseType="service" label="សេវា" />}
+    </>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// TAB 4 — RATE REFERENCE TABLE
+// ══════════════════════════════════════════════════════════════
+function RatesTab() {
+  const RATE_ROWS = [
+    { cat: "ទំនិញ", name: "ស្រា (Wine/Spirits)",        rate: "៣៥%",       base: "90% × Invoice", color: "#c0392b" },
+    { cat: "ទំនិញ", name: "ស្រាបៀរ",                   rate: "៣០%",       base: "90% × Invoice", color: "#c0392b" },
+    { cat: "ទំនិញ", name: "ស៊ីហ្គា",                    rate: "២៥%",       base: "90% × Invoice", color: "#92400E" },
+    { cat: "ទំនិញ", name: "បារី",                        rate: "២០%",       base: "90% × Invoice", color: "#92400E" },
+    { cat: "ទំនិញ", name: "ភេស្ជៈប៉ូវកម្លាំង",          rate: "១៥%",       base: "90% × Invoice", color: "#0B1F4E" },
+    { cat: "ទំនិញ", name: "ភេស្ជៈគ្មានជាតិសុរា",        rate: "១០%",       base: "90% × Invoice", color: "#0B1F4E" },
+    { cat: "ទំនិញ", name: "ទឹកផ្លែឈើ",                  rate: "៥%",        base: "90% × Invoice", color: "#166534" },
+    { cat: "ទំនិញ", name: "ផលិតផលប្លាស្ទិក",            rate: "១០%",       base: "90% × Invoice", color: "#0B1F4E" },
+    { cat: "ទំនិញ", name: "ស៊ីម៉ងត៍",                   rate: "៥%",        base: "90% × Invoice", color: "#166534" },
+    { cat: "ទំនិញ", name: "គ្រឿងអេឡិចត្រូនិក",          rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
+    { cat: "ទំនិញ", name: "ទោចក្រយានយន្ត",              rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
+    { cat: "ទំនិញ", name: "រថយន្ត",                      rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
+    { cat: "ទំនិញ", name: "គ្រឿងបន្លាស់យានយន្ត",        rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
+    { cat: "ទំនិញ", name: "ផលិតផលគ្រឿងសម្អាង",          rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
+    { cat: "ទំនិញ", name: "ផលិតផលកញ្ចក់ (គ្រឿងសំណង់)", rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
+    { cat: "សេវា",  name: "ទូរគមនាគមន៍ (Telecom)",       rate: "៣%",        base: "ថ្លៃសេវា Invoice", color: "#166534" },
+    { cat: "សេវា",  name: "Airline (ដឹកជញ្ជូន)",          rate: "១០%",       base: "ថ្លៃសំបុត្រ",    color: "#0B1F4E" },
+    { cat: "សេវា",  name: "លំហែកម្សាន្ត (Entertainment)", rate: "១០%",       base: "ថ្លៃសេវា/ចូល",  color: "#0B1F4E" },
+  ];
+
+  return (
+    <div style={S.card}>
+      <div style={S.cardTitle}>តារាងអត្រាអាករពិសេស — ឯកសារយោង</div>
+      <table style={S.tbl}>
+        <thead>
+          <tr>
+            <th style={S.th}>ប្រភេទ</th>
+            <th style={S.th}>ទំនិញ / សេវា</th>
+            <th style={S.th}>អត្រា</th>
+            <th style={S.th}>មូលដ្ឋានគិតអាករ</th>
+          </tr>
+        </thead>
+        <tbody>
+          {RATE_ROWS.map((r, i) => (
+            <tr key={i}>
+              <td style={{ ...S.td, fontSize: 12, color: "#64748B" }}>{r.cat}</td>
+              <td style={S.td}>{r.name}</td>
+              <td style={{ ...S.td, color: r.color, fontWeight: 700 }}>{r.rate}</td>
+              <td style={{ ...S.td, fontSize: 12, color: "#475569" }}>{r.base}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div style={S.note}>
+        <strong>មូលដ្ឋានគិតអាករ:</strong><br />
+        • ក្នុងស្រុក: <strong>90%</strong> × តម្លៃ Invoice (excl. VAT · PLT · ET)<br />
+        • នាំចូល: <strong>CIF + ពន្ធនាំចូល</strong> (គ្មាន × 90%)<br />
+        • សេវា: <strong>ថ្លៃសេវា Invoice</strong> (excl. VAT · ET)<br /><br />
+        <strong>ករណីលើកលែង (បុគ្គលគ្មានកាតព្វកិច្ច):</strong> បារី ≤ ២០០ ដើម · ស៊ីហ្គា ≤ ៥០ ដើម · ស្រា ≤ ២ លីត្រ
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// MAIN
+// ══════════════════════════════════════════════════════════════
+export default function SpecialTaxPage({ setPage }) {
+  const [tab, setTab] = useState("domestic");
+
+  const TABS = [
+    { id: "domestic", label: "🏭 ទំនិញក្នុងស្រុក" },
+    { id: "import",   label: "✈️ ទំនិញនាំចូល" },
+    { id: "service",  label: "🎵 សេវា" },
+    { id: "rates",    label: "📊 តារាងអត្រា" },
+  ];
 
   return (
     <div style={S.page}>
       <div style={S.wrap}>
 
-        {/* BACK BUTTON */}
-        <button
-          style={S.backBtn}
-          onClick={() => setPage && setPage("home")}
-        >
-          ← ត្រឡប់ទៅទំព័រដើម
-        </button>
+        <div style={S.topBar}>
+          <button onClick={() => setPage && setPage("home")} style={S.backBtn}>← ត្រឡប់ទៅទំព័រដើម</button>
+        </div>
 
-        {/* HEADER */}
         <div style={S.header}>
-          <div style={S.h1}>
-            កម្មវិធីគណនាអាករពិសេស
-          </div>
-
-          <div style={S.hSub}>
-            Special Tax (ST) · អាករលើទំនិញ និងសេវាកម្មមួយចំនួន
-          </div>
+          <div style={S.h1}>អាករពិសេស (Special / Excise Tax) — កម្មវិធីគណនា</div>
+          <div style={S.hSub}>កម្ពុជា · ស្រា · ស្រាបៀរ · បារី · Airline · Telecom · Entertainment · ប្រចាំខែ ថ្ងៃទី ២០/២៥</div>
         </div>
 
-        {/* OVERVIEW */}
-        <div style={S.infoBox}>
-          <strong>តើអ្វីជាអាករពិសេស?</strong>
-          {" "}
-          អាករនេះអនុវត្តលើទំនិញ និងសេវាកម្មមួយចំនួន។
-          <br />
-
-          អត្រាអាករ៖
-          {" "}
-          សុរា 35% · ស្រាបៀរ 30% · បារី 20% ·
-          ភេសជ្ជៈ 10% · ស៊ីម៉ងត៍ 5% ·
-          ទូរគមនាគមន៍ 3% · សេវាកម្សាន្ត 10%
-          <br />
-
-          <strong>ទំនិញផលិតក្នុងស្រុក៖</strong>
-          {" "}
-          មូលដ្ឋានគិតអាករ =
-          90% × (ចំណូលសរុប ÷ 110% ÷ (1 + អត្រាអាករ))
+        {/* INFO CARDS */}
+        <div style={S.infoGrid}>
+          {INFO_CARDS.map((c, i) => (
+            <div key={i} style={S.infoCard}>
+              <div style={S.infoCardInner}>
+                <div style={{ ...S.infoCardDot, background: c.bg }}>{c.icon}</div>
+                <div style={S.infoCardBody}>
+                  <div style={S.infoCardTitle}>{c.title}</div>
+                  <div style={S.infoCardValue}>{c.value}</div>
+                  <div style={S.infoCardNote}>{c.note}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* FORM */}
-        <div style={S.card}>
+        {/* DEFINITION ACCORDION */}
+        <DefSection />
 
-          <div style={S.cardTitle}>
-            ប្រភេទទំនិញ ឬសេវាកម្ម
-          </div>
-
-          <div style={S.row2}>
-            <div style={S.field}>
-              <label style={S.label}>
-                ជ្រើសរើសទំនិញ ឬសេវាកម្ម
-              </label>
-
-              <select
-                style={S.select}
-                value={goodsType}
-                onChange={(e) => {
-                  setGoodsType(e.target.value);
-                  setResult(null);
-                }}
-              >
-                {Object.entries(SPECIAL_TAX_RATES).map(([k, v]) => (
-                  <option key={k} value={k}>
-                    {v.label} — {(v.rate * 100).toFixed(0)}%
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div style={S.field}>
-              <label style={S.label}>
-                ប្រភពផ្គត់ផ្គង់
-              </label>
-
-              <select
-                style={S.select}
-                value={sourceType}
-                onChange={(e) => {
-                  setSourceType(e.target.value);
-                  setResult(null);
-                }}
-              >
-                <option value="local">
-                  ផលិតក្នុងស្រុក
-                </option>
-
-                <option value="imported">
-                  នាំចូល
-                </option>
-
-                <option value="service">
-                  សេវាកម្ម
-                </option>
-              </select>
-            </div>
-          </div>
-
-          <div style={S.field}>
-            <label style={S.label}>
-              តើតម្លៃលក់រួមបញ្ចូលអាករហើយឬនៅ?
-            </label>
-
-            <select
-              style={S.select}
-              value={priceIncl}
-              onChange={(e) => setPriceIncl(e.target.value)}
-            >
-              <option value="yes">
-                រួមបញ្ចូលរួចហើយ — តម្លៃរួមមានអាករលើតម្លៃបន្ថែម និងអាករពិសេស
-              </option>
-
-              <option value="no">
-                មិនទាន់រួមបញ្ចូល — តម្លៃមិនទាន់គិតបញ្ចូលអាករ
-              </option>
-            </select>
-          </div>
-
-          <div style={S.cardTitle}>
-            ប្រាក់ចំណូលពីការលក់ — រៀល
-          </div>
-
-          <div style={S.row2}>
-            <div style={S.field}>
-              <label style={S.label}>
-                បរិមាណលក់
-              </label>
-
-              <input
-                style={S.input}
-                type="number"
-                placeholder="ឧទាហរណ៍៖ 5000"
-                value={saleQty}
-                onChange={(e) => setSaleQty(e.target.value)}
-              />
-            </div>
-
-            <div style={S.field}>
-              <label style={S.label}>
-                តម្លៃឯកតា — រៀល
-              </label>
-
-              <input
-                style={S.input}
-                type="number"
-                placeholder="ឧទាហរណ៍៖ 6000"
-                value={unitPrice}
-                onChange={(e) => setUnitPrice(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div style={S.cardTitle}>
-            ការផ្តល់ជាអំណោយ / ការលក់ជំពាក់
-          </div>
-
-          <div style={S.row2}>
-            <div style={S.field}>
-              <label style={S.label}>
-                បរិមាណអំណោយ
-              </label>
-
-              <input
-                style={S.input}
-                type="number"
-                placeholder="0"
-                value={giftQty}
-                onChange={(e) => setGiftQty(e.target.value)}
-              />
-            </div>
-
-            <div style={S.field}>
-              <label style={S.label}>
-                តម្លៃអំណោយ — រៀល
-              </label>
-
-              <input
-                style={S.input}
-                type="number"
-                placeholder="0"
-                value={giftPrice}
-                onChange={(e) => setGiftPrice(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div style={S.row2}>
-            <div style={S.field}>
-              <label style={S.label}>
-                បរិមាណលក់ជំពាក់
-              </label>
-
-              <input
-                style={S.input}
-                type="number"
-                placeholder="0"
-                value={creditQty}
-                onChange={(e) => setCreditQty(e.target.value)}
-              />
-            </div>
-
-            <div style={S.field}>
-              <label style={S.label}>
-                តម្លៃលក់ជំពាក់ — រៀល
-              </label>
-
-              <input
-                style={S.input}
-                type="number"
-                placeholder="0"
-                value={creditPrice}
-                onChange={(e) => setCreditPrice(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div style={S.note}>
-            <strong>អត្រាអាករអនុវត្ត៖</strong>
-            {" "}
-            {rateLabel}
-            {" "}
-            លើ {SPECIAL_TAX_RATES[goodsType]?.label}
-          </div>
+        {/* TABS */}
+        <div style={S.tabRow}>
+          {TABS.map(t => (
+            <button key={t.id} style={tab === t.id ? S.tabOn : S.tab} onClick={() => setTab(t.id)}>{t.label}</button>
+          ))}
         </div>
 
-        <button style={S.btn} onClick={calculate}>
-          គណនាអាករពិសេស
-        </button>
+        {tab === "domestic" && <DomesticTab />}
+        {tab === "import"   && <ImportTab />}
+        {tab === "service"  && <ServiceTab />}
+        {tab === "rates"    && <RatesTab />}
 
-        {result && (
-          <>
-            {/* METRICS */}
-            <div style={S.metricGrid}>
-
-              <div style={S.metric}>
-                <div style={S.mLabel}>
-                  ចំណូលសរុប
-                </div>
-
-                <div style={S.mVal}>
-                  {money(result.totalRev)}
-                </div>
-              </div>
-
-              <div style={S.metric}>
-                <div style={S.mLabel}>
-                  មូលដ្ឋានគិតអាករ
-                </div>
-
-                <div style={S.mVal}>
-                  {money(result.base)}
-                </div>
-              </div>
-
-              <div style={S.metric}>
-                <div style={S.mLabel}>
-                  អាករពិសេសត្រូវបង់
-                </div>
-
-                <div style={S.mValRed}>
-                  {money(result.tax)}
-                </div>
-              </div>
-            </div>
-
-            {/* BAR */}
-            <div style={S.card}>
-              <div style={S.cardTitle}>
-                សមាមាត្រអាករពិសេស
-              </div>
-
-              <div style={S.barTrack}>
-                <div
-                  style={{
-                    width: taxPct.toFixed(1) + "%",
-                    background: "#c0392b",
-                    height: "100%",
-                    transition: "width .4s",
-                  }}
-                />
-
-                <div
-                  style={{
-                    width: (100 - taxPct).toFixed(1) + "%",
-                    background: "#1a7a4a",
-                    height: "100%",
-                    transition: "width .4s",
-                  }}
-                />
-              </div>
-
-              <div style={S.barLabels}>
-                <span>
-                  🔴 អាករពិសេស:
-                  {" "}
-                  {taxPct.toFixed(1)}%
-                </span>
-
-                <span>
-                  🟢 ចំណូលសុទ្ធ:
-                  {" "}
-                  {(100 - taxPct).toFixed(1)}%
-                </span>
-              </div>
-            </div>
-
-            {/* BREAKDOWN */}
-            <div style={S.card}>
-              <div style={S.cardTitle}>
-                ព័ត៌មានលម្អិតនៃការគណនា
-              </div>
-
-              <div style={S.dedRow}>
-                <span>ចំណូលពីការលក់</span>
-                <span style={S.dedVal}>
-                  {money(result.saleTotal)}
-                </span>
-              </div>
-
-              {result.giftTotal > 0 && (
-                <div style={S.dedRow}>
-                  <span>ចំណូលពីអំណោយ</span>
-                  <span style={S.dedVal}>
-                    + {money(result.giftTotal)}
-                  </span>
-                </div>
-              )}
-
-              {result.creditTotal > 0 && (
-                <div style={S.dedRow}>
-                  <span>ចំណូលពីការលក់ជំពាក់</span>
-                  <span style={S.dedVal}>
-                    + {money(result.creditTotal)}
-                  </span>
-                </div>
-              )}
-
-              <div style={S.dedRow}>
-                <span>ចំណូលសរុប</span>
-                <span style={S.dedVal}>
-                  {money(result.totalRev)}
-                </span>
-              </div>
-
-              <div style={S.dedRow}>
-                <span>មូលដ្ឋានគិតអាករ</span>
-                <span style={S.dedVal}>
-                  {money(result.base)}
-                </span>
-              </div>
-
-              <div style={S.dedTotal}>
-                <span>អាករពិសេសត្រូវបង់</span>
-                <span style={S.dedValRed}>
-                  {money(result.tax)}
-                </span>
-              </div>
-
-              <div style={S.note}>
-                ត្រូវប្រកាស និងបង់យ៉ាងយឺតបំផុត
-                ត្រឹម <strong>ថ្ងៃទី២០ នៃខែបន្ទាប់</strong>
-              </div>
-            </div>
-          </>
-        )}
       </div>
     </div>
   );
