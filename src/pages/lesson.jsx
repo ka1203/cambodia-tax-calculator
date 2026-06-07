@@ -723,7 +723,7 @@ export default function TaxLessons() {
         <div style={S.header}>
           <h1 style={S.h1}>ប្រព័ន្ធពន្ធដារកម្ពុជា — មេរៀនសង្ខេប</h1>
           <p style={S.hSub}>
-            ដេប៉ាតឺម៉ង់គណិតវិទ្យាអនុវត្ត និងស្ថិតិ (ITC) · ឆ្នាំសិក្សា ២០២៥–២០២៦
+            
           </p>
         </div>
 

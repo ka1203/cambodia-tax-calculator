@@ -19,17 +19,17 @@ const DEFS_IMMOVABLE = [
     body: `ពន្ធប្រថាប់ត្រា គឺជាពន្ធដែលត្រូវបង់នៅពេលមានការ
 ទិញ-លក់ ដោះដូរ ឬធ្វើអំណោយ ឬដាក់ភាគហ៊ុនជា
 អចលនទ្រព្យ (ដី ផ្ទះ អគារ សំណង់) ក្នុងក្រុមហ៊ុន។
-• អត្រា: ៤% នៃតម្លៃអចលនទ្រព្យសរុប
+• អត្រា: 4% នៃតម្លៃអចលនទ្រព្យសរុប
 • ជាប់ពន្ធ: ការផ្ទេរទាំងអចលនទ្រព្យចុះបញ្ជី + មិនចុះបញ្ជី
 • ជំនួស: ម្ចាស់ទទួលសិទ្ធិ (អ្នកទទួលទ្រព្យ)
-• ថ្ងៃបង់: ក្នុង ៣ ខែ ក្រោយ «ដីកាបញ្ជូន»`,
+• ថ្ងៃបង់: ក្នុង 3 ខែ ក្រោយ «ដីកាបញ្ជូន»`,
   },
   {
     term: "អចលនទ្រព្យ (Immovable Property)",
     color: "#166534", bg: "#F0FDF4", border: "#BBF7D0",
     body: `អចលនទ្រព្យ = ដី + ផ្ទះ + អគារ + សំណង់ផ្សេងៗ
 → ទោះចុះបញ្ជី (មានប័ណ្ណ) ឬ មិនចុះបញ្ជី (គ្មានប័ណ្ណ)
-ការផ្ទេរ ២ ប្រភេទ:
+ការផ្ទេរ 2 ប្រភេទ:
 ① ចុះបញ្ជី → រដ្ឋបាលសុរិយោដី (រាជធានី/ខេត្ត)
 ② មិនចុះបញ្ជី → អាជ្ញាធរដែនដី (ក្រុង-ស្រុក-ខណ្ឌ)
 មូលដ្ឋានគិតពន្ធ: ផ្អែកលើតម្លៃ MEF Annex
@@ -44,19 +44,19 @@ const DEFS_IMMOVABLE = [
 ③ យាយតា ↔ ចៅបង្កើត
 ④ ឪពុកម្តាយ + កូន + កូនប្រសា (ទ្រព្យរួម)
 ករណីលើកលែងទាំងស្រុង:
-• សន្តតិកម្ម (ទ្រព្យពីអ្នកស្លាប់) — ទាំង ④ ខាងលើ
-• ប្រទានកម្ម លើកទី ១ — ទាំង ④ ខាងលើ`,
+• សន្តតិកម្ម (ទ្រព្យពីអ្នកស្លាប់) — ទាំង 4 ខាងលើ
+• ប្រទានកម្ម លើកទី 1 — ទាំង 4 ខាងលើ`,
   },
   {
-    term: "ការអនុគ្រោះ + ប្រទានកម្ម លើកទី ២ (Tax Concession)",
+    term: "ការអនុគ្រោះ + ប្រទានកម្ម លើកទី 2 (Tax Concession)",
     color: "#991B1B", bg: "#FEF2F2", border: "#FCA5A5",
-    body: `ប្រទានកម្ម លើកទី ២ ឡើងទៅ (ក្នុងរង្វង់ញាតិ):
-→ ដកចេញ ១០០,០០០,០០០ ៛ ≈ ពន្ធ ៤,០០០,០០០ ៛
+    body: `ប្រទានកម្ម លើកទី 2 ឡើងទៅ (ក្នុងរង្វង់ញាតិ):
+→ ដកចេញ 100,000,000 ៛ ≈ ពន្ធ 4,000,000 ៛
 
 ការផ្ទេររវាង ឪពុកម្តាយក្មេក ↔ កូនប្រសា
 ឬ បងប្អូនបង្កើត ↔ បងប្អូនបង្កើត:
-• សន្តតិកម្ម: ដក ២០០,០០០,០០០ ៛ (ពន្ធ ៨,០០០,០០០ ៛)
-• ប្រទានកម្ម: ដក ១០០,០០០,០០០ ៛ (ពន្ធ ៤,០០០,០០០ ៛)`,
+• សន្តតិកម្ម: ដក 200,000,000 ៛ (ពន្ធ 8,000,000 ៛)
+• ប្រទានកម្ម: ដក 100,000,000 ៛ (ពន្ធ 4,000,000 ៛)`,
   },
   {
     term: "សន្តតិកម្ម vs ប្រទានកម្ម (Inheritance vs Gift)",
@@ -67,8 +67,8 @@ const DEFS_IMMOVABLE = [
 
 ប្រទានកម្ម = ការផ្ទេរអចលនទ្រព្យពី អ្នករស់ ទៅញាតិ
 ដោយ មិនយកថ្លៃ
-→ លើកលែង ករណីលើកទី ១ ក្នុងរង្វង់ញាតិ
-→ អនុគ្រោះ (ដក ១០០ លាន ៛) ករណីលើកទី ២ ឡើង`,
+→ លើកលែង ករណីលើកទី 1 ក្នុងរង្វង់ញាតិ
+→ អនុគ្រោះ (ដក 100 លាន ៛) ករណីលើកទី 2 ឡើង`,
   },
 ];
 
@@ -79,10 +79,10 @@ const DEFS_MOVABLE = [
     body: `ពន្ធប្រថាប់ត្រា លើចលនទ្រព្យ ជាពន្ធដែលត្រូវបង់
 នៅពេលផ្ទេរកម្មសិទ្ធិ ឬ សិទ្ធិកាន់កាប់ មធ្យោបាយ
 ដឹកជញ្ជូន/យានជំនិះ គ្រប់ប្រភេទ។
-• អត្រា: ៤% នៃមូលដ្ឋានគិតពន្ធ
-• មូលដ្ឋាន: កំណត់ដោយ GDT (ប្រកាស ០០១ ឆ្នាំ ២០១៣)
+• អត្រា: 4% នៃមូលដ្ឋានគិតពន្ធ
+• មូលដ្ឋាន: កំណត់ដោយ GDT (ប្រកាស 001 ឆ្នាំ 2013)
 • ជំនួស: អ្នកទទួលសិទ្ធិ (អ្នកទិញ)
-• ថ្ងៃបង់: ក្នុង ៣ ខែ ក្រោយ ស្នើសុំផ្ទេរ (MPWT)`,
+• ថ្ងៃបង់: ក្នុង 3 ខែ ក្រោយ ស្នើសុំផ្ទេរ (MPWT)`,
   },
   {
     term: "ចលនទ្រព្យ — ប្រភេទ និងការលើកលែង",
@@ -93,7 +93,7 @@ const DEFS_MOVABLE = [
 ជលយាន (ទូក, កាណូត, អូប័រ, កប៉ាល់, សាឡង់)
 
 ករណីលើកលែងពន្ធ:
-① ទោច/ត្រីចក្រ/ត្រាក់ទ័រ + ជលយាន ≤ ១៥០ សេះ
+① ទោច/ត្រីចក្រ/ត្រាក់ទ័រ + ជលយាន ≤ 150 សេះ
 ② ចលនទ្រព្យរដ្ឋ (កត់ក្នុងសារពើភណ្ឌ)
 ③ ការទូត / កុងស៊ុល / អង្គការអន្តរជាតិ
 ④ យានជំនិះ ទំនិញ សម្រាប់លក់វិញ (ចុះបញ្ជីពន្ធ)`,
@@ -103,8 +103,8 @@ const DEFS_MOVABLE = [
     color: "#92400E", bg: "#FFFBEB", border: "#FDE68A",
     body: `រថយន្តទេសចរណ៍: គិតតាម ឆ្នាំផលិត + ទំហំស៊ីឡាំង (cc)
 ឧ: LEXUS RX330 (2005) ស៊ីឡាំង 3300cc
-  → > ១០ ឆ្នាំ + 2900–4000cc → មូលដ្ឋាន: ៨,០០០,០០០ ៛
-  → ពន្ធ = ៨,០០០,០០០ × ៤% = ៣២០,០០០ ៛
+  → > 10 ឆ្នាំ + 2900–4000cc → មូលដ្ឋាន: 8,000,000 ៛
+  → ពន្ធ = 8,000,000 × 4% = 320,000 ៛
 
 រថយន្តដឹកទំនិញ: គិតតាម ទម្ងន់សរុប (GVW)
 រ៉ឺម៉ក/ក្បាលរថ: គិតតាម ទម្ងន់សរុប
@@ -118,12 +118,12 @@ const DEFS_MOVABLE = [
 ① យកឯកសារពី MPWT → GDT / សាខាខេត្ត
 ② បំពេញពាក្យស្នើសុំ ភ្ជាប់ឯកសារ
 ③ បង់ពន្ធ នៅ ធនាគារដៃគូ MEF
-④ ទទួល: បង្កាន់ដៃ (ផ្កាឈូក ១ ច្បាប់)
-       + លិខិតបញ្ជាក់ (២ ច្បាប់) → ត្រឡប់ MPWT
+④ ទទួល: បង្កាន់ដៃ (ផ្កាឈូក 1 ច្បាប់)
+       + លិខិតបញ្ជាក់ (2 ច្បាប់) → ត្រឡប់ MPWT
 
 Online: www.tax.gov.kh/km/e-service
 → e-Stamp Tax for Vehicle Transfer
-ផ្ទេរ: ក្នុង ៣ ខែ ក្រោយ ស្នើសុំ MPWT`,
+ផ្ទេរ: ក្នុង 3 ខែ ក្រោយ ស្នើសុំ MPWT`,
   },
 ];
 
@@ -170,11 +170,11 @@ const S = {
 };
 
 const INFO_CARDS = [
-  { icon: "🏠", bg: "#EFF6FF", title: "ពន្ធអចលនទ្រព្យ",    value: "៤%",            note: "ការទិញ-លក់ / ដោះដូរ / អំណោយ" },
-  { icon: "🚗", bg: "#F0FDF4", title: "ពន្ធចលនទ្រព្យ",     value: "៤%",            note: "រថយន្ត / ជលយាន / យានជំនិះ" },
-  { icon: "👨‍👩‍👧", bg: "#FAF5FF", title: "រង្វង់ញាតិ",        value: "លើកលែង ១០០%", note: "ឪពុក-ម្តាយ · ប្តី-ប្រពន្ធ · ចៅ" },
-  { icon: "📅", bg: "#FFFBEB", title: "ថ្ងៃបង់ពន្ធ",        value: "ក្នុង ៣ ខែ",    note: "ក្រោយ «ដីកាបញ្ជូន»" },
-  { icon: "💰", bg: "#FEF2F2", title: "អនុគ្រោះ (ញាតិ)",   value: "ដក ១០០ លាន៛",  note: "ប្រទានកម្ម លើកទី ២ ឡើង" },
+  { icon: "🏠", bg: "#EFF6FF", title: "ពន្ធអចលនទ្រព្យ",    value: "4%",            note: "ការទិញ-លក់ / ដោះដូរ / អំណោយ" },
+  { icon: "🚗", bg: "#F0FDF4", title: "ពន្ធចលនទ្រព្យ",     value: "4%",            note: "រថយន្ត / ជលយាន / យានជំនិះ" },
+  { icon: "👨‍👩‍👧", bg: "#FAF5FF", title: "រង្វង់ញាតិ",        value: "លើកលែង 100%", note: "ឪពុក-ម្តាយ · ប្តី-ប្រពន្ធ · ចៅ" },
+  { icon: "📅", bg: "#FFFBEB", title: "ថ្ងៃបង់ពន្ធ",        value: "ក្នុង 3 ខែ",    note: "ក្រោយ «ដីកាបញ្ជូន»" },
+  { icon: "💰", bg: "#FEF2F2", title: "អនុគ្រោះ (ញាតិ)",   value: "ដក 100 លាន៛",  note: "ប្រទានកម្ម លើកទី 2 ឡើង" },
 ];
 
 // ── DEFINITION ACCORDION ──────────────────────────────────────
@@ -205,8 +205,8 @@ function DefSection({ defs, label }) {
 // ══════════════════════════════════════════════════════════════
 const TRANSFER_TYPES = [
   { id: "sale",         label: "ទិញ-លក់ / ដោះដូរ (Sale/Exchange)" },
-  { id: "gift1",        label: "ប្រទានកម្ម លើកទី ១ — ក្នុងរង្វង់ញាតិ" },
-  { id: "gift2",        label: "ប្រទានកម្ម លើកទី ២+ — ក្នុងរង្វង់ញាតិ" },
+  { id: "gift1",        label: "ប្រទានកម្ម លើកទី 1 — ក្នុងរង្វង់ញាតិ" },
+  { id: "gift2",        label: "ប្រទានកម្ម លើកទី 2+ — ក្នុងរង្វង់ញាតិ" },
   { id: "inheritance",  label: "សន្តតិកម្ម — ក្នុងរង្វង់ញាតិ" },
   { id: "sibling",      label: "បងប្អូន / ឪពុក-ម្តាយក្មេក ↔ កូនប្រសា" },
   { id: "state",        label: "ផ្ទេរពីរដ្ឋ / ស្ថាប័នរដ្ឋ (លើកលែង)" },
@@ -246,9 +246,9 @@ function ImmovableTab() {
     let deduction = 0;
     let deductLabel = "";
     if (transferType === "gift2") {
-      deduction = 100000000; deductLabel = "ការអនុគ្រោះ ប្រទានកម្ម លើកទី ២ (−១០០,០០០,០០០ ៛)";
+      deduction = 100000000; deductLabel = "ការអនុគ្រោះ ប្រទានកម្ម លើកទី 2 (−100,000,000 ៛)";
     } else if (transferType === "sibling") {
-      deduction = 100000000; deductLabel = "ការអនុគ្រោះ បងប្អូន/ឪពុក-ម្តាយក្មេក (−១០០,០០០,០០០ ៛)";
+      deduction = 100000000; deductLabel = "ការអនុគ្រោះ បងប្អូន/ឪពុក-ម្តាយក្មេក (−100,000,000 ៛)";
     }
 
     const taxBase = Math.max(0, totalKHR - deduction);
@@ -325,7 +325,7 @@ function ImmovableTab() {
         </button>
 
         <div style={S.note}>
-          • មូលដ្ឋានគិតពន្ធ = (តម្លៃដី + តម្លៃសំណង់ជាន់ E0+E1+...) × អត្រា ៤%<br />
+          • មូលដ្ឋានគិតពន្ធ = (តម្លៃដី + តម្លៃសំណង់ជាន់ E0+E1+...) × អត្រា 4%<br />
           • ប្រសិនបើ MEF Annex ≠ កិច្ចសន្យា → <strong>ប្រើតម្លៃខ្ពស់ជាង</strong>
         </div>
       </div>
@@ -342,7 +342,7 @@ function ImmovableTab() {
             </div>
             <div style={{ ...S.dedTotal, ...S.dedTotalGreen, marginTop: 16 }}>
               <span>ប្រាក់ពន្ធប្រថាប់ត្រាត្រូវបង់</span>
-              <span>០ ៛ (លើកលែង)</span>
+              <span>0 ៛ (លើកលែង)</span>
             </div>
           </div>
         ) : (
@@ -357,7 +357,7 @@ function ImmovableTab() {
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{fmt(result.taxBase)}</div>
               </div>
               <div style={S.metric}>
-                <div style={S.mLabel}>ពន្ធប្រថាប់ត្រា (៤%)</div>
+                <div style={S.mLabel}>ពន្ធប្រថាប់ត្រា (4%)</div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{fmt(result.tax)}</div>
               </div>
             </div>
@@ -391,7 +391,7 @@ function ImmovableTab() {
                 </tbody>
               </table>
               <div style={S.dedTotal}>
-                <span>ពន្ធប្រថាប់ត្រាត្រូវបង់ ({fmt(result.taxBase)} × ៤%)</span>
+                <span>ពន្ធប្រថាប់ត្រាត្រូវបង់ ({fmt(result.taxBase)} × 4%)</span>
                 <span>{fmt(result.tax)}</span>
               </div>
               <div style={S.note}>
@@ -399,8 +399,8 @@ function ImmovableTab() {
                 • តម្លៃសរុប = {fmt(result.totalKHR)}<br />
                 {result.deduction > 0 && <>• ដក: {fmt(result.deduction)}<br /></>}
                 • មូលដ្ឋានគិតពន្ធ = {fmt(result.taxBase)}<br />
-                • ពន្ធ = {fmt(result.taxBase)} × ៤% = <strong>{fmt(result.tax)}</strong><br /><br />
-                ដាក់ប្រកាស និងបង់ ក្នុង <strong>៣ ខែ</strong> ក្រោយ «ដីកាបញ្ជូន»
+                • ពន្ធ = {fmt(result.taxBase)} × 4% = <strong>{fmt(result.tax)}</strong><br /><br />
+                ដាក់ប្រកាស និងបង់ ក្នុង <strong>3 ខែ</strong> ក្រោយ «ដីកាបញ្ជូន»
                 នៅ GDT ភ្នំពេញ ឬ សាខាខេត្ត
               </div>
             </div>
@@ -414,23 +414,20 @@ function ImmovableTab() {
 // ══════════════════════════════════════════════════════════════
 // TAB 2 — MOVABLE PROPERTY (VEHICLE)
 // ══════════════════════════════════════════════════════════════
-// Fixed tax base table for tourist cars (simplified, from Prakas 001/2013 principle)
 const TOURIST_CAR_BASE = [
-  // [max_age_years, cc_min, cc_max, base_khr_new, base_khr_old]
-  // Simplified tiers based on document example logic
-  { label: "≤ 2000cc | ≤ ១០ ឆ្នាំ",     base: 5000000  },
-  { label: "≤ 2000cc | > ១០ ឆ្នាំ",     base: 3000000  },
-  { label: "2001–2900cc | ≤ ១០ ឆ្នាំ",  base: 8000000  },
-  { label: "2001–2900cc | > ១០ ឆ្នាំ",  base: 5000000  },
-  { label: "2901–4000cc | ≤ ១០ ឆ្នាំ",  base: 12000000 },
-  { label: "2901–4000cc | > ១០ ឆ្នាំ",  base: 8000000  },
-  { label: "> 4000cc | ≤ ១០ ឆ្នាំ",     base: 20000000 },
-  { label: "> 4000cc | > ១០ ឆ្នាំ",     base: 12000000 },
+  { label: "≤ 2000cc | ≤ 10 ឆ្នាំ",     base: 5000000  },
+  { label: "≤ 2000cc | > 10 ឆ្នាំ",     base: 3000000  },
+  { label: "2001–2900cc | ≤ 10 ឆ្នាំ",  base: 8000000  },
+  { label: "2001–2900cc | > 10 ឆ្នាំ",  base: 5000000  },
+  { label: "2901–4000cc | ≤ 10 ឆ្នាំ",  base: 12000000 },
+  { label: "2901–4000cc | > 10 ឆ្នាំ",  base: 8000000  },
+  { label: "> 4000cc | ≤ 10 ឆ្នាំ",     base: 20000000 },
+  { label: "> 4000cc | > 10 ឆ្នាំ",     base: 12000000 },
 ];
 
 const VEHICLE_EXEMPT = [
   { id: "none",        label: "ជាប់ពន្ធ — ផ្ទេរកម្មសិទ្ធិ" },
-  { id: "moto150",     label: "ទោច/ត្រីចក្រ/ត្រាក់ទ័រ + ជលយាន ≤ ១៥០ សេះ (លើកលែង)" },
+  { id: "moto150",     label: "ទោច/ត្រីចក្រ/ត្រាក់ទ័រ + ជលយាន ≤ 150 សេះ (លើកលែង)" },
   { id: "state",       label: "ចលនទ្រព្យរដ្ឋ (សារពើភណ្ឌ) (លើកលែង)" },
   { id: "diplomatic",  label: "ការទូត / កុងស៊ុល / អង្គការអន្តរជាតិ (លើកលែង)" },
   { id: "dealer",      label: "ឈ្មួញទំនិញ (ដើម្បីលក់វិញ — ចុះបញ្ជី VAT) (លើកលែង)" },
@@ -497,9 +494,9 @@ function MovableTab() {
             )}
 
             <div style={S.note}>
-              • មូលដ្ឋានគិតពន្ធ: ប្រកាស ០០១ ស.ហ.វ / ២០១៣ (GDT)<br />
-              • ពន្ធ = មូលដ្ឋានគិតពន្ធ × ៤%<br />
-              • ឧ: LEXUS RX330 (2005, 3300cc) → Tier: 2901–4000cc / {">"} ១០ ឆ្នាំ → ៨,០០០,០០០ × ៤% = ៣២០,០០០ ៛
+              • មូលដ្ឋានគិតពន្ធ: ប្រកាស 001 ស.ហ.វ / 2013 (GDT)<br />
+              • ពន្ធ = មូលដ្ឋានគិតពន្ធ × 4%<br />
+              • ឧ: LEXUS RX330 (2005, 3300cc) → Tier: 2901–4000cc / {">"} 10 ឆ្នាំ → 8,000,000 × 4% = 320,000 ៛
             </div>
           </>
         )}
@@ -514,7 +511,7 @@ function MovableTab() {
             <div style={S.noteGreen}>✅ <strong>ជាប់ក្នុងករណីលើកលែងពន្ធ</strong><br />{result.label}</div>
             <div style={{ ...S.dedTotalGreen, marginTop: 16 }}>
               <span>ប្រាក់ពន្ធប្រថាប់ត្រាត្រូវបង់</span>
-              <span>០ ៛ (លើកលែង)</span>
+              <span>0 ៛ (លើកលែង)</span>
             </div>
           </div>
         ) : (
@@ -526,7 +523,7 @@ function MovableTab() {
               </div>
               <div style={S.metric}>
                 <div style={S.mLabel}>អត្រាពន្ធ</div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>៤%</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>4%</div>
               </div>
               <div style={S.metric}>
                 <div style={S.mLabel}>ពន្ធប្រថាប់ត្រា</div>
@@ -545,18 +542,18 @@ function MovableTab() {
                   </tr>
                   <tr>
                     <td style={S.td}>ពន្ធប្រថាប់ត្រា</td>
-                    <td style={S.td}>៤%</td>
+                    <td style={S.td}>4%</td>
                     <td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{fmt(result.tax)}</td>
                   </tr>
                 </tbody>
               </table>
               <div style={S.dedTotal}>
-                <span>ពន្ធប្រថាប់ត្រាត្រូវបង់ ({fmt(result.base)} × ៤%)</span>
+                <span>ពន្ធប្រថាប់ត្រាត្រូវបង់ ({fmt(result.base)} × 4%)</span>
                 <span>{fmt(result.tax)}</span>
               </div>
               <div style={S.note}>
-                <strong>រូបមន្ត:</strong> {fmt(result.base)} × ៤% = <strong>{fmt(result.tax)}</strong><br /><br />
-                ដាក់ប្រកាស ក្នុង <strong>៣ ខែ</strong> ក្រោយ ស្នើសុំ MPWT
+                <strong>រូបមន្ត:</strong> {fmt(result.base)} × 4% = <strong>{fmt(result.tax)}</strong><br /><br />
+                ដាក់ប្រកាស ក្នុង <strong>3 ខែ</strong> ក្រោយ ស្នើសុំ MPWT
                 | <strong>Online:</strong> tax.gov.kh → e-Stamp Tax Vehicle
                 | ឬ GDT / សាខាខេត្ត
               </div>
@@ -583,8 +580,8 @@ export default function StampTaxPage({ setPage }) {
         </div>
 
         <div style={S.header}>
-          <div style={S.h1}>ពន្ធប្រថាប់ត្រា (Stamp Tax) — កម្មវិធីគណនាពន្ធ</div>
-          <div style={S.hSub}>កម្ពុជា · អចលនទ្រព្យ + ចលនទ្រព្យ · អត្រា ៤% · ដាក់ប្រកាសក្នុង ៣ ខែ</div>
+          <div style={S.h1}>ពន្ធប្រថាប់ត្រា</div>
+          <div style={S.hSub}></div>
         </div>
 
         {/* INFO CARDS */}

@@ -488,8 +488,8 @@ export default function TransportTaxCalculator({ setPage }) {
         </div>
 
         <div style={S.header}>
-          <div style={S.h1}>ពន្ធលើមធ្យោបាយដឹកជញ្ជូន (TMT) — កម្មវិធីគណនា</div>
-          <div style={S.hSub}>កម្ពុជា · ប្រកាសលេខ 531 សហវ.ប្រក · ប្រចាំឆ្នាំ 1 មិថុនា – 30 វិច្ឆិកា</div>
+          <div style={S.h1}>ពន្ធលើមធ្យោបាយដឹកជញ្ជូន</div>
+          <div style={S.hSub}></div>
         </div>
 
         <div style={S.infoGrid}>

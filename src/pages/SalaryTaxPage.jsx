@@ -276,8 +276,8 @@ export default function SalaryTaxPage({ setPage }) {
 
         {/* HEADER */}
         <div style={S.header}>
-          <div style={S.h1}>ពន្ធលើប្រាក់បៀវត្ស — កម្មវិធីគណនាពន្ធ</div>
-          <div style={S.hSub}>កម្ពុជា · អនុក្រឹត្យ 48 (2024) · Progressive 0–20% · Withholding ប្រចាំខែ</div>
+          <div style={S.h1}>ពន្ធលើប្រាក់បៀវត្ស </div>
+          <div style={S.hSub}> </div>
         </div>
 
         {/* INFO CARDS */}

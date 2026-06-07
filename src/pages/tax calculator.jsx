@@ -20,14 +20,14 @@ const TAB_DEFS = {
 • កម្រិតស្រាល (10%): ប្រាក់ពន្ធខ្វះ ≤ 10% នៃប្រាក់ពន្ធសរុប
 • កម្រិតធ្ងន់ (25%): ប្រាក់ពន្ធខ្វះ > 10% នៃប្រាក់ពន្ធសរុប
 • ការវាយតម្លៃជាឯកតោភាគី (40%): ករណីមិនដាក់លិខិតប្រកាស
-• ការរារាំង: ប្រាក់ពិន័យថេរ ២,០០០,០០០ ៛ មិនអាស្រ័យលើចំនួន`,
+• ការរារាំង: ប្រាក់ពិន័យថេរ 2,000,000 ៛ មិនអាស្រ័យលើចំនួន`,
       },
       {
         term: "ការប្រាក់យឺតយ៉ាវ (Late Payment Interest)",
         color: "#92400E", bg: "#FFFBEB", border: "#FDE68A",
         body: `ការប្រាក់យឺតយ៉ាវ គឺការប្រាក់ 1.5% ក្នុងមួយខែ គណនាលើចំនួនប្រាក់ពន្ធដែលខ្វះខាត។
 រូបមន្ត: ការប្រាក់ = ប្រាក់ពន្ធខ្វះ × 1.5% × ចំនួនខែ
-ឧទាហរណ៍: ខ្វះ ១,០០០,០០០ ៛ × ១.៥% × ១២ ខែ = ១៨០,០០០ ៛
+ឧទាហរណ៍: ខ្វះ 1,000,000 ៛ × 1.5% × 12 ខែ = 180,000 ៛
 • ការប្រាក់ + ប្រាក់ពិន័យ ត្រូវបង់ស្របគ្នា
 • គណនាចាប់ពីថ្ងៃផុតកំណត់ ដល់ថ្ងៃបង់ពិតប្រាកដ`,
       },
@@ -46,7 +46,7 @@ const TAB_DEFS = {
         color: "#6B21A8", bg: "#FAF5FF", border: "#DDD6FE",
         body: `ករណីអ្នកជាប់ពន្ធ ឬបុគ្គលសម្ព័ន្ធ រារាំង ឬមិនសហការ
 នឹងមន្ត្រីពន្ធដាររបស់ GDT ក្នុងអំឡុងពេលត្រួតពិនិត្យ/សវនកម្ម។
-→ ប្រាក់ពិន័យថេរ ២,០០០,០០០ ៛
+→ ប្រាក់ពិន័យថេរ 2,000,000 ៛
 → អនុវត្តមិនគិតពីចំនួនប្រាក់ពន្ធ
 → អាចស្ថិតក្នុងករណីព្រហ្មទណ្ឌផ្សេងទៀតផង`,
       },
@@ -60,26 +60,26 @@ const TAB_DEFS = {
         color: "#0B1F4E", bg: "#EFF6FF", border: "#BFDBFE",
         body: `ពន្ធប៉ាតង់ គឺជាពន្ធប្រចាំឆ្នាំដែលសហគ្រាសត្រូវបង់ ដើម្បីទទួលបាន/
 ជំនួសសិទ្ធិប្រកបអាជីវកម្មស្របច្បាប់នៅក្នុងប្រទេសកម្ពុជា។
-• ទឹកប្រាក់មូលដ្ឋាន: ១,២០០,០០០ ៛/ឆ្នាំ (សម្រាប់ SME)
-• ថ្ងៃផុតកំណត់: ថ្ងៃទី ៣១ ខែមីនា រៀងរាល់ឆ្នាំ
+• ទឹកប្រាក់មូលដ្ឋាន: 1,200,000 ៛/ឆ្នាំ (សម្រាប់ SME)
+• ថ្ងៃផុតកំណត់: ថ្ងៃ 31 ខែមីនា រៀងរាល់ឆ្នាំ
 • ទណ្ឌកម្មយឺត: ប្រាក់ពិន័យ 10% + ការប្រាក់ 1.5%/ខែ
 • ប្រភេទអាជីវកម្ម ផ្លាស់ប្តូរតម្លៃប៉ាតង់ (Tier A/B/C)`,
       },
       {
         term: "ទណ្ឌកម្មបង់យឺត — ពន្ធប៉ាតង់",
         color: "#991B1B", bg: "#FEF2F2", border: "#FCA5A5",
-        body: `ករណីបង់ប៉ាតង់ក្រោយ ថ្ងៃទី ៣១ ខែមីនា៖
-① ប្រាក់ពិន័យ = ១,២០០,០០០ × 10% = ១២០,០០០ ៛
-② ការប្រាក់ = ១,២០០,០០០ × 1.5% × ចំនួនខែ
-③ សរុបត្រូវបង់ = ១,២០០,០០០ + ① + ②
-ឧទាហរណ៍: យឺត ៣ ខែ
-  → ១,២០០,០០០ + ១២០,០០០ + (១,២០០,០០០ × ១.៥% × ៣)
-  → = ១,២០០,០០០ + ១២០,០០០ + ៥៤,០០០ = ១,៣៧៤,០០០ ៛`,
+        body: `ករណីបង់ប៉ាតង់ក្រោយ ថ្ងៃ 31 ខែមីនា៖
+① ប្រាក់ពិន័យ = 1,200,000 × 10% = 120,000 ៛
+② ការប្រាក់ = 1,200,000 × 1.5% × ចំនួនខែ
+③ សរុបត្រូវបង់ = 1,200,000 + ① + ②
+ឧទាហរណ៍: យឺត 3 ខែ
+  → 1,200,000 + 120,000 + (1,200,000 × 1.5% × 3)
+  → = 1,200,000 + 120,000 + 54,000 = 1,374,000 ៛`,
       },
       {
         term: "ភាពខុសគ្នា ប៉ាតង់ vs CIT vs VAT",
         color: "#166534", bg: "#F0FDF4", border: "#BBF7D0",
-        body: `ពន្ធប៉ាតង់: ថេរ ១,២០០,០០០ ៛/ឆ្នាំ → ទទួលស្គាល់ការប្រកបអាជីវកម្ម
+        body: `ពន្ធប៉ាតង់: ថេរ 1,200,000 ៛/ឆ្នាំ → ទទួលស្គាល់ការប្រកបអាជីវកម្ម
 CIT (ពន្ធលើប្រាក់ចំណូល): 20% × ចំណេញ → ជាពន្ធប្រចាំឆ្នាំ
 VAT: 10% × ការផ្គត់ផ្គង់ → ប្រមូលប្រចាំខែ/ត្រីមាស
 
@@ -101,7 +101,7 @@ VAT: 10% × ការផ្គត់ផ្គង់ → ប្រមូលប្
 • 30% → វិស័យប្រេង ឧស្ម័ន ធនធានធម្មជាតិ
 • 5%  → គម្រោងវិនិយោគ QIP (Qualified Investment Project)
 រូបមន្ត: CIT = ចំណេញបន្ទាប់ ~ ÷ ពន្ធ × អត្រា CIT
-ផុតកំណត់ប្រកាស: ៣ ខែ ក្រោយបំពេញឆ្នាំហិរញ្ញវត្ថុ`,
+ផុតកំណត់ប្រកាស: 3 ខែ ក្រោយបំពេញឆ្នាំហិរញ្ញវត្ថុ`,
       },
       {
         term: "សវនកម្មពន្ធ (Tax Audit)",
@@ -148,9 +148,9 @@ VAT: 10% × ការផ្គត់ផ្គង់ → ប្រមូលប្
 អ្នកជាប់ពន្ធ គណនា ប្រកាស និងបង់ពន្ធ ដោយខ្លួនឯង
 ដោយមិនរង់ចាំ GDT គណនាជូន។
 ប្រភេទអ្នកជាប់ពន្ធក្នុងប្រព័ន្ធ ស.ប.ស:
-• Small: ចំណូល ២៥០–៧០០ លាន ៛ ឬ ១០–៥០ បុគ្គលិក
-• Medium: ចំណូល ៧០០–៤,០០០ លាន ៛ ឬ ៥១–១០០ បុគ្គលិក
-• Large: ចំណូល > ៤,០០០ លាន ៛ ឬ > ១០០ បុគ្គលិក`,
+• Small: ចំណូល 250–700 លាន ៛ ឬ 10–50 បុគ្គលិក
+• Medium: ចំណូល 700–4,000 លាន ៛ ឬ 51–100 បុគ្គលិក
+• Large: ចំណូល > 4,000 លាន ៛ ឬ > 100 បុគ្គលិក`,
       },
       {
         term: "ចំណូលសរុប (Annual Revenue) សម្រាប់ចំណាត់ថ្នាក់",
@@ -158,9 +158,9 @@ VAT: 10% × ការផ្គត់ផ្គង់ → ប្រមូលប្
         body: `ចំណូលសរុប = ចំនួនលក់ (Net Sales) ប្រចាំឆ្នាំ
 មុនដក ចំណាយ ឬ VAT ចេញ — ប្រើចំណូល Gross Sales។
 កម្រិតចំណាត់ថ្នាក់:
-• ≥ ២៥០ លាន ៛  → Small Taxpayer
-• ≥ ៧០០ លាន ៛  → Medium Taxpayer
-• ≥ ៤,០០០ លាន ៛ → Large Taxpayer
+• ≥ 250 លាន ៛  → Small Taxpayer
+• ≥ 700 លាន ៛  → Medium Taxpayer
+• ≥ 4,000 លាន ៛ → Large Taxpayer
 ចំណាំ: ប្រសិនបើចំណូល vs បុគ្គលិក ខុសថ្នាក់ →
 ប្រើថ្នាក់ធំជាង (Higher Tier)`,
       },
@@ -277,12 +277,12 @@ const S = {
 
 // ── INFO CARDS ────────────────────────────────────────────────
 const INFO_CARDS = [
-  { icon: "⚖️", bg: "#EFF6FF", title: "ប្រាក់ពិន័យកម្រិតស្រាល", value: "១០%", note: "ប្រាក់ពន្ធខ្វះ ≤ ១០% នៃប្រាក់ពន្ធសរុប" },
-  { icon: "🔴", bg: "#FEF2F2", title: "ប្រាក់ពិន័យកម្រិតធ្ងន់",  value: "២៥%", note: "ប្រាក់ពន្ធខ្វះ > ១០% ឬ ប្រព័ន្ធគណនេយ្យមិនត្រឹម" },
-  { icon: "🚫", bg: "#FFF7ED", title: "ការរារាំងសមត្ថកិច្ច",      value: "២,០០០,០០០ ៛", note: "ប្រាក់ពិន័យថេរ មិនអាស្រ័យលើទំហំ" },
-  { icon: "📅", bg: "#F0FDF4", title: "ការប្រាក់យឺតយ៉ាវ",         value: "១.៥% / ខែ", note: "លើប្រាក់ពន្ធខ្វះ × ចំនួនខែហួស" },
-  { icon: "📋", bg: "#EFF6FF", title: "ពន្ធប៉ាតង់មូលដ្ឋាន",      value: "១,២០០,០០០ ៛", note: "បង់មុន ថ្ងៃទី ៣១ ខែមីនា" },
-  { icon: "🏭", bg: "#F0FDF4", title: "ពន្ធ CIT",                  value: "២០% / ៣០% / ៥%", note: "ស្តង់ដារ · រ៉ែ/ប្រេង · QIP" },
+  { icon: "⚖️", bg: "#EFF6FF", title: "ប្រាក់ពិន័យកម្រិតស្រាល", value: "10%",           note: "ប្រាក់ពន្ធខ្វះ ≤ 10% នៃប្រាក់ពន្ធសរុប" },
+  { icon: "🔴", bg: "#FEF2F2", title: "ប្រាក់ពិន័យកម្រិតធ្ងន់",  value: "25%",           note: "ប្រាក់ពន្ធខ្វះ > 10% ឬ ប្រព័ន្ធគណនេយ្យមិនត្រឹម" },
+  { icon: "🚫", bg: "#FFF7ED", title: "ការរារាំងសមត្ថកិច្ច",      value: "2,000,000 ៛",   note: "ប្រាក់ពិន័យថេរ មិនអាស្រ័យលើទំហំ" },
+  { icon: "📅", bg: "#F0FDF4", title: "ការប្រាក់យឺតយ៉ាវ",         value: "1.5% / ខែ",    note: "លើប្រាក់ពន្ធខ្វះ × ចំនួនខែហួស" },
+  { icon: "📋", bg: "#EFF6FF", title: "ពន្ធប៉ាតង់មូលដ្ឋាន",      value: "1,200,000 ៛",   note: "បង់មុន ថ្ងៃ 31 ខែមីនា" },
+  { icon: "🏭", bg: "#F0FDF4", title: "ពន្ធ CIT",                  value: "20% / 30% / 5%", note: "ស្តង់ដារ · រ៉ែ/ប្រេង · QIP" },
 ];
 
 const TABS = [
@@ -311,10 +311,10 @@ function PenaltyTab() {
     let surchargeRate = 0, surchargeLabel = "", fixedPenalty = 0, violationLabel = "";
     const effective = vtype === "auto" ? (pct > 10 ? "major" : pct > 0 ? "minor" : "none") : vtype;
     switch (effective) {
-      case "obstruction":  fixedPenalty = 2000000; surchargeLabel = "ប្រាក់ពិន័យថេរ — ការរារាំង (២,០០០,០០០ ៛)"; violationLabel = "ការរារាំងការអនុវត្ត"; break;
-      case "unilateral":   surchargeRate = 0.40; surchargeLabel = "ការតម្លើងពន្ធ ៤០% — ឯកតោភាគី"; violationLabel = "ការវាយតម្លៃជាឯកតោភាគី"; break;
-      case "major":        surchargeRate = 0.25; surchargeLabel = "ការតម្លើងពន្ធ ២៥% — កម្រិតធ្ងន់ (ខ្វះ > ១០%)"; violationLabel = "កម្រិតធ្ងន់"; break;
-      case "minor":        surchargeRate = 0.10; surchargeLabel = "ការតម្លើងពន្ធ ១០% — កម្រិតស្រាល (ខ្វះ ≤ ១០%)"; violationLabel = "កម្រិតស្រាល"; break;
+      case "obstruction":  fixedPenalty = 2000000; surchargeLabel = "ប្រាក់ពិន័យថេរ — ការរារាំង (2,000,000 ៛)"; violationLabel = "ការរារាំងការអនុវត្ត"; break;
+      case "unilateral":   surchargeRate = 0.40; surchargeLabel = "ការតម្លើងពន្ធ 40% — ឯកតោភាគី"; violationLabel = "ការវាយតម្លៃជាឯកតោភាគី"; break;
+      case "major":        surchargeRate = 0.25; surchargeLabel = "ការតម្លើងពន្ធ 25% — កម្រិតធ្ងន់ (ខ្វះ > 10%)"; violationLabel = "កម្រិតធ្ងន់"; break;
+      case "minor":        surchargeRate = 0.10; surchargeLabel = "ការតម្លើងពន្ធ 10% — កម្រិតស្រាល (ខ្វះ ≤ 10%)"; violationLabel = "កម្រិតស្រាល"; break;
       default:             surchargeLabel = "គ្មានការតម្លើងពន្ធ"; violationLabel = "គ្មាន";
     }
     const surcharge = effective === "obstruction" ? fixedPenalty : shortage * surchargeRate;
@@ -331,7 +331,7 @@ function PenaltyTab() {
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ប្រាក់ពន្ធត្រូវបង់សរុប (រៀល)</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 25000000" value={taxDue} onChange={e => { setTaxDue(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 25000000" value={taxDue} onChange={e => { setTaxDue(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ប្រាក់ពន្ធបានបង់រួច (រៀល)</label>
@@ -344,20 +344,20 @@ function PenaltyTab() {
             <label style={S.label}>ប្រភេទការរំលោភបំពាន</label>
             <select style={S.select} value={vtype} onChange={e => { setVtype(e.target.value); setResult(null); }}>
               <option value="auto">ស្វ័យប្រវត្តិតាម % ប្រាក់ពន្ធខ្វះ</option>
-              <option value="minor">កម្រិតស្រាល — ១០% (ខ្វះ ≤ ១០%)</option>
-              <option value="major">កម្រិតធ្ងន់ — ២៥% (ខ្វះ &gt; ១០%)</option>
-              <option value="unilateral">ការវាយតម្លៃជាឯកតោភាគី — ៤០%</option>
-              <option value="obstruction">ការរារាំងសមត្ថកិច្ច — ២,០០០,០០០ ៛</option>
+              <option value="minor">កម្រិតស្រាល — 10% (ខ្វះ ≤ 10%)</option>
+              <option value="major">កម្រិតធ្ងន់ — 25% (ខ្វះ &gt; 10%)</option>
+              <option value="unilateral">ការវាយតម្លៃជាឯកតោភាគី — 40%</option>
+              <option value="obstruction">ការរារាំងសមត្ថកិច្ច — 2,000,000 ៛</option>
             </select>
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំនួនខែហួសកាលកំណត់</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 12" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 12" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
           </div>
         </div>
         <div style={S.note}>
-          • ការប្រាក់យឺតយ៉ាវ៖ <strong>១.៥%/ខែ</strong> លើប្រាក់ពន្ធខ្វះ<br />
-          • ការរារាំង (មិនសហការ)៖ ប្រាក់ពិន័យថេរ <strong>២,០០០,០០០ ៛</strong>
+          • ការប្រាក់យឺតយ៉ាវ៖ <strong>1.5%/ខែ</strong> លើប្រាក់ពន្ធខ្វះ<br />
+          • ការរារាំង (មិនសហការ)៖ ប្រាក់ពិន័យថេរ <strong>2,000,000 ៛</strong>
         </div>
       </div>
       <button style={S.btn} onClick={calculate}>គណនាប្រាក់ពិន័យរួម</button>
@@ -377,7 +377,7 @@ function PenaltyTab() {
                 <tr><td style={S.td}>ប្រាក់ពន្ធបានបង់រួច</td><td style={{ ...S.td, color: "#1a7a4a", fontWeight: 700 }}>{formatCurrency(result.paid)}</td></tr>
                 <tr><td style={S.td}>ប្រាក់ពន្ធខ្វះខាត ({result.pct.toFixed(1)}%)</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.shortage)}</td></tr>
                 <tr><td style={S.td}>{result.surchargeLabel}</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.surcharge)}</td></tr>
-                <tr><td style={S.td}>ការប្រាក់យឺតយ៉ាវ — ១.៥% × {result.m} ខែ</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.interest)}</td></tr>
+                <tr><td style={S.td}>ការប្រាក់យឺតយ៉ាវ — 1.5% × {result.m} ខែ</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.interest)}</td></tr>
               </tbody>
             </table>
             <div style={S.dedRowTotalRed}><span>សរុបទឹកប្រាក់ត្រូវបង់បន្ថែមរួម</span><span>{formatCurrency(result.total)}</span></div>
@@ -413,20 +413,20 @@ function PatentTab() {
       <div style={S.card}>
         <div style={S.cardTitle}>ព័ត៌មានពន្ធប៉ាតង់</div>
         <div style={S.note}>
-          • ប្រាក់ពន្ធប៉ាតង់មូលដ្ឋាន៖ <strong>១,២០០,០០០ ៛/ឆ្នាំ</strong><br />
-          • ថ្ងៃផុតកំណត់៖ <strong>ថ្ងៃទី ៣១ ខែមីនា</strong> រៀងរាល់ឆ្នាំ<br />
-          • ទណ្ឌកម្មបង់យឺត៖ <strong>ពិន័យ ១០% + ការប្រាក់ ១.៥%/ខែ</strong>
+          • ប្រាក់ពន្ធប៉ាតង់មូលដ្ឋាន៖ <strong>1,200,000 ៛/ឆ្នាំ</strong><br />
+          • ថ្ងៃផុតកំណត់៖ <strong>ថ្ងៃ 31 ខែមីនា</strong> រៀងរាល់ឆ្នាំ<br />
+          • ទណ្ឌកម្មបង់យឺត៖ <strong>ពិន័យ 10% + ការប្រាក់ 1.5%/ខែ</strong>
         </div>
         <div style={{ height: 16 }} />
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ឆ្នាំជាប់ពន្ធ</label>
-            <input style={S.input} type="text" placeholder="ឧទាហរណ៍៖ 2026" value={year} onChange={e => { setYear(e.target.value); setResult(null); }} />
+            <input style={S.input} type="text" placeholder="e.g. 2026" value={year} onChange={e => { setYear(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ស្ថានភាពការប្រកាស</label>
             <select style={S.select} value={onTime} onChange={e => { setOnTime(e.target.value); setResult(null); }}>
-              <option value="ontime">ទាន់ពេលវេលា (មុន ៣១ មីនា)</option>
+              <option value="ontime">ទាន់ពេលវេលា (មុន 31 មីនា)</option>
               <option value="late">យឺតយ៉ាវ — ត្រូវផាកពិន័យ</option>
             </select>
           </div>
@@ -434,7 +434,7 @@ function PatentTab() {
         {onTime === "late" && (
           <div style={S.field}>
             <label style={S.label}>ចំនួនខែហួសកាលកំណត់</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 5" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 5" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
           </div>
         )}
       </div>
@@ -452,8 +452,8 @@ function PatentTab() {
               <thead><tr><th style={S.th}>បរិយាយ</th><th style={S.th}>អត្រា</th><th style={S.th}>ទឹកប្រាក់ (រៀល)</th></tr></thead>
               <tbody>
                 <tr><td style={S.td}>ប្រាក់ពន្ធប៉ាតង់មូលដ្ឋាន</td><td style={S.td}>—</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{formatCurrency(PATENT_BASE)}</td></tr>
-                <tr><td style={S.td}>ប្រាក់ពិន័យ</td><td style={S.td}>១០%</td><td style={{ ...S.td, color: result.onTime === "late" ? "#DC2626" : "#1a7a4a", fontWeight: 700 }}>{formatCurrency(result.surcharge)}</td></tr>
-                <tr><td style={S.td}>ការប្រាក់យឺតយ៉ាវ × {result.m} ខែ</td><td style={S.td}>១.៥%/ខែ</td><td style={{ ...S.td, color: result.onTime === "late" ? "#DC2626" : "#1a7a4a", fontWeight: 700 }}>{formatCurrency(result.interest)}</td></tr>
+                <tr><td style={S.td}>ប្រាក់ពិន័យ</td><td style={S.td}>10%</td><td style={{ ...S.td, color: result.onTime === "late" ? "#DC2626" : "#1a7a4a", fontWeight: 700 }}>{formatCurrency(result.surcharge)}</td></tr>
+                <tr><td style={S.td}>ការប្រាក់យឺតយ៉ាវ × {result.m} ខែ</td><td style={S.td}>1.5%/ខែ</td><td style={{ ...S.td, color: result.onTime === "late" ? "#DC2626" : "#1a7a4a", fontWeight: 700 }}>{formatCurrency(result.interest)}</td></tr>
               </tbody>
             </table>
             <div style={S.dedRowTotalRed}><span>សរុបទឹកប្រាក់ត្រូវបង់រួម</span><span>{formatCurrency(result.total)}</span></div>
@@ -487,7 +487,7 @@ function IncomeTab() {
     const shortage      = Math.max(0, auditedTax - declaredTax);
     const pct           = auditedTax > 0 ? (shortage / auditedTax) * 100 : 0;
     const surchargeRate  = nonCompli ? 0.25 : pct > 10 ? 0.25 : 0.10;
-    const surchargeLabel = nonCompli ? "ការតម្លើងពន្ធ ២៥% (ប្រព័ន្ធគណនេយ្យមិនអនុលោម)" : pct > 10 ? "ការតម្លើងពន្ធ ២៥% (កម្រិតធ្ងន់ — ខ្វះ > ១០%)" : "ការតម្លើងពន្ធ ១០% (កម្រិតស្រាល — ខ្វះ ≤ ១០%)";
+    const surchargeLabel = nonCompli ? "ការតម្លើងពន្ធ 25% (ប្រព័ន្ធគណនេយ្យមិនអនុលោម)" : pct > 10 ? "ការតម្លើងពន្ធ 25% (កម្រិតធ្ងន់ — ខ្វះ > 10%)" : "ការតម្លើងពន្ធ 10% (កម្រិតស្រាល — ខ្វះ ≤ 10%)";
     const surcharge  = shortage * surchargeRate;
     const interest   = shortage * 0.015 * m;
     const totalExtra = shortage + surcharge + interest;
@@ -502,31 +502,31 @@ function IncomeTab() {
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ចំណេញតាមការប្រកាស (រៀល)</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 100000000" value={declared} onChange={e => { setDeclared(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 100000000" value={declared} onChange={e => { setDeclared(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំណាយមិនអនុញ្ញាត / រកឃើញបន្ថែម (រៀល)</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 15000000" value={auditAdj} onChange={e => { setAuditAdj(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 15000000" value={auditAdj} onChange={e => { setAuditAdj(e.target.value); setResult(null); }} />
           </div>
         </div>
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>អត្រាពន្ធ CIT</label>
             <select style={S.select} value={taxRate} onChange={e => { setTaxRate(e.target.value); setResult(null); }}>
-              <option value="20">២០% — ក្រុមហ៊ុនទូទៅ</option>
-              <option value="30">៣០% — វិស័យប្រេង / ធនធានធម្មជាតិ</option>
-              <option value="5">៥% — គម្រោងវិនិយោគ QIP</option>
+              <option value="20">20% — ក្រុមហ៊ុនទូទៅ</option>
+              <option value="30">30% — វិស័យប្រេង / ធនធានធម្មជាតិ</option>
+              <option value="5">5% — គម្រោងវិនិយោគ QIP</option>
             </select>
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំនួនខែហួសកាលកំណត់</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 10" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 10" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
           </div>
         </div>
         <div style={S.field}>
           <label style={{ ...S.label, display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
             <input type="checkbox" checked={nonCompli} onChange={e => { setNonCompli(e.target.checked); setResult(null); }} style={{ accentColor: "#0B1F4E", width: 15, height: 15 }} />
-            ប្រព័ន្ធគណនេយ្យមិនអនុលោម → អនុវត្ត ២៥% ភ្លាមៗ
+            ប្រព័ន្ធគណនេយ្យមិនអនុលោម → អនុវត្ត 25% ភ្លាមៗ
           </label>
         </div>
       </div>
@@ -550,7 +550,7 @@ function IncomeTab() {
                 <tr><td style={S.td}>ពន្ធពិតក្រោយសវនកម្ម</td><td style={S.td}>{(result.rate*100).toFixed(0)}%</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{formatCurrency(result.auditedTax)}</td></tr>
                 <tr><td style={S.td}>ប្រាក់ពន្ធខ្វះខាត ({result.pct.toFixed(1)}%)</td><td style={S.td}>—</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.shortage)}</td></tr>
                 <tr><td style={S.td}>{result.surchargeLabel}</td><td style={S.td}>{result.nonCompli || result.pct > 10 ? "25%" : "10%"}</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.surcharge)}</td></tr>
-                <tr><td style={S.td}>ការប្រាក់យឺតយ៉ាវ × {result.m} ខែ</td><td style={S.td}>១.៥%/ខែ</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.interest)}</td></tr>
+                <tr><td style={S.td}>ការប្រាក់យឺតយ៉ាវ × {result.m} ខែ</td><td style={S.td}>1.5%/ខែ</td><td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{formatCurrency(result.interest)}</td></tr>
               </tbody>
             </table>
             <div style={S.dedRowTotalRed}><span>សរុបទឹកប្រាក់បន្ថែមត្រូវបង់</span><span>{formatCurrency(result.totalExtra)}</span></div>
@@ -572,9 +572,9 @@ function IncomeTab() {
 // TAB 4 — CLASSIFY
 // ══════════════════════════════════════════════════════════════
 const TIERS = [
-  { id: "small",  label: "អ្នកជាប់ពន្ធតូច",   revMin: 250000000,  revMax: 700000000,  empMin: 10, empMax: 50,       color: "#1a7a4a", bg: "#f0fdf4", border: "#bbf7d0", accounting: "ប្រព័ន្ធកត់ត្រាគណនេយ្យសាមញ្ញ",        note: "ចំណូល ២៥០លាន – ៧០០លាន ៛ ឬ ១០–៥០ នាក់" },
-  { id: "medium", label: "អ្នកជាប់ពន្ធមធ្យម",  revMin: 700000001,  revMax: 4000000000, empMin: 51, empMax: 100,      color: "#0B1F4E", bg: "#eff6ff", border: "#bfdbfe", accounting: "ស្តង់ដារគណនេយ្យស្របតាមក្រុមប្រឹក្សាជាតិ", note: "ចំណូល ៧០០លាន – ៤,០០០លាន ៛ ឬ ៥១–១០០ នាក់" },
-  { id: "large",  label: "អ្នកជាប់ពន្ធធំ",     revMin: 4000000001, revMax: Infinity,   empMin: 101, empMax: Infinity, color: "#c0392b", bg: "#fef2f2", border: "#fecaca", accounting: "ស្តង់ដាររបាយការណ៍ហិរញ្ញវត្ថុពេញលេញ",     note: "ចំណូលលើស ៤,០០០លាន ៛ ឬ > ១០០ នាក់" },
+  { id: "small",  label: "អ្នកជាប់ពន្ធតូច",   revMin: 250000000,  revMax: 700000000,  empMin: 10, empMax: 50,       color: "#1a7a4a", bg: "#f0fdf4", border: "#bbf7d0", accounting: "ប្រព័ន្ធកត់ត្រាគណនេយ្យសាមញ្ញ",        note: "ចំណូល 250លាន – 700លាន ៛ ឬ 10–50 នាក់" },
+  { id: "medium", label: "អ្នកជាប់ពន្ធមធ្យម",  revMin: 700000001,  revMax: 4000000000, empMin: 51, empMax: 100,      color: "#0B1F4E", bg: "#eff6ff", border: "#bfdbfe", accounting: "ស្តង់ដារគណនេយ្យស្របតាមក្រុមប្រឹក្សាជាតិ", note: "ចំណូល 700លាន – 4,000លាន ៛ ឬ 51–100 នាក់" },
+  { id: "large",  label: "អ្នកជាប់ពន្ធធំ",     revMin: 4000000001, revMax: Infinity,   empMin: 101, empMax: Infinity, color: "#c0392b", bg: "#fef2f2", border: "#fecaca", accounting: "ស្តង់ដាររបាយការណ៍ហិរញ្ញវត្ថុពេញលេញ",     note: "ចំណូលលើស 4,000លាន ៛ ឬ > 100 នាក់" },
 ];
 
 function ClassifyTab() {
@@ -609,8 +609,8 @@ function ClassifyTab() {
             {TIERS.map(t => (
               <tr key={t.id}>
                 <td style={{ ...S.td, fontWeight: 700, color: t.color }}>{t.label}</td>
-                <td style={S.td}>{t.id === "large" ? "លើសពី ៤,០០០ លាន" : `${(t.revMin/1000000).toFixed(0)}លាន – ${(t.revMax/1000000).toFixed(0)}លាន`}</td>
-                <td style={S.td}>{t.id === "large" ? "លើស ១០០ នាក់" : `${t.empMin} – ${t.empMax} នាក់`}</td>
+                <td style={S.td}>{t.id === "large" ? "លើសពី 4,000 លាន" : `${(t.revMin/1000000).toFixed(0)}លាន – ${(t.revMax/1000000).toFixed(0)}លាន`}</td>
+                <td style={S.td}>{t.id === "large" ? "លើស 100 នាក់" : `${t.empMin} – ${t.empMax} នាក់`}</td>
                 <td style={{ ...S.td, fontSize: 12, color: "#6b7280" }}>{t.accounting}</td>
               </tr>
             ))}
@@ -621,11 +621,11 @@ function ClassifyTab() {
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ចំណូលសរុបប្រចាំឆ្នាំ (រៀល)</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 500000000" value={revenue} onChange={e => { setRevenue(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 500000000" value={revenue} onChange={e => { setRevenue(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំនួនបុគ្គលិកសរុប (នាក់)</label>
-            <input style={S.input} type="number" placeholder="ឧទាហរណ៍៖ 25" value={employees} onChange={e => { setEmployees(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="e.g. 25" value={employees} onChange={e => { setEmployees(e.target.value); setResult(null); }} />
           </div>
         </div>
       </div>
@@ -667,7 +667,7 @@ export default function CambodiaTaxCalc({ setPage }) {
         </div>
 
         <div style={S.header}>
-          <div style={S.h1}>ប្រព័ន្ធគណនាពន្ធដារទូទៅ — កម្ពុជា</div>
+          <div style={S.h1}>ពន្ធដារទូទៅ</div>
           <div style={S.hSub}>ប្រាក់ពិន័យ · ពន្ធប៉ាតង់ · សវនកម្ម CIT · ចំណាត់ថ្នាក់អ្នកជាប់ពន្ធ</div>
         </div>
 

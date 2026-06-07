@@ -544,8 +544,8 @@ export default function PLTPage({ setPage }) {
         </div>
 
         <div style={S.header}>
-          <div style={S.h1}>អាករសម្រាប់បំភ្លឺសាធារណៈ (PLT) — កម្មវិធីគណនា</div>
-          <div style={S.hSub}>កម្ពុជា · Public Lighting Tax · ៥% · សុរា · មេរ័យ · ថ្នាំជក់ · ប្រចាំខែ ២០/២៥</div>
+          <div style={S.h1}>អាករសម្រាប់បំភ្លឺសាធារណៈ </div>
+          <div style={S.hSub}></div>
         </div>
 
         <div style={S.infoGrid}>

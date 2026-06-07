@@ -15,8 +15,8 @@ const DEFS = [
     body: `ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ គឺជាប្រភេទពន្ធប្រចាំឆ្នាំ
 អនុវត្តលើផ្ទាំងផ្សព្វផ្សាយគ្រប់ប្រភេទ ទាំងចល័ត
 និងអចល័ត នៅទូទាំងព្រះរាជាណាចក្រកម្ពុជា។
-• ថ្ងៃប្រកាស/បង់: ១ មករា – ៣១ មីនា នៃឆ្នាំជាប់ពន្ធ
-• ផ្ទាំងថ្មី ៦ ខែដើម: ១០០% | ៦ ខែចុង: ៥០%
+• ថ្ងៃប្រកាស/បង់: 1 មករា – 31 មីនា នៃឆ្នាំជាប់ពន្ធ
+• ផ្ទាំងថ្មី 6 ខែដើម: 100% | 6 ខែចុង: 50%
 • ផ្សព្វផ្សាយ: ដាក់ប្រកាសមុនធ្វើការផ្សព្វផ្សាយ
 • ចំនួន: ប្រចាំផ្ទាំង / ប្រចាំ ដម² / ប្រចាំទំព័រ`,
   },
@@ -24,29 +24,29 @@ const DEFS = [
     term: "ប្រភេទផ្ទាំងផ្សព្វផ្សាយ (Types of Advertisement)",
     color: "#166534", bg: "#F0FDF4", border: "#BBF7D0",
     body: `① បណ្ណប្រកាស (ក្រដាស) → គិតតាម ទំព័រ
-   ≤ ៤០ ដម² : ៥០០–១,៥០០ ៛/ទំព័រ
-   {">"} ៤០ ដម² : ៧០០–២,១០០ ៛/ទំព័រ
+   ≤ 40 ដម² : 500–1,500 ៛/ទំព័រ
+   {">"} 40 ដម² : 700–2,100 ៛/ទំព័រ
 
 ② បណ្ណប្រកាស (កៅស៊ូ/សំពត់/វត្ថុ) → គិតតាម ផ្ទាំង
-   ≤ ៤០ ដម² : ៧០០–២,១០០ ៛/ផ្ទាំង
-   ៤០–១០០ ដម² : ១,០០០–៣,០០០ ៛/ផ្ទាំង
+   ≤ 40 ដម² : 700–2,100 ៛/ផ្ទាំង
+   40–100 ដម² : 1,000–3,000 ៛/ផ្ទាំង
 
 ③ ស្លាកអាជីវកម្ម → គិតតាម ដម²/ឆ្នាំ
-   ១០០–៣០០ ៛/ដម² (+ អក្សរបរទេស)
+   100–300 ៛/ដម² (+ អក្សរបរទេស)
 
 ④ ផ្ទាំងអក្សរ/រូបភាពពាណិជ្ជកម្ម → គិតតាម ដម²/ឆ្នាំ
-   ៥០០–១,៥០០ ៛/ដម² (+ អក្សរបរទេស)`,
+   500–1,500 ៛/ដម² (+ អក្សរបរទេស)`,
   },
   {
     term: "អក្សរបរទេស (Foreign Language Surcharge)",
     color: "#6B21A8", bg: "#FAF5FF", border: "#DDD6FE",
     body: `ករណីផ្ទាំងផ្សព្វផ្សាយ មានអក្សរបរទេស
-ត្រូវគិតបន្ថែម ក្នុងអក្សរ ១ តួ និងកម្ពស់ ១ ដម:
-• ស្លាកអាជីវកម្មដ្ឋាន: + ២០០ ៛/ដម/ឆ្នាំ (ជាក់លាក់)
-• ផ្ទាំងអក្សរ/រូបភាព: + ២,០០០ ៛/ដម (ជាក់លាក់)
+ត្រូវគិតបន្ថែម ក្នុងអក្សរ 1 តួ និងកម្ពស់ 1 ដម:
+• ស្លាកអាជីវកម្មដ្ឋាន: + 200 ៛/ដម/ឆ្នាំ (ជាក់លាក់)
+• ផ្ទាំងអក្សរ/រូបភាព: + 2,000 ៛/ដម (ជាក់លាក់)
 ករណីបណ្ណប្រកាស → ស្រាប់ចាត់ថ្នាក់ខ្ពស់ជាង:
-  ក្រដាស ≤ ៤០: ១,៥០០ ៛ | {">"} ៤០: ២,១០០ ៛/ទំព័រ
-  កៅស៊ូ ≤ ៤០: ២,១០០ ៛ | ៤០–១០០: ៣,០០០ ៛/ផ្ទាំង
+  ក្រដាស ≤ 40: 1,500 ៛ | {">"} 40: 2,100 ៛/ទំព័រ
+  កៅស៊ូ ≤ 40: 2,100 ៛ | 40–100: 3,000 ៛/ផ្ទាំង
 ❌ Logo · អាសយដ្ឋាន · លេខទូរស័ព្ទ · គេហទំព័រ
   → មិនរាប់ជាអក្សរបរទេស`,
   },
@@ -67,11 +67,11 @@ const DEFS = [
     term: "ពាក់កណ្តាលឆ្នាំ + ផ្ទាំងថ្មី (Mid-Year Rule)",
     color: "#92400E", bg: "#FFFBEB", border: "#FDE68A",
     body: `ផ្ទាំងថ្មី (ស្លាក/ផ្ទាំងអក្សរ/រូបភាព) ដែលផលិតថ្មី:
-• ១ មករា – ៣០ មិថុនា (៦ ខែដើម) → បង់ ១០០%
-• ១ កក្កដា – ៣១ធ្នូ (៦ ខែចុង) → បង់ ៥០%
+• 1 មករា – 30 មិថុនា (6 ខែដើម) → បង់ 100%
+• 1 កក្កដា – 31ធ្នូ (6 ខែចុង) → បង់ 50%
 
 ផ្ទាំងដែលដំណើរការស្រាប់:
-• បង់ ១ មករា – ៣១ មីនា នៃឆ្នាំជាប់ពន្ធ
+• បង់ 1 មករា – 31 មីនា នៃឆ្នាំជាប់ពន្ធ
 
 ករណីស្លាកភ្ជាប់បណ្ណប្រកាសសហគ្រាសផ្សេង:
 → គិតតាមចំណែករបស់ម្ចាស់នីមួយៗ
@@ -121,11 +121,11 @@ const S = {
 };
 
 const INFO_CARDS = [
-  { icon: "📋", bg: "#EFF6FF", title: "ពន្ធបណ្ណប្រកាស",      value: "៥០០–៣,០០០ ៛",  note: "ក្រដាស / កៅស៊ូ / សំពត់" },
-  { icon: "🏪", bg: "#F0FDF4", title: "ស្លាកអាជីវកម្ម",      value: "១០០–២៥០ ៛/ដម²",  note: "គ្មាន/មានពន្លឺ · ត្រង់/កែង" },
-  { icon: "🖼️", bg: "#FAF5FF", title: "ផ្ទាំងរូបភាព/អក្សរ", value: "៥០០–១,៥០០ ៛/ដម²", note: "ពាណិជ្ជកម្ម / មានពន្លឺ" },
-  { icon: "🔤", bg: "#FFFBEB", title: "អក្សរបរទេស",           value: "+ ២,០០០ ៛/ដម",    note: "ក្នុងអក្សរ ១ តួ × កម្ពស់ ១ ដម" },
-  { icon: "📅", bg: "#FEF2F2", title: "ថ្ងៃប្រកាស",           value: "១ មករា – ៣១ មីនា", note: "| ផ្ទាំងថ្មី ក្រោយ ១ កក្កដា = ៥០%" },
+  { icon: "📋", bg: "#EFF6FF", title: "ពន្ធបណ្ណប្រកាស",      value: "500–3,000 ៛",  note: "ក្រដាស / កៅស៊ូ / សំពត់" },
+  { icon: "🏪", bg: "#F0FDF4", title: "ស្លាកអាជីវកម្ម",      value: "100–250 ៛/ដម²",  note: "គ្មាន/មានពន្លឺ · ត្រង់/កែង" },
+  { icon: "🖼️", bg: "#FAF5FF", title: "ផ្ទាំងរូបភាព/អក្សរ", value: "500–1,500 ៛/ដម²", note: "ពាណិជ្ជកម្ម / មានពន្លឺ" },
+  { icon: "🔤", bg: "#FFFBEB", title: "អក្សរបរទេស",           value: "+ 2,000 ៛/ដម",    note: "ក្នុងអក្សរ 1 តួ × កម្ពស់ 1 ដម" },
+  { icon: "📅", bg: "#FEF2F2", title: "ថ្ងៃប្រកាស",           value: "1 មករា – 31 មីនា", note: "| ផ្ទាំងថ្មី ក្រោយ 1 កក្កដា = 50%" },
 ];
 
 // ── DEFINITION ACCORDION ──────────────────────────────────────
@@ -179,7 +179,7 @@ function LeafletTab() {
     const taxPerPage  = ratePerPage;
     const totalTax    = taxPerPage * q;
 
-    setResult({ a, q, ratePerPage, taxPerPage, totalTax, foreign, tier: a <= 40 ? "≤ ៤០ ដម²" : "> ៤០ ដម²" });
+    setResult({ a, q, ratePerPage, taxPerPage, totalTax, foreign, tier: a <= 40 ? "≤ 40 ដម²" : "> 40 ដម²" });
   }
 
   return (
@@ -204,8 +204,8 @@ function LeafletTab() {
           </select>
         </div>
         <div style={S.note}>
-          • ≤ ៤០ ដម²: ៥០០ ៛/ទំព័រ | មានអក្សរបរទេស: ១,៥០០ ៛/ទំព័រ<br />
-          • {">"} ៤០ ដម²: ៧០០ ៛/ទំព័រ | មានអក្សរបរទេស: ២,១០០ ៛/ទំព័រ<br />
+          • ≤ 40 ដម²: 500 ៛/ទំព័រ | មានអក្សរបរទេស: 1,500 ៛/ទំព័រ<br />
+          • {">"} 40 ដម²: 700 ៛/ទំព័រ | មានអក្សរបរទេស: 2,100 ៛/ទំព័រ<br />
           • ត្រូវដាក់ប្រកាស <strong>មុន</strong>ធ្វើការផ្សព្វផ្សាយ
         </div>
       </div>
@@ -253,9 +253,9 @@ function BannerTab() {
     if (!a) return;
 
     let rateKhmer, rateForeign, tier;
-    if (a <= 40)       { rateKhmer = 700;  rateForeign = 2100; tier = "≤ ៤០ ដម²"; }
-    else if (a <= 100) { rateKhmer = 1000; rateForeign = 3000; tier = "៤០–១០០ ដម²"; }
-    else               { rateKhmer = 1000; rateForeign = 3000; tier = "> ១០០ ដម² (គិតជាផ្ទាំងអក្សរ)"; }
+    if (a <= 40)       { rateKhmer = 700;  rateForeign = 2100; tier = "≤ 40 ដម²"; }
+    else if (a <= 100) { rateKhmer = 1000; rateForeign = 3000; tier = "40–100 ដម²"; }
+    else               { rateKhmer = 1000; rateForeign = 3000; tier = "> 100 ដម² (គិតជាផ្ទាំងអក្សរ)"; }
 
     const rate     = foreign === "yes" ? rateForeign : rateKhmer;
     const totalTax = rate * q;
@@ -284,9 +284,9 @@ function BannerTab() {
           </select>
         </div>
         <div style={S.note}>
-          • ≤ ៤០ ដម²: ៧០០ ៛/ផ្ទាំង | មានអក្សរបរទេស: ២,១០០ ៛/ផ្ទាំង<br />
-          • ៤០–១០០ ដម²: ១,០០០ ៛/ផ្ទាំង | មានអក្សរបរទេស: ៣,០០០ ៛/ផ្ទាំង<br />
-          • {">"} ១០០ ដម²: គិតជាប្រភេទ <strong>ផ្ទាំងអក្សរ/រូបភាព</strong>
+          • ≤ 40 ដម²: 700 ៛/ផ្ទាំង | មានអក្សរបរទេស: 2,100 ៛/ផ្ទាំង<br />
+          • 40–100 ដម²: 1,000 ៛/ផ្ទាំង | មានអក្សរបរទេស: 3,000 ៛/ផ្ទាំង<br />
+          • {">"} 100 ដម²: គិតជាប្រភេទ <strong>ផ្ទាំងអក្សរ/រូបភាព</strong>
         </div>
       </div>
       <button style={S.btn} onClick={calculate}>គណនាពន្ធបណ្ណប្រកាស (កៅស៊ូ/សំពត់)</button>
@@ -390,13 +390,13 @@ function BusinessSignTab() {
         <div style={S.field}>
           <label style={S.label}>ស្ថានភាពការផ្សព្វផ្សាយ</label>
           <select style={S.select} value={semester} onChange={e => { setSemester(e.target.value); setResult(null); }}>
-            <option value="full">ស្លាកដំណើរការស្រាប់ / ១ ខែមករា–៣០ មិថុនា (១០០%)</option>
-            <option value="half">ស្លាកថ្មី ១ កក្កដា–៣១ ធ្នូ (៥០%)</option>
+            <option value="full">ស្លាកដំណើរការស្រាប់ / 1 ខែមករា–30 មិថុនា (100%)</option>
+            <option value="half">ស្លាកថ្មី 1 កក្កដា–31 ធ្នូ (50%)</option>
           </select>
         </div>
         <div style={S.note}>
           • ពន្ធ = ផ្ទៃ (ដម²) × អត្រា — យ៉ាងតិច {SIGN_RATES.find(r => r.id === signType)?.min || "—"} ៛<br />
-          • អក្សរបរទេស: + ២០០ ៛ × ចំនួនអក្សរ × កម្ពស់ (ដម)<br />
+          • អក្សរបរទេស: + 200 ៛ × ចំនួនអក្សរ × កម្ពស់ (ដម)<br />
           • Logo · Tel · Website → <strong>មិនរាប់</strong>ជាអក្សរបរទេស
         </div>
       </div>
@@ -417,10 +417,10 @@ function BusinessSignTab() {
                 <tr><td style={S.td}>ផ្ទៃស្លាក ({result.w}ម × {result.h}ម)</td><td style={S.td}>{result.w}×{result.h}×{100}={result.areaDm2.toFixed(0)} ដម²</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>—</td></tr>
                 <tr><td style={S.td}>ពន្ធផ្ទៃ ({result.sr.rate} ៛/ដម²)</td><td style={S.td}>{result.areaDm2.toFixed(0)} × {result.sr.rate} = {Math.max(result.areaDm2 * result.sr.rate, result.sr.min).toFixed(0)}</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmt(result.baseTax)}</td></tr>
                 {result.foreignTax > 0 && (
-                  <tr><td style={S.td}>អក្សរបរទេស ({result.fc} តួ × {result.fh} ដម × ២០០)</td><td style={S.td}>{result.fc} × {result.fh} × ២០០</td><td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{fmt(result.foreignTax)}</td></tr>
+                  <tr><td style={S.td}>អក្សរបរទេស ({result.fc} តួ × {result.fh} ដម × 200)</td><td style={S.td}>{result.fc} × {result.fh} × 200</td><td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{fmt(result.foreignTax)}</td></tr>
                 )}
                 <tr><td style={{ ...S.td, fontWeight: 700 }}>សរុបមុនបញ្ចុះ</td><td style={S.td}>—</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmt(result.subtotal)}</td></tr>
-                <tr><td style={S.td}>ស្ថានភាព ({result.semester === "half" ? "ខែចុង ៥០%" : "ពេញ ១០០%"})</td><td style={S.td}>× {result.semPct * 100}%</td><td style={{ ...S.td, color: result.semester === "half" ? "#166534" : "#2563EB", fontWeight: 700 }}>{fmt(result.total)}</td></tr>
+                <tr><td style={S.td}>ស្ថានភាព ({result.semester === "half" ? "ខែចុង 50%" : "ពេញ 100%"})</td><td style={S.td}>× {result.semPct * 100}%</td><td style={{ ...S.td, color: result.semester === "half" ? "#166534" : "#2563EB", fontWeight: 700 }}>{fmt(result.total)}</td></tr>
               </tbody>
             </table>
             <div style={S.dedTotal}><span>ពន្ធស្លាកអាជីវកម្មត្រូវបង់</span><span>{fmt(result.total)}</span></div>
@@ -507,13 +507,13 @@ function BillboardTab() {
         <div style={S.field}>
           <label style={S.label}>ស្ថានភាពការផ្សព្វផ្សាយ</label>
           <select style={S.select} value={semester} onChange={e => { setSemester(e.target.value); setResult(null); }}>
-            <option value="full">ផ្ទាំងដំណើរការស្រាប់ / ១ ខែមករា–៣០ មិថុនា (១០០%)</option>
-            <option value="half">ផ្ទាំងថ្មី ១ កក្កដា–៣១ ធ្នូ (៥០%)</option>
+            <option value="full">ផ្ទាំងដំណើរការស្រាប់ / 1 ខែមករា–30 មិថុនា (100%)</option>
+            <option value="half">ផ្ទាំងថ្មី 1 កក្កដា–31 ធ្នូ (50%)</option>
           </select>
         </div>
         <div style={S.note}>
           • ពន្ធ = ផ្ទៃ (ដម²) × {selectedRate?.rate} ៛ — យ៉ាងតិច {selectedRate?.min?.toLocaleString()} ៛<br />
-          • អក្សរបរទេស: + ២,០០០ ៛ × ចំនួនអក្សរ × កម្ពស់ (ដម)<br />
+          • អក្សរបរទេស: + 2,000 ៛ × ចំនួនអក្សរ × កម្ពស់ (ដម)<br />
           • Logo · Tel · Website → <strong>មិនរាប់</strong>ជាអក្សរបរទេស
         </div>
       </div>
@@ -534,18 +534,18 @@ function BillboardTab() {
                 <tr><td style={S.td}>ផ្ទៃផ្ទាំង ({result.w}ម × {result.h}ម)</td><td style={S.td}>{result.w}×{result.h}×{100}={result.areaDm2.toFixed(0)} ដម²</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>—</td></tr>
                 <tr><td style={S.td}>ពន្ធផ្ទៃ ({result.br.rate} ៛/ដម²)</td><td style={S.td}>{result.areaDm2.toFixed(0)} × {result.br.rate}</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmt(result.baseTax)}</td></tr>
                 {result.foreignTax > 0 && (
-                  <tr><td style={S.td}>អក្សរបរទេស ({result.fc} តួ × {result.fh} ដម × ២,០០០)</td><td style={S.td}>{result.fc} × {result.fh} × ២,០០០</td><td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{fmt(result.foreignTax)}</td></tr>
+                  <tr><td style={S.td}>អក្សរបរទេស ({result.fc} តួ × {result.fh} ដម × 2,000)</td><td style={S.td}>{result.fc} × {result.fh} × 2,000</td><td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{fmt(result.foreignTax)}</td></tr>
                 )}
                 <tr><td style={{ ...S.td, fontWeight: 700 }}>សរុបមុនបញ្ចុះ</td><td style={S.td}>—</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmt(result.subtotal)}</td></tr>
-                <tr><td style={S.td}>ស្ថានភាព ({result.semester === "half" ? "ខែចុង ៥០%" : "ពេញ ១០០%"})</td><td style={S.td}>× {result.semPct * 100}%</td><td style={{ ...S.td, color: result.semester === "half" ? "#166534" : "#2563EB", fontWeight: 700 }}>{fmt(result.total)}</td></tr>
+                <tr><td style={S.td}>ស្ថានភាព ({result.semester === "half" ? "ខែចុង 50%" : "ពេញ 100%"})</td><td style={S.td}>× {result.semPct * 100}%</td><td style={{ ...S.td, color: result.semester === "half" ? "#166534" : "#2563EB", fontWeight: 700 }}>{fmt(result.total)}</td></tr>
               </tbody>
             </table>
             <div style={S.dedTotal}><span>ពន្ធផ្ទាំងអក្សរ/រូបភាពត្រូវបង់</span><span>{fmt(result.total)}</span></div>
             <div style={S.note}>
-              <strong>ឧទាហរណ៍ (ពីឯកសារ): </strong>ផ្ទាំង ២ម×៤ម / មានពន្លឺ / កែង / "CLEAR" (៥ តួ, ០.៥ ម) + "C" (១ តួ, ០.៦ ម)<br />
-              ផ្ទៃ = ២×៤×១០០ = ៨០០ ដម² · ពន្ធ = ៨០០×១,០០០ = ៨០០,០០០ ៛<br />
-              អក្សរ = (៥×៥ + ១×៦)×២,០០០ = ២៦×២,០០០ = ៥២,០០០ ៛<br />
-              <strong>សរុប = ៨០០,០០០ + ៥២,០០០ = ៨៥២,០០០ ៛</strong>
+              <strong>ឧទាហរណ៍ (ពីឯកសារ): </strong>ផ្ទាំង 2ម×4ម / មានពន្លឺ / កែង / "CLEAR" (5 តួ, 0.5 ម) + "C" (1 តួ, 0.6 ម)<br />
+              ផ្ទៃ = 2×4×100 = 800 ដម² · ពន្ធ = 800×1,000 = 800,000 ៛<br />
+              អក្សរ = (5×5 + 1×6)×2,000 = 26×2,000 = 52,000 ៛<br />
+              <strong>សរុប = 800,000 + 52,000 = 852,000 ៛</strong>
             </div>
           </div>
         </>
@@ -573,19 +573,19 @@ function RateTable() {
         </thead>
         <tbody>
           {[
-            ["១ក", "ក្រដាស ≤ ៤០ ដម²",            "៥០០", "១,៥០០", "/ ទំព័រ"],
-            ["១ខ", "ក្រដាស > ៤០ ដម²",             "៧០០", "២,១០០", "/ ទំព័រ"],
-            ["២ក", "កៅស៊ូ/សំពត់ ≤ ៤០ ដម²",       "៧០០", "២,១០០", "/ ផ្ទាំង"],
-            ["២ខ", "កៅស៊ូ/សំពត់ ៤០–១០០ ដម²",     "១,០០០", "៣,០០០", "/ ផ្ទាំង"],
-            ["៣ក", "ស្លាក / គ្មានពន្លឺ / ត្រង់",  "១០០", "+២០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៣ខ", "ស្លាក / គ្មានពន្លឺ / កែង",   "១៥០", "+២០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៣គ", "ស្លាក / មានពន្លឺ / ត្រង់",    "២០០", "+២០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៣ឃ", "ស្លាក / មានពន្លឺ / កែង",      "២៥០", "+២០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៤ក", "ផ្ទាំង / គ្មានពន្លឺ / ត្រង់", "៥០០", "+២,០០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៤ខ", "ផ្ទាំង / គ្មានពន្លឺ / កែង",  "៧០០", "+២,០០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៤គ", "ផ្ទាំង / មានពន្លឺ / ត្រង់",   "៧០០", "+២,០០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៤ឃ", "ផ្ទាំង / មានពន្លឺ / កែង",     "១,០០០", "+២,០០០/ដម", "/ ដម² / ឆ្នាំ"],
-            ["៤ង", "ភ្ជាប់មធ្យោបាយដឹកជញ្ជូន",    "១,៥០០", "+២,០០០/ដម", "/ ដម² / ឆ្នាំ"],
+            ["1ក", "ក្រដាស ≤ 40 ដម²",            "500", "1,500", "/ ទំព័រ"],
+            ["1ខ", "ក្រដាស > 40 ដម²",             "700", "2,100", "/ ទំព័រ"],
+            ["2ក", "កៅស៊ូ/សំពត់ ≤ 40 ដម²",       "700", "2,100", "/ ផ្ទាំង"],
+            ["2ខ", "កៅស៊ូ/សំពត់ 40–100 ដម²",     "1,000", "3,000", "/ ផ្ទាំង"],
+            ["3ក", "ស្លាក / គ្មានពន្លឺ / ត្រង់",  "100", "+200/ដម", "/ ដម² / ឆ្នាំ"],
+            ["3ខ", "ស្លាក / គ្មានពន្លឺ / កែង",   "150", "+200/ដម", "/ ដម² / ឆ្នាំ"],
+            ["3គ", "ស្លាក / មានពន្លឺ / ត្រង់",    "200", "+200/ដម", "/ ដម² / ឆ្នាំ"],
+            ["3ឃ", "ស្លាក / មានពន្លឺ / កែង",      "250", "+200/ដម", "/ ដម² / ឆ្នាំ"],
+            ["4ក", "ផ្ទាំង / គ្មានពន្លឺ / ត្រង់", "500", "+2,000/ដម", "/ ដម² / ឆ្នាំ"],
+            ["4ខ", "ផ្ទាំង / គ្មានពន្លឺ / កែង",  "700", "+2,000/ដម", "/ ដម² / ឆ្នាំ"],
+            ["4គ", "ផ្ទាំង / មានពន្លឺ / ត្រង់",   "700", "+2,000/ដម", "/ ដម² / ឆ្នាំ"],
+            ["4ឃ", "ផ្ទាំង / មានពន្លឺ / កែង",     "1,000", "+2,000/ដម", "/ ដម² / ឆ្នាំ"],
+            ["4ង", "ភ្ជាប់មធ្យោបាយដឹកជញ្ជូន",    "1,500", "+2,000/ដម", "/ ដម² / ឆ្នាំ"],
           ].map(([num, type, khmer, foreign, unit]) => (
             <tr key={num}>
               <td style={{ ...S.td, fontWeight: 700, color: "#2563EB", width: 36 }}>{num}</td>
@@ -600,7 +600,7 @@ function RateTable() {
       <div style={S.note}>
         • ស្លាក + ផ្ទាំង: ចំនួនអប្បបរមា (Min) អនុវត្ត ករណីផ្ទៃតូច<br />
         • Logo · លេខទូរស័ព្ទ · គេហទំព័រ → <strong>មិនរាប់</strong>ជាអក្សរបរទេស<br />
-        • ផ្ទាំងថ្មី ៦ ខែចុង (ក្រោយ ១ កក្កដា) → <strong>គិតពន្ធ ៥០%</strong>
+        • ផ្ទាំងថ្មី 6 ខែចុង (ក្រោយ 1 កក្កដា) → <strong>គិតពន្ធ 50%</strong>
       </div>
     </div>
   );
@@ -630,7 +630,7 @@ export default function AdvertisementTaxPage({ setPage }) {
 
         <div style={S.header}>
           <div style={S.h1}>ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ </div>
-          <div style={S.hSub}>កម្ពុជា · Advertisement Tax · ១ មករា – ៣១ មីនា | ផ្ទាំងថ្មី ខែចុង = ៥០%</div>
+          <div style={S.hSub}></div>
         </div>
 
         {/* INFO CARDS */}

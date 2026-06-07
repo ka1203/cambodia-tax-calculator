@@ -585,7 +585,7 @@ export default function VATPage({ setPage }) {
 
         <div style={S.header}>
           <div style={S.h1}>អាករលើតម្លៃបន្ថែម (VAT / អតប)</div>
-          <div style={S.hSub}>កម្ពុជា · Output VAT − Input VAT · 10% / 0% · ប្រចាំខែ ថ្ងៃទី 20/25</div>
+          <div style={S.hSub}></div>
         </div>
 
         <div style={S.infoGrid}>

@@ -62,22 +62,22 @@ const DEFS = [
 លក្ខណៈប្រណីត ឬ ប៉ះពាល់ដល់សុខភាព/បរិស្ថាន។
 • អនុវត្តលើ: ការនាំចូល · ការផលិត · ការចែកចាយ
 • ជំនួស: អ្នកនាំចូល ឬ អ្នកផលិត ឬ អ្នកផ្គត់ផ្គង់
-• ប្រកាស: ប្រចាំខែ យ៉ាងយូរ ថ្ងៃទី ២០ (ផ្ទាល់)
-          ឬ ថ្ងៃទី ២៥ (Online) នៃខែបន្ទាប់
+• ប្រកាស: ប្រចាំខែ យ៉ាងយូរ ថ្ងៃទី 20 (ផ្ទាល់)
+          ឬ ថ្ងៃទី 25 (Online) នៃខែបន្ទាប់
 • បង់: ធនាគារដៃគូ GDT · e-Payment · Prefiling App`,
   },
   {
     term: "មូលដ្ឋានគិតអាករ — ទំនិញក្នុងស្រុក",
     color: "#166534", bg: "#F0FDF4", border: "#BBF7D0",
-    body: `មូលដ្ឋានគិតអាករ = ៩០% × តម្លៃផ្គត់ផ្គង់
+    body: `មូលដ្ឋានគិតអាករ = 90% × តម្លៃផ្គត់ផ្គង់
 (ដោយ មិន រួមបញ្ចូល VAT · PLT · អាករពិសេសខ្លួនឯង)
 
-ឧទាហរណ៍: ស្រាបៀរ ១,០០០ ករ តម្លៃ $10,000
-→ មូលដ្ឋាន = $10,000 × ៩០% = $9,000
-→ អាករ = $9,000 × ៣០% = $2,700
+ឧទាហរណ៍: ស្រាបៀរ 1,000 ករ តម្លៃ $10,000
+→ មូលដ្ឋាន = $10,000 × 90% = $9,000
+→ អាករ = $9,000 × 30% = $2,700
 
-ហេតុអ្វី × ៩០%?
-→ ស្មើនឹងដក Margin ១០% ដែលជា profit/overhead
+ហេតុអ្វី × 90%?
+→ ស្មើនឹងដក Margin 10% ដែលជា profit/overhead
 → ដើម្បីមិនអាករពីរដង (Double Taxation)`,
   },
   {
@@ -86,10 +86,10 @@ const DEFS = [
     body: `មូលដ្ឋានគិតអាករ = CIF + ពន្ធនាំចូល
 (CIF = Cost + Insurance + Freight)
 → គណនាតាម Custom Valuation Law
-→ មិន × ៩០% ដូចទំនិញក្នុងស្រុក
+→ មិន × 90% ដូចទំនិញក្នុងស្រុក
 
 ឧទាហរណ៍: CIF $5,000 + ពន្ធនាំចូល $500 = $5,500
-→ អាករពិសេស (ស្រា) = $5,500 × ៣៥% = $1,925`,
+→ អាករពិសេស (ស្រា) = $5,500 × 35% = $1,925`,
   },
   {
     term: "មូលដ្ឋានគិតអាករ — សេវា",
@@ -97,21 +97,21 @@ const DEFS = [
     body: `មូលដ្ឋានគិតអាករ = ថ្លៃសេវាក្នុង Invoice
 (ដោយ មិន ទាន់គិត VAT + អាករពិសេស)
 
-• Telecom: ៣% × ថ្លៃ Call/Data/SMS
-• Airline: ១០% × ថ្លៃសំបុត្រ
-• Entertainment: ១០% × ថ្លៃចូល/សេវា
+• Telecom: 3% × ថ្លៃ Call/Data/SMS
+• Airline: 10% × ថ្លៃសំបុត្រ
+• Entertainment: 10% × ថ្លៃចូល/សេវា
 
 ឧទាហរណ៍: សំបុត្រយន្តហោះ $1,000
-→ អាករ = $1,000 × ១០% = $100`,
+→ អាករ = $1,000 × 10% = $100`,
   },
   {
     term: "ករណីលើកលែង (Personal Allowance)",
     color: "#991B1B", bg: "#FEF2F2", border: "#FCA5A5",
     body: `បុគ្គលគ្មានកាតព្វកិច្ចចុះបញ្ជីពន្ធ
 អាចនាំចូលដោយមិនជាប់អាករពិសេស:
-• បារី: ២០០ ដើម
-• ស៊ីហ្គា: ៥០ ដើម
-• ស្រា: ២ លីត្រ
+• បារី: 200 ដើម
+• ស៊ីហ្គា: 50 ដើម
+• ស្រា: 2 លីត្រ
 → លើសពីនេះ → ជាប់អាករពិសេស`,
   },
 ];
@@ -158,11 +158,11 @@ const S = {
 };
 
 const INFO_CARDS = [
-  { icon: "🍷", bg: "#FEF2F2", title: "ស្រា / Wine",        value: "៣៥%",  note: "អត្រាអាករពិសេសខ្ពស់បំផុត" },
-  { icon: "🍺", bg: "#FFFBEB", title: "ស្រាបៀរ",            value: "៣០%",  note: "លើ ៩០% × តម្លៃផ្គត់ផ្គង់" },
-  { icon: "🚬", bg: "#F0FDF4", title: "បារី / ស៊ីហ្គា",     value: "២០–២៥%", note: "ស៊ីហ្គា ២៥% · បារី ២០%" },
-  { icon: "✈️", bg: "#EFF6FF", title: "សំបុត្រ Airline",    value: "១០%",  note: "ថ្លៃសំបុត្រ (មិនរួម VAT)" },
-  { icon: "📅", bg: "#FAF5FF", title: "ថ្ងៃប្រកាស",          value: "ទី ២០/២៥", note: "ផ្ទាល់: ២០ · Online: ២៥ ខែបន្ទាប់" },
+  { icon: "🍷", bg: "#FEF2F2", title: "ស្រា / Wine",        value: "35%",  note: "អត្រាអាករពិសេសខ្ពស់បំផុត" },
+  { icon: "🍺", bg: "#FFFBEB", title: "ស្រាបៀរ",            value: "30%",  note: "លើ 90% × តម្លៃផ្គត់ផ្គង់" },
+  { icon: "🚬", bg: "#F0FDF4", title: "បារី / ស៊ីហ្គា",     value: "20–25%", note: "ស៊ីហ្គា 25% · បារី 20%" },
+  { icon: "✈️", bg: "#EFF6FF", title: "សំបុត្រ Airline",    value: "10%",  note: "ថ្លៃសំបុត្រ (មិនរួម VAT)" },
+  { icon: "📅", bg: "#FAF5FF", title: "ថ្ងៃប្រកាស",          value: "ទី 20/25", note: "ផ្ទាល់: 20 · Online: 25 ខែបន្ទាប់" },
 ];
 
 // ── DEFINITION ACCORDION ──────────────────────────────────────
@@ -236,14 +236,14 @@ function ResultBlock({ label, invoiceAmt, taxBase, taxAmt, taxRate, baseType, cu
             <tr>
               <td style={S.td}>
                 {baseType === "domestic"
-                  ? "មូលដ្ឋានគិតអាករ (× ៩០%)"
+                  ? "មូលដ្ឋានគិតអាករ (× 90%)"
                   : baseType === "import"
                   ? "មូលដ្ឋានគិតអាករ (CIF + ពន្ធនាំចូល)"
                   : "មូលដ្ឋានគិតអាករ (ថ្លៃសេវា)"}
               </td>
               <td style={S.td}>
                 {baseType === "domestic"
-                  ? `${c(invoiceAmt)} × ៩០%`
+                  ? `${c(invoiceAmt)} × 90%`
                   : baseType === "import"
                   ? "CIF + Import Duty"
                   : c(invoiceAmt)}
@@ -264,13 +264,13 @@ function ResultBlock({ label, invoiceAmt, taxBase, taxAmt, taxRate, baseType, cu
         <div style={S.note}>
           <strong>រូបមន្ត:</strong><br />
           {baseType === "domestic"
-            ? <>• មូលដ្ឋាន = {c(invoiceAmt)} × ៩០% = {c(taxBase)}<br /></>
+            ? <>• មូលដ្ឋាន = {c(invoiceAmt)} × 90% = {c(taxBase)}<br /></>
             : baseType === "import"
             ? <>• មូលដ្ឋាន = CIF + ពន្ធនាំចូល = {c(taxBase)}<br /></>
             : <>• មូលដ្ឋាន = ថ្លៃសេវា = {c(taxBase)}<br /></>
           }
           • អាករ = {c(taxBase)} × {(taxRate * 100).toFixed(0)}% = <strong>{c(taxAmt)}</strong><br /><br />
-          ប្រកាស និងបង់ ប្រចាំខែ — ផ្ទាល់: <strong>ថ្ងៃទី ២០</strong> | Online: <strong>ថ្ងៃទី ២៥</strong> នៃខែបន្ទាប់
+          ប្រកាស និងបង់ ប្រចាំខែ — ផ្ទាល់: <strong>ថ្ងៃទី 20</strong> | Online: <strong>ថ្ងៃទី 25</strong> នៃខែបន្ទាប់
         </div>
       </div>
     </>
@@ -329,7 +329,7 @@ function DomesticTab() {
             value={amount} onChange={e => { setAmount(e.target.value); setResult(null); }} />
         </div>
         <div style={S.note}>
-          • មូលដ្ឋានគិតអាករ = <strong>៩០%</strong> × តម្លៃ Invoice<br />
+          • មូលដ្ឋានគិតអាករ = <strong>90%</strong> × តម្លៃ Invoice<br />
           {selectedRate && !selectedRate.rate
             ? <><strong style={{ color: "#92400E" }}>⚠ ទំនិញប្រភេទនេះ: អត្រាកំណត់ដាច់ដោយឡែក — សូមពិនិត្យ Prakas GDT</strong></>
             : <>• អាករ = មូលដ្ឋាន × <strong>{selectedRate ? (selectedRate.rate * 100).toFixed(0) : "—"}%</strong></>
@@ -412,7 +412,7 @@ function ImportTab() {
           </div>
         </div>
         <div style={S.note}>
-          • មូលដ្ឋានគិតអាករ = <strong>CIF + ពន្ធនាំចូល</strong> (គ្មាន × ៩០%)<br />
+          • មូលដ្ឋានគិតអាករ = <strong>CIF + ពន្ធនាំចូល</strong> (គ្មាន × 90%)<br />
           {selectedRate && !selectedRate.rate
             ? <><strong style={{ color: "#92400E" }}>⚠ ទំនិញប្រភេទនេះ: អត្រាកំណត់ដាច់ដោយឡែក — សូមពិនិត្យ Prakas GDT</strong></>
             : <>• អាករ = (CIF + ពន្ធនាំចូល) × <strong>{selectedRate ? (selectedRate.rate * 100).toFixed(0) : "—"}%</strong></>
@@ -467,7 +467,7 @@ function ImportTab() {
               <strong>រូបមន្ត:</strong><br />
               • មូលដ្ឋាន = {result.currency === "KHR" ? fmtKHR(result.invoiceAmt) : "$" + fmt(result.invoiceAmt)} + {result.currency === "KHR" ? fmtKHR(result.duty) : "$" + fmt(result.duty)} = {result.currency === "KHR" ? fmtKHR(result.taxBase) : "$" + fmt(result.taxBase)}<br />
               • អាករ = {result.currency === "KHR" ? fmtKHR(result.taxBase) : "$" + fmt(result.taxBase)} × {(result.taxRate * 100).toFixed(0)}% = <strong>{result.currency === "KHR" ? fmtKHR(result.taxAmt) : "$" + fmt(result.taxAmt)}</strong><br /><br />
-              ប្រកាស/បង់ — ផ្ទាល់: <strong>ថ្ងៃទី ២០</strong> | Online: <strong>ថ្ងៃទី ២៥</strong> នៃខែបន្ទាប់
+              ប្រកាស/បង់ — ផ្ទាល់: <strong>ថ្ងៃទី 20</strong> | Online: <strong>ថ្ងៃទី 25</strong> នៃខែបន្ទាប់
             </div>
           </div>
         </>
@@ -520,9 +520,9 @@ function ServiceTab() {
             value={amount} onChange={e => { setAmount(e.target.value); setResult(null); }} />
         </div>
         <div style={S.note}>
-          • មូលដ្ឋានគិតអាករ = <strong>ថ្លៃសេវា Invoice</strong> (គ្មាន × ៩០%)<br />
+          • មូលដ្ឋានគិតអាករ = <strong>ថ្លៃសេវា Invoice</strong> (គ្មាន × 90%)<br />
           • អាករ = ថ្លៃសេវា × <strong>{selectedRate ? (selectedRate.rate * 100).toFixed(0) : "—"}%</strong><br />
-          • ឧ: Telecom ៣% · Airline ១០% · Entertainment ១០%
+          • ឧ: Telecom 3% · Airline 10% · Entertainment 10%
         </div>
       </div>
       <button style={S.btn} onClick={calculate}>គណនាអាករពិសេស — សេវា</button>
@@ -536,24 +536,24 @@ function ServiceTab() {
 // ══════════════════════════════════════════════════════════════
 function RatesTab() {
   const RATE_ROWS = [
-    { cat: "ទំនិញ", name: "ស្រា (Wine/Spirits)",        rate: "៣៥%",       base: "90% × Invoice", color: "#c0392b" },
-    { cat: "ទំនិញ", name: "ស្រាបៀរ",                   rate: "៣០%",       base: "90% × Invoice", color: "#c0392b" },
-    { cat: "ទំនិញ", name: "ស៊ីហ្គា",                    rate: "២៥%",       base: "90% × Invoice", color: "#92400E" },
-    { cat: "ទំនិញ", name: "បារី",                        rate: "២០%",       base: "90% × Invoice", color: "#92400E" },
-    { cat: "ទំនិញ", name: "ភេស្ជៈប៉ូវកម្លាំង",          rate: "១៥%",       base: "90% × Invoice", color: "#0B1F4E" },
-    { cat: "ទំនិញ", name: "ភេស្ជៈគ្មានជាតិសុរា",        rate: "១០%",       base: "90% × Invoice", color: "#0B1F4E" },
-    { cat: "ទំនិញ", name: "ទឹកផ្លែឈើ",                  rate: "៥%",        base: "90% × Invoice", color: "#166534" },
-    { cat: "ទំនិញ", name: "ផលិតផលប្លាស្ទិក",            rate: "១០%",       base: "90% × Invoice", color: "#0B1F4E" },
-    { cat: "ទំនិញ", name: "ស៊ីម៉ងត៍",                   rate: "៥%",        base: "90% × Invoice", color: "#166534" },
+    { cat: "ទំនិញ", name: "ស្រា (Wine/Spirits)",        rate: "35%",       base: "90% × Invoice", color: "#c0392b" },
+    { cat: "ទំនិញ", name: "ស្រាបៀរ",                   rate: "30%",       base: "90% × Invoice", color: "#c0392b" },
+    { cat: "ទំនិញ", name: "ស៊ីហ្គា",                    rate: "25%",       base: "90% × Invoice", color: "#92400E" },
+    { cat: "ទំនិញ", name: "បារី",                        rate: "20%",       base: "90% × Invoice", color: "#92400E" },
+    { cat: "ទំនិញ", name: "ភេស្ជៈប៉ូវកម្លាំង",          rate: "15%",       base: "90% × Invoice", color: "#0B1F4E" },
+    { cat: "ទំនិញ", name: "ភេស្ជៈគ្មានជាតិសុរា",        rate: "10%",       base: "90% × Invoice", color: "#0B1F4E" },
+    { cat: "ទំនិញ", name: "ទឹកផ្លែឈើ",                  rate: "5%",        base: "90% × Invoice", color: "#166534" },
+    { cat: "ទំនិញ", name: "ផលិតផលប្លាស្ទិក",            rate: "10%",       base: "90% × Invoice", color: "#0B1F4E" },
+    { cat: "ទំនិញ", name: "ស៊ីម៉ងត៍",                   rate: "5%",        base: "90% × Invoice", color: "#166534" },
     { cat: "ទំនិញ", name: "គ្រឿងអេឡិចត្រូនិក",          rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
     { cat: "ទំនិញ", name: "ទោចក្រយានយន្ត",              rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
     { cat: "ទំនិញ", name: "រថយន្ត",                      rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
     { cat: "ទំនិញ", name: "គ្រឿងបន្លាស់យានយន្ត",        rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
     { cat: "ទំនិញ", name: "ផលិតផលគ្រឿងសម្អាង",          rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
     { cat: "ទំនិញ", name: "ផលិតផលកញ្ចក់ (គ្រឿងសំណង់)", rate: "Prakas",    base: "90% × Invoice", color: "#64748B" },
-    { cat: "សេវា",  name: "ទូរគមនាគមន៍ (Telecom)",       rate: "៣%",        base: "ថ្លៃសេវា Invoice", color: "#166534" },
-    { cat: "សេវា",  name: "Airline (ដឹកជញ្ជូន)",          rate: "១០%",       base: "ថ្លៃសំបុត្រ",    color: "#0B1F4E" },
-    { cat: "សេវា",  name: "លំហែកម្សាន្ត (Entertainment)", rate: "១០%",       base: "ថ្លៃសេវា/ចូល",  color: "#0B1F4E" },
+    { cat: "សេវា",  name: "ទូរគមនាគមន៍ (Telecom)",       rate: "3%",        base: "ថ្លៃសេវា Invoice", color: "#166534" },
+    { cat: "សេវា",  name: "Airline (ដឹកជញ្ជូន)",          rate: "10%",       base: "ថ្លៃសំបុត្រ",    color: "#0B1F4E" },
+    { cat: "សេវា",  name: "លំហែកម្សាន្ត (Entertainment)", rate: "10%",       base: "ថ្លៃសេវា/ចូល",  color: "#0B1F4E" },
   ];
 
   return (
@@ -584,7 +584,7 @@ function RatesTab() {
         • ក្នុងស្រុក: <strong>90%</strong> × តម្លៃ Invoice (excl. VAT · PLT · ET)<br />
         • នាំចូល: <strong>CIF + ពន្ធនាំចូល</strong> (គ្មាន × 90%)<br />
         • សេវា: <strong>ថ្លៃសេវា Invoice</strong> (excl. VAT · ET)<br /><br />
-        <strong>ករណីលើកលែង (បុគ្គលគ្មានកាតព្វកិច្ច):</strong> បារី ≤ ២០០ ដើម · ស៊ីហ្គា ≤ ៥០ ដើម · ស្រា ≤ ២ លីត្រ
+        <strong>ករណីលើកលែង (បុគ្គលគ្មានកាតព្វកិច្ច):</strong> បារី ≤ 200 ដើម · ស៊ីហ្គា ≤ 50 ដើម · ស្រា ≤ 2 លីត្រ
       </div>
     </div>
   );
@@ -612,8 +612,8 @@ export default function SpecialTaxPage({ setPage }) {
         </div>
 
         <div style={S.header}>
-          <div style={S.h1}>អាករពិសេស (Special / Excise Tax) — កម្មវិធីគណនា</div>
-          <div style={S.hSub}>កម្ពុជា · ស្រា · ស្រាបៀរ · បារី · Airline · Telecom · Entertainment · ប្រចាំខែ ថ្ងៃទី ២០/២៥</div>
+          <div style={S.h1}>អាករពិសេស </div>
+          <div style={S.hSub}></div>
         </div>
 
         {/* INFO CARDS */}
