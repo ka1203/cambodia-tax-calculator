@@ -201,15 +201,7 @@ function HomeContent({ go }) {
             ចាប់ផ្ដើមគណនា →
           </button>
 
-          {/* Trust badges */}
-          <div style={{ display:"flex", gap:24, marginTop:28, flexWrap:"wrap" }}>
-            {["ឥតគិតថ្លៃ", "ច្បាប់ ២០២៦", "១០០% ត្រឹមត្រូវ"].map((t) => (
-              <div key={t} style={{ display:"flex", alignItems:"center", gap:6, color:"#374151", fontSize:13 }}>
-                <span style={{ color:"#10B981", fontSize:16 }}>✓</span> {t}
-              </div>
-            ))}
-          </div>
-
+          
           {/* Stats */}
           <div style={{ display:"flex", gap:0, marginTop:36, borderTop:"1px solid #DBEAFE", paddingTop:24 }}>
             {[

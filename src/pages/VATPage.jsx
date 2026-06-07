@@ -569,10 +569,10 @@ export default function VATPage({ setPage }) {
   const [tab, setTab] = useState("standard");
 
   const TABS = [
-    { id: "standard",   label: "🏷️ VAT ស្តង់ដារ" },
-    { id: "import",     label: "📦 VAT នាំចូល" },
-    { id: "apportion",  label: "📊 Apportionment" },
-    { id: "rates",      label: "📋 តារាងអត្រា" },
+    { id: "standard",   label: " VAT ស្តង់ដារ" },
+    { id: "import",     label: " VAT នាំចូល" },
+    { id: "apportion",  label: " Apportionment" },
+    { id: "rates",      label: "តារាងអត្រា" },
   ];
 
   return (

@@ -597,10 +597,10 @@ export default function SpecialTaxPage({ setPage }) {
   const [tab, setTab] = useState("domestic");
 
   const TABS = [
-    { id: "domestic", label: "🏭 ទំនិញក្នុងស្រុក" },
-    { id: "import",   label: "✈️ ទំនិញនាំចូល" },
-    { id: "service",  label: "🎵 សេវា" },
-    { id: "rates",    label: "📊 តារាងអត្រា" },
+    { id: "domestic", label: " ទំនិញក្នុងស្រុក" },
+    { id: "import",   label: " ទំនិញនាំចូល" },
+    { id: "service",  label: " សេវា" },
+    { id: "rates",    label: " តារាងអត្រា" },
   ];
 
   return (

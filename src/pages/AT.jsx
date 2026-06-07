@@ -437,8 +437,8 @@ export default function AccommodationTaxPage({ setPage }) {
   const [tab, setTab] = useState("simple");
 
   const TABS = [
-    { id: "simple",    label: "🏨 ករណីសាមញ្ញ (មិនរួម VAT)" },
-    { id: "inclusive", label: "💰 ករណីរួម VAT + Acc Tax" },
+    { id: "simple",    label: " ករណីសាមញ្ញ (មិនរួម VAT)" },
+    { id: "inclusive", label: " ករណីរួម VAT + Acc Tax" },
   ];
 
   return (

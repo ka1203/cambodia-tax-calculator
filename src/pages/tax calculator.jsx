@@ -282,7 +282,7 @@ const INFO_CARDS = [
   { icon: "🚫", bg: "#FFF7ED", title: "ការរារាំងសមត្ថកិច្ច",      value: "2,000,000 ៛",   note: "ប្រាក់ពិន័យថេរ មិនអាស្រ័យលើទំហំ" },
   { icon: "📅", bg: "#F0FDF4", title: "ការប្រាក់យឺតយ៉ាវ",         value: "1.5% / ខែ",    note: "លើប្រាក់ពន្ធខ្វះ × ចំនួនខែហួស" },
   { icon: "📋", bg: "#EFF6FF", title: "ពន្ធប៉ាតង់មូលដ្ឋាន",      value: "1,200,000 ៛",   note: "បង់មុន ថ្ងៃ 31 ខែមីនា" },
-  { icon: "🏭", bg: "#F0FDF4", title: "ពន្ធ CIT",                  value: "20% / 30% / 5%", note: "ស្តង់ដារ · រ៉ែ/ប្រេង · QIP" },
+  { icon: "🏭", bg: "#F0FDF4", title: "សវនកម្មពន្ធ",                  value: "20% / 30% / 5%", note: "ស្តង់ដារ · រ៉ែ/ប្រេង · QIP" },
 ];
 
 const TABS = [
@@ -331,11 +331,11 @@ function PenaltyTab() {
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ប្រាក់ពន្ធត្រូវបង់សរុប (រៀល)</label>
-            <input style={S.input} type="number" placeholder="e.g. 25000000" value={taxDue} onChange={e => { setTaxDue(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 25000000" value={taxDue} onChange={e => { setTaxDue(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ប្រាក់ពន្ធបានបង់រួច (រៀល)</label>
-            <input style={S.input} type="number" placeholder="0" value={taxPaid} onChange={e => { setTaxPaid(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 0" value={taxPaid} onChange={e => { setTaxPaid(e.target.value); setResult(null); }} />
           </div>
         </div>
         <div style={S.cardTitle}>ប្រភេទការល្មើស និងចំនួនខែហួស</div>
@@ -352,7 +352,7 @@ function PenaltyTab() {
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំនួនខែហួសកាលកំណត់</label>
-            <input style={S.input} type="number" placeholder="e.g. 12" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 12" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
           </div>
         </div>
         <div style={S.note}>
@@ -421,7 +421,7 @@ function PatentTab() {
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ឆ្នាំជាប់ពន្ធ</label>
-            <input style={S.input} type="text" placeholder="e.g. 2026" value={year} onChange={e => { setYear(e.target.value); setResult(null); }} />
+            <input style={S.input} type="text" placeholder="ឧ. 2026" value={year} onChange={e => { setYear(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ស្ថានភាពការប្រកាស</label>
@@ -434,7 +434,7 @@ function PatentTab() {
         {onTime === "late" && (
           <div style={S.field}>
             <label style={S.label}>ចំនួនខែហួសកាលកំណត់</label>
-            <input style={S.input} type="number" placeholder="e.g. 5" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 5" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
           </div>
         )}
       </div>
@@ -502,11 +502,11 @@ function IncomeTab() {
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ចំណេញតាមការប្រកាស (រៀល)</label>
-            <input style={S.input} type="number" placeholder="e.g. 100000000" value={declared} onChange={e => { setDeclared(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 100000000" value={declared} onChange={e => { setDeclared(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំណាយមិនអនុញ្ញាត / រកឃើញបន្ថែម (រៀល)</label>
-            <input style={S.input} type="number" placeholder="e.g. 15000000" value={auditAdj} onChange={e => { setAuditAdj(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 15000000" value={auditAdj} onChange={e => { setAuditAdj(e.target.value); setResult(null); }} />
           </div>
         </div>
         <div style={S.row2}>
@@ -520,7 +520,7 @@ function IncomeTab() {
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំនួនខែហួសកាលកំណត់</label>
-            <input style={S.input} type="number" placeholder="e.g. 10" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 10" value={months} onChange={e => { setMonths(e.target.value); setResult(null); }} />
           </div>
         </div>
         <div style={S.field}>
@@ -621,11 +621,11 @@ function ClassifyTab() {
         <div style={S.row2}>
           <div style={S.field}>
             <label style={S.label}>ចំណូលសរុបប្រចាំឆ្នាំ (រៀល)</label>
-            <input style={S.input} type="number" placeholder="e.g. 500000000" value={revenue} onChange={e => { setRevenue(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 500000000" value={revenue} onChange={e => { setRevenue(e.target.value); setResult(null); }} />
           </div>
           <div style={S.field}>
             <label style={S.label}>ចំនួនបុគ្គលិកសរុប (នាក់)</label>
-            <input style={S.input} type="number" placeholder="e.g. 25" value={employees} onChange={e => { setEmployees(e.target.value); setResult(null); }} />
+            <input style={S.input} type="number" placeholder="ឧ. 25" value={employees} onChange={e => { setEmployees(e.target.value); setResult(null); }} />
           </div>
         </div>
       </div>
@@ -668,7 +668,7 @@ export default function CambodiaTaxCalc({ setPage }) {
 
         <div style={S.header}>
           <div style={S.h1}>ពន្ធដារទូទៅ</div>
-          <div style={S.hSub}>ប្រាក់ពិន័យ · ពន្ធប៉ាតង់ · សវនកម្ម CIT · ចំណាត់ថ្នាក់អ្នកជាប់ពន្ធ</div>
+          <div style={S.hSub}>ប្រាក់ពិន័យ · ពន្ធប៉ាតង់ · សវនកម្ម  · ចំណាត់ថ្នាក់អ្នកជាប់ពន្ធ</div>
         </div>
 
         {/* INFO CARDS */}

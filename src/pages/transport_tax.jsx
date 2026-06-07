@@ -474,10 +474,10 @@ export default function TransportTaxCalculator({ setPage }) {
   const [tab, setTab] = useState("tourist");
 
   const TABS = [
-    { id: "tourist",   label: "🚗 រថយន្តទេសចរណ៍" },
-    { id: "freight",   label: "🚛 ដឹកទំនិញ / រ៉ឺម៉ក" },
-    { id: "passenger", label: "🚌 ដឹកអ្នកដំណើរ" },
-    { id: "rates",     label: "📋 តារាងអត្រា" },
+    { id: "tourist",   label: " រថយន្តទេសចរណ៍" },
+    { id: "freight",   label: " ដឹកទំនិញ / រ៉ឺម៉ក" },
+    { id: "passenger", label: " ដឹកអ្នកដំណើរ" },
+    { id: "rates",     label: " តារាងអត្រា" },
   ];
 
   return (

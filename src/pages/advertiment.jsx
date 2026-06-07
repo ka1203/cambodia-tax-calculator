@@ -613,11 +613,11 @@ export default function AdvertisementTaxPage({ setPage }) {
   const [tab, setTab] = useState("leaflet");
 
   const TABS = [
-    { id: "leaflet",   label: "📄 ក្រដាស" },
-    { id: "banner",    label: "🎌 កៅស៊ូ/សំពត់" },
-    { id: "sign",      label: "🏪 ស្លាកអាជីវកម្ម" },
-    { id: "billboard", label: "🖼️ ផ្ទាំងរូបភាព" },
-    { id: "rates",     label: "📊 តារាងអត្រា" },
+    { id: "leaflet",   label: " ក្រដាស" },
+    { id: "banner",    label: " កៅស៊ូ/សំពត់" },
+    { id: "sign",      label: "ស្លាកអាជីវកម្ម" },
+    { id: "billboard", label: " ផ្ទាំងរូបភាព" },
+    { id: "rates",     label: " តារាងអត្រា" },
   ];
 
   return (

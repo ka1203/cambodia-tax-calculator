@@ -419,9 +419,9 @@ export default function PrepaymentTaxCalculator({ setPage }) {
   const [tab, setTab] = useState("calc");
 
   const TABS = [
-    { id: "calc",      label: "💰 កម្មវិធីគណនា PTOI" },
-    { id: "reconcile", label: "🔄 ការផ្ទៀងផ្ទាត់ប្រចាំឆ្នាំ" },
-    { id: "rates",     label: "📋 តារាងអត្រា & ច្បាប់" },
+    { id: "calc",      label: " គណនា" },
+    { id: "reconcile", label: " ការផ្ទៀងផ្ទាត់ប្រចាំឆ្នាំ" },
+    { id: "rates",     label: " តារាងអត្រា & ច្បាប់" },
   ];
 
   return (

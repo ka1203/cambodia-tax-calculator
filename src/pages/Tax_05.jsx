@@ -412,7 +412,7 @@ export default function WithholdingTaxPage({ setPage }) {
                 </div>
               ) : (
                 <div style={S.sumPay}>
-                  <span>ពន្ធ WHT ត្រូវកាត់ទុក និងបង់ → ក្រសួងសេដ្ឋកិច្ច</span>
+                  <span>ពន្ធ WHT ត្រូវកាត់ទុក និងបង់</span>
                   <span>{result.ccy === "USD" ? fmtUSD(result.tax) : fmt(result.tax)}</span>
                 </div>
               )}
@@ -426,7 +426,7 @@ export default function WithholdingTaxPage({ setPage }) {
 
         {/* REFERENCE TABLE — always visible */}
         <div style={S.card}>
-          <div style={S.cardTitle}>តារាងអត្រាពន្ធកាត់ទុករបស់កម្ពុជា (ឯកសារយោង TAX-05)</div>
+          <div style={S.cardTitle}>តារាងអត្រាពន្ធកាត់ទុករបស់កម្ពុជា </div>
           <table style={S.tbl}>
             <thead>
               <tr>
