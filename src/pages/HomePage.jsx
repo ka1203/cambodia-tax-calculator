@@ -127,7 +127,7 @@ function Sidebar({ activeNav, go, className, style }) {
           <text x="20" y="23" textAnchor="middle" fontFamily="serif" fontWeight="700" fontSize="11" fill="#fff">ពន្ធ</text>
         </svg>
         <div>
-          <div style={{ fontSize:14, fontWeight:700, color:"#1D4ED8", lineHeight:1.3 }}>ប្រព័ន្ធពន្ធ</div>
+          <div style={{ fontSize:14, fontWeight:700, color:"#1D4ED8", lineHeight:1.3 }}>ប្រព័ន្ធគណនាពន្ធឆ្លាតវៃ</div>
           <div style={{ fontSize:10, color:"#9CA3AF", marginTop:2 }}>Cambodia Tax System</div>
         </div>
       </div>
@@ -198,7 +198,7 @@ function HomeContent({ go }) {
 
           {/* CTA */}
           <button className="btn-p" onClick={() => go("calculate")}>
-            ចាប់ផ្ដើមគណនា →
+            ចាប់ផ្ដើមគណនា 
           </button>
 
           

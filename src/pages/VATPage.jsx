@@ -192,7 +192,7 @@ function StandardTab() {
         <div style={S.tabRow}>
           <button style={supplyType === "standard" ? S.tabOn : S.tab}
             onClick={() => { setSupplyType("standard"); setResult(null); }}>
-            ក្នុងស្រុក / នាំចូល — 10%
+            ក្នុងស្រុក​ — 10%
           </button>
           <button style={supplyType === "export" ? S.tabOn : S.tab}
             onClick={() => { setSupplyType("export"); setResult(null); }}>

@@ -18,9 +18,9 @@ const DEFS = [
     color: "#0B1F4E", bg: "#EFF6FF", border: "#BFDBFE",
     body: `អាករ PLT ត្រូវអនុវត្តលើការផ្គត់ផ្គង់ ផលិតផលសុរា
 មេរ័យ ឬ ថ្នាំជក់ នៅក្នុងព្រះរាជាណាចក្រកម្ពុជា។
-• អត្រា: ៥% នៃមូលដ្ឋានគិតអាករ
+• អត្រា: 5% នៃមូលដ្ឋានគិតអាករ
 • ជំនួស: អ្នកផលិត ឬ អ្នកនាំចូល (ផ្គត់ផ្គង់ដំបូង)
-• ប្រកាស/បង់: ផ្ទាល់ ថ្ងៃទី ២០ · Online ថ្ងៃទី ២៥
+• ប្រកាស/បង់: ផ្ទាល់ ថ្ងៃទី 20 · Online ថ្ងៃទី 25
 • ប្រមូល​នៅ​ពេ​ល​ផ្គ​ត់​ផ្គ​ង់​ដំ​បូ​ង​ប​ន្ទា​ប់​ពី​ផ​លិ​ត​ ឬ​​នាំ​ចូ​ល`,
   },
   {
@@ -30,10 +30,10 @@ const DEFS = [
 + ពន្ធ/អាករនានា — (VAT + PLT ខ្លួនឯង)
 
 ន័យ: ថ្លៃ Invoice រួមមាន អាករពិសេស (ET) ស្រាប់
-      ប៉ុន្តែ មិនរួមមាន VAT ១០% និង PLT ៥% ខ្លួនឯង
+      ប៉ុន្តែ មិនរួមមាន VAT 10% និង PLT 5% ខ្លួនឯង
 
-ឧ: ស្រាបៀរ Invoice ១១,០០០$ (excl. VAT, excl. PLT)
-   → PLT = ១១,០០០ × ៥% = ៥៥០$`,
+ឧ: ស្រាបៀរ Invoice 11,000 ៛ (excl. VAT, excl. PLT)
+   → PLT = 11,000 × 5% = 550 ៛`,
   },
   {
     term: "ផលិតផលជាប់ PLT (Taxable Products)",
@@ -69,16 +69,16 @@ const DEFS = [
     term: "PLT vs VAT vs Special Tax — ភាពខុសគ្នា",
     color: "#991B1B", bg: "#FEF2F2", border: "#FCA5A5",
     body: `PLT (អាករបំភ្លឺ):
-→ ៥% × Invoice (incl. ET, excl. VAT+PLT)
-→ ប្រមូល​ ១ ​ដង​ (ដំ​បូ​ង​ប​ន្ទា​ប់​ពី​ផ​លិ​ត/​នាំ​ចូ​ល)
+→ 5% × Invoice (incl. ET, excl. VAT+PLT)
+→ ប្រមូល​ 1 ​ដង​ (ដំ​បូ​ង​ប​ន្ទា​ប់​ពី​ផ​លិ​ត/​នាំ​ចូ​ល)
 → ផលិតផល: សុរា · មេរ័យ · ថ្នាំជក់
 
 Special Tax (ET):
-→ ២០–៣៥% × ៩០% Invoice (ក្នុងស្រុក)
-→ ប្រមូល​ ១ ​ដ​ង​ (ការ​ផ​លិ​ត/​ចែ​ក​ចា​យ​)
+→ 20–35% × 90% Invoice (ក្នុងស្រុក)
+→ ប្រមូល​ 1 ​ដ​ង​ (ការ​ផ​លិ​ត/​ចែ​ក​ចា​យ​)
 
 VAT (អតប):
-→ ១០% × Invoice — ប្រមូលគ្រប់ដំណាក់កាល
+→ 10% × Invoice — ប្រមូលគ្រប់ដំណាក់កាល
 → Output − Input = VAT ត្រូវបង់`,
   },
 ];
@@ -138,10 +138,10 @@ const S = {
 
 const INFO_CARDS = [
   { icon: "🍺", bg: "#EFF6FF", title: "ផលិតផលជាប់ PLT",     value: "សុរា · មេរ័យ · ថ្នាំជក់", note: "ស្រា · ស្រាបៀរ · បារី · ស៊ីហ្គា" },
-  { icon: "💡", bg: "#F0FDF4", title: "អត្រា PLT",            value: "៥%",                        note: "នៃថ្លៃ Invoice (excl. VAT + PLT)" },
+  { icon: "💡", bg: "#F0FDF4", title: "អត្រា PLT",            value: "5%",                        note: "នៃថ្លៃ Invoice (excl. VAT + PLT)" },
   { icon: "🏭", bg: "#FFFBEB", title: "ជំនួស",               value: "អ្នកផលិត / នាំចូល",         note: "ផ្គត់ផ្គង់ដំបូង" },
-  { icon: "📅", bg: "#FAF5FF", title: "ថ្ងៃប្រកាស",          value: "ទី ២០/២៥",                  note: "ផ្ទាល់ ២០ · Online ២៥ ខែបន្ទាប់" },
-  { icon: "🔗", bg: "#FEF2F2", title: "ប្រមូលរៀងម្ដង",       value: "១ ដង",                       note: "ប​ន្ទា​ប់​ពី​ផ​លិ​ត/​នាំ​ចូ​ល" },
+  { icon: "📅", bg: "#FAF5FF", title: "ថ្ងៃប្រកាស",          value: "ទី 20/25",                   note: "ផ្ទាល់ 20 · Online 25 ខែបន្ទាប់" },
+  { icon: "🔗", bg: "#FEF2F2", title: "ប្រមូលរៀងម្ដង",       value: "1 ដង",                       note: "ប​ន្ទា​ប់​ពី​ផ​លិ​ត/​នាំ​ចូ​ល" },
 ];
 
 // ── DEFINITION ACCORDION ──────────────────────────────────────
@@ -173,34 +173,17 @@ function DefSection() {
 function CalculatorTab() {
   const [productType,  setProductType]  = useState("beer");
   const [invoiceAmt,   setInvoiceAmt]   = useState("");
-  const [currency,     setCurrency]     = useState("USD");
-  const [inclET,       setInclET]       = useState("yes");  // does invoice include ET?
-  const [exchangeRate, setExchangeRate] = useState("4100");
   const [result,       setResult]       = useState(null);
 
   function calculate() {
     const amt = n(invoiceAmt);
     if (!amt) return;
-
-    // PLT base = invoice amount (incl. ET but excl. VAT and PLT itself)
-    // If user says "invoice already excl. ET" we just use it directly
-    // (document says base = invoice price incl. all taxes except VAT and PLT)
     const taxBase = amt;
     const plt     = taxBase * PLT_RATE;
     const vat     = taxBase * 0.10;
     const total   = taxBase + plt + vat;
-
-    const pltPct  = (plt / total) * 100;
-    const restPct = 100 - pltPct;
-
-    setResult({ taxBase, plt, vat, total, pltPct, restPct, currency, exchangeRate: n(exchangeRate) });
+    setResult({ taxBase, plt, vat, total });
   }
-
-  const c = (v) => currency === "USD"
-    ? "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-    : fmtKHR(v);
-
-  const rate = n(exchangeRate) || 4100;
 
   return (
     <>
@@ -214,37 +197,22 @@ function CalculatorTab() {
               {PRODUCT_TYPES.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
             </select>
           </div>
-          <div style={S.field}>
-            <label style={S.label}>រូបិយប័ណ្ណ</label>
-            <select style={S.select} value={currency}
-              onChange={e => { setCurrency(e.target.value); setResult(null); }}>
-              <option value="USD">ដុល្លារ ($)</option>
-              <option value="KHR">រៀល (៛)</option>
-            </select>
-          </div>
         </div>
 
-        {currency === "USD" && (
-          <div style={S.field}>
-            <label style={S.label}>អត្រាប្រែ (៛/$)</label>
-            <input style={S.input} type="number" placeholder="4100"
-              value={exchangeRate} onChange={e => { setExchangeRate(e.target.value); setResult(null); }} />
-          </div>
-        )}
 
         <div style={S.cardTitle}>ថ្លៃផ្គត់ផ្គង់ (Invoice)</div>
         <div style={S.field}>
           <label style={S.label}>
-            ថ្លៃ Invoice ({currency === "USD" ? "$" : "៛"}) — excl. VAT (១០%) + excl. PLT (៥%)
+            ថ្លៃ Invoice (៛) — excl. VAT (10%) + excl. PLT (5%)
           </label>
           <input style={S.input} type="number"
-            placeholder={currency === "USD" ? "ឧ: 11000" : "ឧ: 45100000"}
+            placeholder="ឧ: 45100000"
             value={invoiceAmt} onChange={e => { setInvoiceAmt(e.target.value); setResult(null); }} />
         </div>
 
         <div style={S.note}>
           • មូលដ្ឋានគិតអាករ PLT = ថ្លៃ Invoice <strong>(excl. VAT · excl. PLT ខ្លួនឯង)</strong><br />
-          • PLT = មូលដ្ឋាន × <strong>៥%</strong><br />
+          • PLT = មូលដ្ឋាន × <strong>5%</strong><br />
           • ករណី Invoice រួមមាន ET (អាករពិសេស) → <strong>ត្រូវ</strong>រួមបញ្ចូលក្នុងមូលដ្ឋាន PLT<br />
           • ករណី Invoice រួមមាន VAT → <strong>ដក VAT ចេញ</strong> មុនគណនា
         </div>
@@ -257,36 +225,22 @@ function CalculatorTab() {
           <div style={S.metricGrid}>
             <div style={S.metric}>
               <div style={S.mLabel}>មូលដ្ឋានគិតអាករ PLT</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{c(result.taxBase)}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{fmtKHR(result.taxBase)}</div>
             </div>
             <div style={S.metric}>
-              <div style={S.mLabel}>PLT (៥%)</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{c(result.plt)}</div>
+              <div style={S.mLabel}>PLT (5%)</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{fmtKHR(result.plt)}</div>
             </div>
             <div style={S.metric}>
-              <div style={S.mLabel}>VAT (១០%)</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{c(result.vat)}</div>
+              <div style={S.mLabel}>VAT (10%)</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{fmtKHR(result.vat)}</div>
             </div>
             <div style={S.metric}>
               <div style={S.mLabel}>តម្លៃអតិថិជនបង់សរុប</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#166534", fontFamily: FONT }}>{c(result.total)}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#166534", fontFamily: FONT }}>{fmtKHR(result.total)}</div>
             </div>
           </div>
 
-          {/* BAR */}
-          <div style={S.card}>
-            <div style={S.cardTitle}>សមាមាត្រ PLT ក្នុងតម្លៃទូទៅ</div>
-            <div style={S.barTrack}>
-              <div style={{ width: result.pltPct.toFixed(1) + "%", background: "#c0392b", height: "100%", transition: "width .4s" }} />
-              <div style={{ width: result.restPct.toFixed(1) + "%", background: "#1a7a4a", height: "100%", transition: "width .4s" }} />
-            </div>
-            <div style={S.barLabels}>
-              <span>🔴 PLT: {result.pltPct.toFixed(1)}%</span>
-              <span>🟢 ថ្លៃ + VAT: {result.restPct.toFixed(1)}%</span>
-            </div>
-          </div>
-
-          {/* BREAKDOWN TABLE */}
           <div style={S.card}>
             <div style={S.cardTitle}>តារាងលម្អិតការគណនា PLT</div>
             <table style={S.tbl}>
@@ -295,40 +249,40 @@ function CalculatorTab() {
                   <th style={S.th}>បរិយាយ</th>
                   <th style={S.th}>អត្រា</th>
                   <th style={S.th}>ទឹកប្រាក់</th>
-                  {currency === "USD" && <th style={S.th}>ជាររៀល (×{rate.toLocaleString()})</th>}
+                  
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td style={S.td}>ថ្លៃ Invoice (មូលដ្ឋានគិត PLT)</td>
                   <td style={S.td}>—</td>
-                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{c(result.taxBase)}</td>
-                  {currency === "USD" && <td style={{ ...S.td, color: "#64748B" }}>{fmtKHR(result.taxBase * rate)}</td>}
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.taxBase)}</td>
+                  
                 </tr>
                 <tr>
                   <td style={S.td}>PLT (អាករបំភ្លឺ)</td>
-                  <td style={S.td}>៥%</td>
-                  <td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{c(result.plt)}</td>
-                  {currency === "USD" && <td style={{ ...S.td, color: "#64748B" }}>{fmtKHR(result.plt * rate)}</td>}
+                  <td style={S.td}>5%</td>
+                  <td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{fmtKHR(result.plt)}</td>
+                  
                 </tr>
                 <tr>
                   <td style={S.td}>VAT (អាករ VAT)</td>
-                  <td style={S.td}>១០%</td>
-                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{c(result.vat)}</td>
-                  {currency === "USD" && <td style={{ ...S.td, color: "#64748B" }}>{fmtKHR(result.vat * rate)}</td>}
+                  <td style={S.td}>10%</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.vat)}</td>
+                  
                 </tr>
               </tbody>
             </table>
             <div style={S.dedTotal}>
               <span>តម្លៃសរុបអតិថិជន (Invoice + PLT + VAT)</span>
-              <span>{c(result.total)}{currency === "USD" ? ` ≈ ${fmtKHR(result.total * rate)}` : ""}</span>
+              <span>{fmtKHR(result.total)}</span>
             </div>
             <div style={S.note}>
               <strong>រូបមន្ត:</strong><br />
-              • PLT = {c(result.taxBase)} × ៥% = <strong>{c(result.plt)}</strong><br />
-              • VAT = {c(result.taxBase)} × ១០% = <strong>{c(result.vat)}</strong><br />
-              • សរុប = {c(result.taxBase)} + {c(result.plt)} + {c(result.vat)} = <strong>{c(result.total)}</strong><br /><br />
-              ប្រកាស និងបង់ ប្រចាំខែ — ផ្ទាល់: <strong>ថ្ងៃទី ២០</strong> | Online: <strong>ថ្ងៃទី ២៥</strong> នៃខែបន្ទាប់
+              • PLT = {fmtKHR(result.taxBase)} × 5% = <strong>{fmtKHR(result.plt)}</strong><br />
+              • VAT = {fmtKHR(result.taxBase)} × 10% = <strong>{fmtKHR(result.vat)}</strong><br />
+              • សរុប = {fmtKHR(result.taxBase)} + {fmtKHR(result.plt)} + {fmtKHR(result.vat)} = <strong>{fmtKHR(result.total)}</strong><br /><br />
+              ប្រកាស និងបង់ ប្រចាំខែ — ផ្ទាល់: <strong>ថ្ងៃទី 20</strong> | Online: <strong>ថ្ងៃទី 25</strong> នៃខែបន្ទាប់
             </div>
           </div>
         </>
@@ -339,27 +293,20 @@ function CalculatorTab() {
 
 // ══════════════════════════════════════════════════════════════
 // TAB 2 — INCLUSIVE PRICE BREAKDOWN
-// (ករណីដឹងតែ Grand Total ហើយចង់ដឹង PLT)
 // ══════════════════════════════════════════════════════════════
 function BreakdownTab() {
   const [grandTotal, setGrandTotal] = useState("");
-  const [currency,   setCurrency]   = useState("USD");
   const [result,     setResult]     = useState(null);
 
   function calculate() {
     const gt = n(grandTotal);
     if (!gt) return;
-    // Grand total = base + 5% PLT + 10% VAT = base × 1.15
-    // → base = GT / 1.15
     const base = gt / 1.15;
     const plt  = base * PLT_RATE;
     const vat  = base * 0.10;
-    setResult({ gt, base, plt, vat, currency });
+    setResult({ gt, base, plt, vat });
   }
 
-  const c = (v) => currency === "USD"
-    ? "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-    : fmtKHR(v);
 
   return (
     <>
@@ -369,57 +316,73 @@ function BreakdownTab() {
           <div style={S.field}>
             <label style={S.label}>តម្លៃ Grand Total (incl. PLT + VAT)</label>
             <input style={S.input} type="number"
-              placeholder={currency === "USD" ? "ឧ: 12650" : "ឧ: 52000000"}
+              placeholder="ឧ: 52000000"
               value={grandTotal} onChange={e => { setGrandTotal(e.target.value); setResult(null); }} />
-          </div>
-          <div style={S.field}>
-            <label style={S.label}>រូបិយប័ណ្ណ</label>
-            <select style={S.select} value={currency}
-              onChange={e => { setCurrency(e.target.value); setResult(null); }}>
-              <option value="USD">ដុល្លារ ($)</option>
-              <option value="KHR">រៀល (៛)</option>
-            </select>
           </div>
         </div>
         <div style={S.note}>
-          • Grand Total = Invoice × (១ + ៥% + ១០%) = Invoice × <strong>១.១៥</strong><br />
-          • Invoice (base) = Grand Total ÷ <strong>១.១៥</strong><br />
-          • PLT = Invoice × ៥% | VAT = Invoice × ១០%
+          • Grand Total = Invoice × (1 + 5% + 10%) = Invoice × <strong>1.15</strong><br />
+          • Invoice (base) = Grand Total ÷ <strong>1.15</strong><br />
+          • PLT = Invoice × 5% | VAT = Invoice × 10%
         </div>
       </div>
 
-      <button style={S.btn} onClick={calculate}>ដកPLT + VAT ចេញ</button>
+      <button style={S.btn} onClick={calculate}>ដក PLT + VAT ចេញ</button>
 
       {result && (
         <>
           <div style={S.metricGrid}>
             <div style={S.metric}>
-              <div style={S.mLabel}>Invoice (base ÷ ១.១៥)</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{c(result.base)}</div>
+              <div style={S.mLabel}>មូលដ្ឋានគិតអាករ PLT</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{fmtKHR(result.base)}</div>
             </div>
             <div style={S.metric}>
-              <div style={S.mLabel}>PLT (៥%)</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{c(result.plt)}</div>
+              <div style={S.mLabel}>PLT (5%)</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{fmtKHR(result.plt)}</div>
             </div>
             <div style={S.metric}>
-              <div style={S.mLabel}>VAT (១០%)</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{c(result.vat)}</div>
+              <div style={S.mLabel}>VAT (10%)</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{fmtKHR(result.vat)}</div>
             </div>
           </div>
           <div style={S.card}>
             <div style={S.cardTitle}>តារាងបំបែក Grand Total</div>
-            <div style={S.dedRow}><span>Invoice (Base)</span><span style={S.dedVal}>{c(result.base)}</span></div>
-            <div style={S.dedRow}><span>+ PLT (Base × ៥%)</span><span style={S.dedValRed}>{c(result.plt)}</span></div>
-            <div style={S.dedRow}><span>+ VAT (Base × ១០%)</span><span style={S.dedVal}>{c(result.vat)}</span></div>
+            <table style={S.tbl}>
+              <thead>
+                <tr>
+                  <th style={S.th}>បរិយាយ</th>
+                  <th style={S.th}>អត្រា</th>
+                  <th style={S.th}>ទឹកប្រាក់</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={S.td}>Invoice (Base = Grand Total ÷ 1.15)</td>
+                  <td style={S.td}>—</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.base)}</td>
+                </tr>
+                <tr>
+                  <td style={S.td}>PLT (អាករបំភ្លឺ)</td>
+                  <td style={S.td}>5%</td>
+                  <td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>{fmtKHR(result.plt)}</td>
+                </tr>
+                <tr>
+                  <td style={S.td}>VAT (អាករ VAT)</td>
+                  <td style={S.td}>10%</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.vat)}</td>
+                </tr>
+              </tbody>
+            </table>
             <div style={S.dedTotal}>
-              <span>Grand Total (Invoice × ១.១៥)</span>
-              <span>{c(result.gt)}</span>
+              <span>Grand Total (Invoice × 1.15)</span>
+              <span>{fmtKHR(result.gt)}</span>
             </div>
             <div style={S.note}>
               <strong>រូបមន្ត:</strong><br />
-              • Invoice = {c(result.gt)} ÷ ១.១៥ = <strong>{c(result.base)}</strong><br />
-              • PLT = {c(result.base)} × ៥% = <strong>{c(result.plt)}</strong><br />
-              • VAT = {c(result.base)} × ១០% = <strong>{c(result.vat)}</strong>
+              • Invoice = {fmtKHR(result.gt)} ÷ 1.15 = <strong>{fmtKHR(result.base)}</strong><br />
+              • PLT = {fmtKHR(result.base)} × 5% = <strong>{fmtKHR(result.plt)}</strong><br />
+              • VAT = {fmtKHR(result.base)} × 10% = <strong>{fmtKHR(result.vat)}</strong><br /><br />
+              ប្រកាស និងបង់ ប្រចាំខែ — ផ្ទាល់: <strong>ថ្ងៃទី 20</strong> | Online: <strong>ថ្ងៃទី 25</strong> នៃខែបន្ទាប់
             </div>
           </div>
         </>
@@ -428,100 +391,6 @@ function BreakdownTab() {
   );
 }
 
-// ══════════════════════════════════════════════════════════════
-// TAB 3 — EXAMPLES FROM DOCUMENT
-// ══════════════════════════════════════════════════════════════
-function ExamplesTab() {
-  const examples = [
-    {
-      title: "ឧទាហរណ៍ទី ១ — រោងចក្រស្រាបៀរ ABC",
-      product: "ស្រាបៀរ (Beer)",
-      invoice: 11000,
-      currency: "USD",
-      plt: 550,
-      note: "ថ្លៃ Invoice ១១,០០០$ (excl. VAT + PLT) → PLT = ១១,០០០ × ៥% = ៥៥០$",
-    },
-    {
-      title: "ឧទាហរណ៍ទី ២ — រោងចក្របារី XYZ",
-      product: "បារី (Cigarette)",
-      invoice: 10000,
-      currency: "USD",
-      plt: 500,
-      note: "ថ្លៃ Invoice ១០,០០០$ (excl. VAT + PLT) → PLT = ១០,០០០ × ៥% = ៥០០$",
-    },
-  ];
-
-  return (
-    <>
-      {examples.map((ex, i) => (
-        <div key={i} style={S.card}>
-          <div style={S.cardTitle}>{ex.title}</div>
-          <table style={S.tbl}>
-            <thead>
-              <tr>
-                <th style={S.th}>បរិយាយ</th>
-                <th style={S.th}>អត្រា</th>
-                <th style={S.th}>ទឹកប្រាក់ ($)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={S.td}>ផលិតផល</td>
-                <td style={S.td}>—</td>
-                <td style={{ ...S.td, color: "#64748B" }}>{ex.product}</td>
-              </tr>
-              <tr>
-                <td style={S.td}>ថ្លៃ Invoice (មូលដ្ឋានគិត PLT)</td>
-                <td style={S.td}>—</td>
-                <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>${ex.invoice.toLocaleString()}</td>
-              </tr>
-              <tr>
-                <td style={S.td}>PLT</td>
-                <td style={S.td}>៥%</td>
-                <td style={{ ...S.td, color: "#DC2626", fontWeight: 700 }}>${ex.plt.toLocaleString()}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div style={S.dedTotal}>
-            <span>PLT ត្រូវបង់</span>
-            <span>${ex.plt.toLocaleString()}</span>
-          </div>
-          <div style={S.note}>{ex.note}</div>
-        </div>
-      ))}
-
-      <div style={S.card}>
-        <div style={S.cardTitle}>សង្ខេបអ្នកជាប់ PLT</div>
-        <table style={S.tbl}>
-          <thead>
-            <tr>
-              <th style={S.th}>ប្រភេទ</th>
-              <th style={S.th}>ផលិតផល</th>
-              <th style={S.th}>ពេល​ជា​ប់​ PLT</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              ["អ្នកផលិត", "ស្រា · ស្រាបៀរ · មេរ័យ · បារី · ស៊ីហ្គា", "ផ្គត់ផ្គង់ដំបូង"],
-              ["អ្នកនាំចូល", "ស្រា · ស្រាបៀរ · មេរ័យ · បារី · ស៊ីហ្គា", "ដំបូងបន្ទាប់ពីនាំចូល"],
-            ].map(([type, product, when]) => (
-              <tr key={type}>
-                <td style={{ ...S.td, fontWeight: 700, color: "#2563EB" }}>{type}</td>
-                <td style={S.td}>{product}</td>
-                <td style={{ ...S.td, color: "#166534", fontWeight: 700 }}>{when}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={S.note}>
-          • PLT ប្រមូល <strong>១ ដង</strong> — ផ្គត់ផ្គង់ដំបូង (First Supply)<br />
-          • ការ​ចែ​ក​ចា​យ/​លក់​បន្ត → <strong>មិន</strong>​ជា​ប់​ PLT ម្ដ​ង​ទៀ​ត<br />
-          • ប្រ​កា​ស​ ប​ង់​: ប្រ​ចាំ​ខែ — ផ្ទា​ល់ <strong>ថ្ងៃ​ទី ២​០</strong> · Online <strong>ថ្ងៃ​ទី ២​៥</strong> ខែ​ប​ន្ទា​ប់
-        </div>
-      </div>
-    </>
-  );
-}
 
 // ══════════════════════════════════════════════════════════════
 // MAIN
@@ -530,9 +399,8 @@ export default function PLTPage({ setPage }) {
   const [tab, setTab] = useState("calculator");
 
   const TABS = [
-    { id: "calculator", label: "💡 គណនា PLT" },
-    { id: "breakdown",  label: "🔢 ដក PLT ចេញ" },
-    { id: "examples",   label: "📋 ឧទាហរណ៍" },
+    { id: "calculator", label: "គណនា PLT" },
+    { id: "breakdown",  label: "ដក PLT ចេញ" },
   ];
 
   return (
@@ -544,8 +412,8 @@ export default function PLTPage({ setPage }) {
         </div>
 
         <div style={S.header}>
-          <div style={S.h1}>អាករសម្រាប់បំភ្លឺសាធារណៈ (PLT) — កម្មវិធីគណនា</div>
-          <div style={S.hSub}>កម្ពុជា · Public Lighting Tax · ៥% · សុរា · មេរ័យ · ថ្នាំជក់ · ប្រចាំខែ ២០/២៥</div>
+          <div style={S.h1}>អាករសម្រាប់បំភ្លឺសាធារណៈ (PLT)</div>
+          <div style={S.hSub}></div>
         </div>
 
         <div style={S.infoGrid}>
@@ -573,7 +441,6 @@ export default function PLTPage({ setPage }) {
 
         {tab === "calculator" && <CalculatorTab />}
         {tab === "breakdown"  && <BreakdownTab />}
-        {tab === "examples"   && <ExamplesTab />}
 
       </div>
     </div>

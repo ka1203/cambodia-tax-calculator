@@ -3,9 +3,6 @@ import { useState } from "react";
 const FONT = "'Battambang', 'Khmer OS Battambang', 'Khmer OS Siemreap', sans-serif";
 const TAX_RATE = 0.02;
 
-function fmtUSD(v) {
-  return v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " $";
-}
 function fmtKHR(v) {
   return Math.round(v).toLocaleString("en-US") + " ៛";
 }
@@ -108,10 +105,7 @@ const S = {
   field: { marginBottom: 16 },
   label: { display: "block", fontSize: 13, fontWeight: 600, color: "#475569", marginBottom: 6, fontFamily: FONT },
   input: { width: "100%", boxSizing: "border-box", padding: "12px 14px", border: "1px solid #CBD5E1", borderRadius: 12, fontSize: 14, background: "#FFFFFF", outline: "none", fontFamily: FONT },
-  select: { width: "100%", boxSizing: "border-box", padding: "12px 14px", border: "1px solid #CBD5E1", borderRadius: 12, fontSize: 14, background: "#FFFFFF", outline: "none", fontFamily: FONT },
   note: { background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: 12, padding: 14, color: "#1E40AF", marginTop: 12, lineHeight: 1.6, fontSize: 13, fontFamily: FONT },
-  noteGreen: { background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 12, padding: 14, color: "#166534", marginTop: 12, lineHeight: 1.6, fontSize: 13, fontFamily: FONT },
-  noteWarn: { background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: 14, color: "#92400E", marginTop: 12, lineHeight: 1.6, fontSize: 13, fontFamily: FONT },
   btn: { width: "100%", padding: "14px", fontSize: 15, fontWeight: 700, borderRadius: 12, border: "none", cursor: "pointer", background: "linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%)", color: "#FFFFFF", boxShadow: "0 4px 12px rgba(37,99,235,.15)", marginBottom: 24, fontFamily: FONT },
   metricGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 16, marginBottom: 20 },
   metric: { background: "#FFFFFF", borderRadius: 20, padding: 20, textAlign: "center", border: "1px solid #E2E8F0", boxShadow: "0 4px 12px rgba(0,0,0,.03)" },
@@ -120,7 +114,6 @@ const S = {
   th: { background: "#EFF6FF", color: "#1E40AF", padding: "12px", textAlign: "left", fontWeight: 700, fontSize: 13, borderBottom: "1px solid #DBEAFE", fontFamily: FONT },
   td: { padding: "12px", fontSize: 13, lineHeight: 1.6, borderBottom: "1px solid #F1F5F9", fontFamily: FONT },
   dedTotal: { display: "flex", justifyContent: "space-between", marginTop: 10, padding: 14, borderRadius: 12, background: "#FEF2F2", border: "1px solid #FEE2E2", color: "#991B1B", fontWeight: 700, fontSize: 14, fontFamily: FONT },
-  dedTotalGreen: { display: "flex", justifyContent: "space-between", marginTop: 10, padding: 14, borderRadius: 12, background: "#F0FDF4", border: "1px solid #BBF7D0", color: "#166534", fontWeight: 700, fontSize: 14, fontFamily: FONT },
 };
 
 const INFO_CARDS = [
@@ -158,48 +151,29 @@ function DefSection() {
 // TAB 1 — SIMPLE (price excludes VAT & Acc Tax)
 // ══════════════════════════════════════════════════════════════
 function SimpleTab() {
-  const [revenue,      setRevenue]      = useState("");
-  const [currency,     setCurrency]     = useState("USD");
-  const [exchangeRate, setExchangeRate] = useState("4100");
-  const [result,       setResult]       = useState(null);
+  const [revenue, setRevenue] = useState("");
+  const [result,  setResult]  = useState(null);
 
   function calculate() {
     const rev = n(revenue);
     if (!rev) return;
-    const rate = n(exchangeRate) || 4100;
-    const tax  = rev * TAX_RATE;
-    const revKHR = currency === "USD" ? rev * rate : rev;
-    const taxKHR = currency === "USD" ? tax * rate : tax;
-    setResult({ rev, tax, revKHR, taxKHR, currency, rate });
+    const tax = rev * TAX_RATE;
+    setResult({ rev, tax });
   }
 
   return (
     <>
       <div style={S.card}>
         <div style={S.cardTitle}>ចំណូលសណ្ឋាគារ (មិនរួម VAT និង Accommodation Tax)</div>
-        <div style={S.row2}>
-          <div style={S.field}>
-            <label style={S.label}>ចំណូលប្រចាំខែ</label>
-            <input style={S.input} type="number" placeholder="ឧ: 1000" value={revenue} onChange={e => { setRevenue(e.target.value); setResult(null); }} />
-          </div>
-          <div style={S.field}>
-            <label style={S.label}>រូបិយប័ណ្ណ</label>
-            <select style={S.select} value={currency} onChange={e => { setCurrency(e.target.value); setResult(null); }}>
-              <option value="USD">ដុល្លារអាមេរិក ($)</option>
-              <option value="KHR">រៀល (៛)</option>
-            </select>
-          </div>
+        <div style={S.field}>
+          <label style={S.label}>ចំណូលប្រចាំខែ (៛)</label>
+          <input style={S.input} type="number" placeholder="ឧ: 4,100,000"
+            value={revenue} onChange={e => { setRevenue(e.target.value); setResult(null); }} />
         </div>
-        {currency === "USD" && (
-          <div style={S.field}>
-            <label style={S.label}>អត្រាប្រែ (៛/$)</label>
-            <input style={S.input} type="number" placeholder="4100" value={exchangeRate} onChange={e => { setExchangeRate(e.target.value); setResult(null); }} />
-          </div>
-        )}
         <div style={S.note}>
           • ករណីនេះ: ចំណូល <strong>មិនរួម</strong> VAT និង Accommodation Tax<br />
           • អាករ = ចំណូល × 2% (ផ្ទាល់)<br />
-          • ឧ: $1,000 → $1,000 × 2% = <strong>$20</strong>
+          • ឧ: 4,100,000 ៛ → 4,100,000 × 2% = <strong>82,000 ៛</strong>
         </div>
       </div>
       <button style={S.btn} onClick={calculate}>គណនាអាករលើការស្នាក់នៅ (ករណីសាមញ្ញ)</button>
@@ -209,44 +183,46 @@ function SimpleTab() {
           <div style={S.metricGrid}>
             <div style={S.metric}>
               <div style={S.mLabel}>ចំណូលប្រចាំខែ</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>
-                {result.currency === "USD" ? fmtUSD(result.rev) : fmtKHR(result.rev)}
-              </div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{fmtKHR(result.rev)}</div>
             </div>
             <div style={S.metric}>
               <div style={S.mLabel}>អត្រាអាករ</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>2%</div>
             </div>
-            <div style={S.metric}>
+            <div style={{ ...S.metric, border: "2px solid #FEE2E2", background: "#FEF2F2" }}>
               <div style={S.mLabel}>អាករត្រូវបង់</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>
-                {result.currency === "USD" ? fmtUSD(result.tax) : fmtKHR(result.tax)}
-              </div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{fmtKHR(result.tax)}</div>
             </div>
-            {result.currency === "USD" && (
-              <div style={S.metric}>
-                <div style={S.mLabel}>អាករ (ជារៀល)</div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{fmtKHR(result.taxKHR)}</div>
-              </div>
-            )}
           </div>
           <div style={S.card}>
             <div style={S.cardTitle}>តារាងលម្អិត</div>
             <table style={S.tbl}>
-              <thead><tr><th style={S.th}>បរិយាយ</th><th style={S.th}>ទឹកប្រាក់</th></tr></thead>
+              <thead>
+                <tr>
+                  <th style={S.th}>បរិយាយ</th>
+                  <th style={S.th}>អត្រា</th>
+                  <th style={S.th}>ទឹកប្រាក់ (៛)</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td style={S.td}>ចំណូលប្រចាំខែ (មូលដ្ឋានគិតអាករ)</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.rev) : fmtKHR(result.rev)}</td></tr>
-                <tr><td style={S.td}>អត្រា</td><td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>2%</td></tr>
+                <tr>
+                  <td style={S.td}>ចំណូលប្រចាំខែ (មូលដ្ឋានគិតអាករ)</td>
+                  <td style={S.td}>—</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.rev)}</td>
+                </tr>
+                <tr>
+                  <td style={S.td}>អាករស្នាក់នៅ</td>
+                  <td style={S.td}>2%</td>
+                  <td style={{ ...S.td, color: "#c0392b", fontWeight: 700 }}>{fmtKHR(result.tax)}</td>
+                </tr>
               </tbody>
             </table>
             <div style={S.dedTotal}>
-              <span>អាករស្នាក់នៅត្រូវបង់ ({result.currency === "USD" ? fmtUSD(result.rev) : fmtKHR(result.rev)} × 2%)</span>
-              <span>{result.currency === "USD" ? fmtUSD(result.tax) : fmtKHR(result.tax)}</span>
+              <span>អាករស្នាក់នៅត្រូវបង់ ({fmtKHR(result.rev)} × 2%)</span>
+              <span>{fmtKHR(result.tax)}</span>
             </div>
             <div style={S.note}>
-              <strong>រូបមន្ត:</strong> {result.currency === "USD" ? fmtUSD(result.rev) : fmtKHR(result.rev)} × 2% = <strong>{result.currency === "USD" ? fmtUSD(result.tax) : fmtKHR(result.tax)}</strong>
-              {result.currency === "USD" && <><br />ប្រែជារៀល: {fmtUSD(result.tax)} × {result.rate} = <strong>{fmtKHR(result.taxKHR)}</strong></>}
-              <br /><br />
+              <strong>រូបមន្ត:</strong> {fmtKHR(result.rev)} × 2% = <strong>{fmtKHR(result.tax)}</strong><br /><br />
               ត្រូវប្រកាស និងបង់ <strong>ប្រចាំខែ</strong> — ≤ ថ្ងៃទី 20 (ផ្ទាល់) ឬ ≤ ថ្ងៃទី 25 (Online)
             </div>
           </div>
@@ -261,60 +237,32 @@ function SimpleTab() {
 // ══════════════════════════════════════════════════════════════
 function InclusiveTab() {
   const [totalRevenue, setTotalRevenue] = useState("");
-  const [currency,     setCurrency]     = useState("USD");
-  const [exchangeRate, setExchangeRate] = useState("4100");
   const [result,       setResult]       = useState(null);
 
   function calculate() {
     const total = n(totalRevenue);
     if (!total) return;
-    const rate = n(exchangeRate) || 4100;
-
-    // Step 1: extract VAT base (total includes VAT 10%)
-    const vatBase    = total * 100 / 110;
-    const vatAmount  = total - vatBase;
-
-    // Step 2: extract Accommodation Tax base (vatBase includes Acc Tax 2%)
-    const accBase    = vatBase * 100 / 102;
-    const accTax     = vatBase - accBase;
-
-    const totalKHR   = currency === "USD" ? total * rate : total;
-    const vatKHR     = currency === "USD" ? vatAmount * rate : vatAmount;
-    const accBaseKHR = currency === "USD" ? accBase * rate : accBase;
-    const accTaxKHR  = currency === "USD" ? accTax * rate : accTax;
-
-    setResult({ total, vatBase, vatAmount, accBase, accTax, totalKHR, vatKHR, accBaseKHR, accTaxKHR, currency, rate });
+    const vatBase   = total * 100 / 110;
+    const vatAmount = total - vatBase;
+    const accBase   = vatBase * 100 / 102;
+    const accTax    = vatBase - accBase;
+    setResult({ total, vatBase, vatAmount, accBase, accTax });
   }
 
   return (
     <>
       <div style={S.card}>
         <div style={S.cardTitle}>ចំណូលសណ្ឋាគារ (រួម VAT + Accommodation Tax)</div>
-        <div style={S.row2}>
-          <div style={S.field}>
-            <label style={S.label}>ចំណូលប្រចាំខែ (inclusive)</label>
-            <input style={S.input} type="number" placeholder="ឧ: 1020" value={totalRevenue} onChange={e => { setTotalRevenue(e.target.value); setResult(null); }} />
-          </div>
-          <div style={S.field}>
-            <label style={S.label}>រូបិយប័ណ្ណ</label>
-            <select style={S.select} value={currency} onChange={e => { setCurrency(e.target.value); setResult(null); }}>
-              <option value="USD">ដុល្លារអាមេរិក ($)</option>
-              <option value="KHR">រៀល (៛)</option>
-            </select>
-          </div>
+        <div style={S.field}>
+          <label style={S.label}>ចំណូលប្រចាំខែ inclusive (៛)</label>
+          <input style={S.input} type="number" placeholder="ឧ: 4,182,000"
+            value={totalRevenue} onChange={e => { setTotalRevenue(e.target.value); setResult(null); }} />
         </div>
-        {currency === "USD" && (
-          <div style={S.field}>
-            <label style={S.label}>អត្រាប្រែ (៛/$)</label>
-            <input style={S.input} type="number" placeholder="4100" value={exchangeRate} onChange={e => { setExchangeRate(e.target.value); setResult(null); }} />
-          </div>
-        )}
         <div style={S.note}>
           • ករណីនេះ: ចំណូល <strong>រួម</strong> VAT (10%) + Accommodation Tax (2%)<br />
           • ជំហានទី 1: VAT Base = Total × 100/110<br />
           • ជំហានទី 2: Acc Base = VAT Base × 100/102<br />
-          • ជំហានទី 3: Acc Tax = Acc Base × 2%<br />
-          • ឧ: $1,020 → VAT Base $927.27 → Acc Base $909.09 → Acc Tax <strong>$18.18</strong>
+          • ជំហានទី 3: Acc Tax = Acc Base × 2%
         </div>
       </div>
       <button style={S.btn} onClick={calculate}>គណនាអាករស្នាក់នៅ (ករណីរួម VAT)</button>
@@ -324,19 +272,19 @@ function InclusiveTab() {
           <div style={S.metricGrid}>
             <div style={S.metric}>
               <div style={S.mLabel}>ចំណូលសរុប (Inclusive)</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{result.currency === "USD" ? fmtUSD(result.total) : fmtKHR(result.total)}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#0B1F4E", fontFamily: FONT }}>{fmtKHR(result.total)}</div>
             </div>
             <div style={S.metric}>
               <div style={S.mLabel}>VAT Base (÷1.10)</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{result.currency === "USD" ? fmtUSD(result.vatBase) : fmtKHR(result.vatBase)}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{fmtKHR(result.vatBase)}</div>
             </div>
             <div style={S.metric}>
               <div style={S.mLabel}>Accommodation Base (÷1.02)</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{result.currency === "USD" ? fmtUSD(result.accBase) : fmtKHR(result.accBase)}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#2563EB", fontFamily: FONT }}>{fmtKHR(result.accBase)}</div>
             </div>
-            <div style={S.metric}>
+            <div style={{ ...S.metric, border: "2px solid #FEE2E2", background: "#FEF2F2" }}>
               <div style={S.mLabel}>អាករស្នាក់នៅ (2%)</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{result.currency === "USD" ? fmtUSD(result.accTax) : fmtKHR(result.accTax)}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#c0392b", fontFamily: FONT }}>{fmtKHR(result.accTax)}</div>
             </div>
           </div>
 
@@ -348,7 +296,7 @@ function InclusiveTab() {
                   <th style={S.th}>ជំហាន</th>
                   <th style={S.th}>បរិយាយ</th>
                   <th style={S.th}>រូបមន្ត</th>
-                  <th style={S.th}>ទឹកប្រាក់</th>
+                  <th style={S.th}>ទឹកប្រាក់ (៛)</th>
                 </tr>
               </thead>
               <tbody>
@@ -356,69 +304,70 @@ function InclusiveTab() {
                   <td style={{ ...S.td, fontWeight: 700, color: "#2563EB" }}>1</td>
                   <td style={S.td}>ចំណូលសរុប (Total Inclusive)</td>
                   <td style={S.td}>—</td>
-                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.total) : fmtKHR(result.total)}</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.total)}</td>
                 </tr>
                 <tr>
                   <td style={{ ...S.td, fontWeight: 700, color: "#2563EB" }}>2</td>
                   <td style={S.td}>VAT Base (ដក VAT 10%)</td>
                   <td style={{ ...S.td, color: "#64748B" }}>Total × 100/110</td>
-                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.vatBase) : fmtKHR(result.vatBase)}</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.vatBase)}</td>
                 </tr>
                 <tr>
                   <td style={{ ...S.td, fontWeight: 700, color: "#f97316" }}>3</td>
                   <td style={S.td}>VAT Amount</td>
                   <td style={{ ...S.td, color: "#64748B" }}>Total − VAT Base</td>
-                  <td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.vatAmount) : fmtKHR(result.vatAmount)}</td>
+                  <td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{fmtKHR(result.vatAmount)}</td>
                 </tr>
                 <tr>
                   <td style={{ ...S.td, fontWeight: 700, color: "#2563EB" }}>4</td>
                   <td style={S.td}>Accommodation Base (ដក Acc Tax 2%)</td>
                   <td style={{ ...S.td, color: "#64748B" }}>VAT Base × 100/102</td>
-                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.accBase) : fmtKHR(result.accBase)}</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.accBase)}</td>
                 </tr>
               </tbody>
             </table>
             <div style={S.dedTotal}>
               <span>អាករស្នាក់នៅត្រូវបង់ (Acc Base × 2%)</span>
-              <span>{result.currency === "USD" ? fmtUSD(result.accTax) : fmtKHR(result.accTax)}</span>
+              <span>{fmtKHR(result.accTax)}</span>
             </div>
             <div style={S.note}>
               <strong>រូបមន្តពេញ:</strong><br />
-              • VAT Base = {result.currency === "USD" ? fmtUSD(result.total) : fmtKHR(result.total)} × 100/110 = <strong>{result.currency === "USD" ? fmtUSD(result.vatBase) : fmtKHR(result.vatBase)}</strong><br />
-              • Acc Base = {result.currency === "USD" ? fmtUSD(result.vatBase) : fmtKHR(result.vatBase)} × 100/102 = <strong>{result.currency === "USD" ? fmtUSD(result.accBase) : fmtKHR(result.accBase)}</strong><br />
-              • អាករ = {result.currency === "USD" ? fmtUSD(result.accBase) : fmtKHR(result.accBase)} × 2% = <strong>{result.currency === "USD" ? fmtUSD(result.accTax) : fmtKHR(result.accTax)}</strong>
-              {result.currency === "USD" && (
-                <><br />ប្រែជារៀល: {fmtUSD(result.accTax)} × {result.rate} = <strong>{fmtKHR(result.accTaxKHR)}</strong></>
-              )}
-              <br /><br />
+              • VAT Base = {fmtKHR(result.total)} × 100/110 = <strong>{fmtKHR(result.vatBase)}</strong><br />
+              • Acc Base = {fmtKHR(result.vatBase)} × 100/102 = <strong>{fmtKHR(result.accBase)}</strong><br />
+              • អាករ = {fmtKHR(result.accBase)} × 2% = <strong>{fmtKHR(result.accTax)}</strong><br /><br />
               ត្រូវប្រកាស ≤ <strong>ថ្ងៃទី 20</strong> (ផ្ទាល់) ឬ ≤ <strong>ថ្ងៃទី 25</strong> (e-Filing/App) នៃខែបន្ទាប់
             </div>
           </div>
 
-          {/* Verification breakdown */}
           <div style={S.card}>
             <div style={S.cardTitle}>ការផ្ទៀងផ្ទាត់ — សមាមាត្រចំណូលសរុប</div>
             <table style={S.tbl}>
-              <thead><tr><th style={S.th}>សមាសធាតុ</th><th style={S.th}>ទឹកប្រាក់</th><th style={S.th}>%</th></tr></thead>
+              <thead>
+                <tr>
+                  <th style={S.th}>សមាសធាតុ</th>
+                  <th style={S.th}>ទឹកប្រាក់ (៛)</th>
+                  <th style={S.th}>%</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
                   <td style={S.td}>Accommodation Base (Net)</td>
-                  <td style={{ ...S.td, color: "#166534", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.accBase) : fmtKHR(result.accBase)}</td>
+                  <td style={{ ...S.td, color: "#166534", fontWeight: 700 }}>{fmtKHR(result.accBase)}</td>
                   <td style={{ ...S.td, color: "#166534" }}>{((result.accBase / result.total) * 100).toFixed(2)}%</td>
                 </tr>
                 <tr>
                   <td style={S.td}>Accommodation Tax (2%)</td>
-                  <td style={{ ...S.td, color: "#c0392b", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.accTax) : fmtKHR(result.accTax)}</td>
+                  <td style={{ ...S.td, color: "#c0392b", fontWeight: 700 }}>{fmtKHR(result.accTax)}</td>
                   <td style={{ ...S.td, color: "#c0392b" }}>{((result.accTax / result.total) * 100).toFixed(2)}%</td>
                 </tr>
                 <tr>
                   <td style={S.td}>VAT (10%)</td>
-                  <td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.vatAmount) : fmtKHR(result.vatAmount)}</td>
+                  <td style={{ ...S.td, color: "#f97316", fontWeight: 700 }}>{fmtKHR(result.vatAmount)}</td>
                   <td style={{ ...S.td, color: "#f97316" }}>{((result.vatAmount / result.total) * 100).toFixed(2)}%</td>
                 </tr>
                 <tr>
                   <td style={{ ...S.td, fontWeight: 700 }}>សរុប</td>
-                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{result.currency === "USD" ? fmtUSD(result.total) : fmtKHR(result.total)}</td>
+                  <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>{fmtKHR(result.total)}</td>
                   <td style={{ ...S.td, color: "#2563EB", fontWeight: 700 }}>100%</td>
                 </tr>
               </tbody>
@@ -437,24 +386,20 @@ export default function AccommodationTaxPage({ setPage }) {
   const [tab, setTab] = useState("simple");
 
   const TABS = [
-    { id: "simple",    label: " ករណីសាមញ្ញ (មិនរួម VAT)" },
-    { id: "inclusive", label: " ករណីរួម VAT + Acc Tax" },
+    { id: "simple",    label: "ករណីសាមញ្ញ (មិនរួម VAT)" },
+    { id: "inclusive", label: "ករណីរួម VAT + Acc Tax" },
   ];
 
   return (
     <div style={S.page}>
       <div style={S.wrap}>
-
         <div style={S.topBar}>
           <button onClick={() => setPage && setPage("home")} style={S.backBtn}>← ត្រឡប់ទៅទំព័រដើម</button>
         </div>
-
         <div style={S.header}>
-          <div style={S.h1}>អាករលើការស្នាក់នៅ </div>
+          <div style={S.h1}>អាករលើការស្នាក់នៅ(Accommodation Tax)</div>
           <div style={S.hSub}></div>
         </div>
-
-        {/* INFO CARDS */}
         <div style={S.infoGrid}>
           {INFO_CARDS.map((c, i) => (
             <div key={i} style={S.infoCard}>
@@ -469,20 +414,14 @@ export default function AccommodationTaxPage({ setPage }) {
             </div>
           ))}
         </div>
-
-        {/* DEFINITIONS */}
         <DefSection />
-
-        {/* TABS */}
         <div style={S.tabRow}>
           {TABS.map(t => (
             <button key={t.id} style={tab === t.id ? S.tabOn : S.tab} onClick={() => setTab(t.id)}>{t.label}</button>
           ))}
         </div>
-
         {tab === "simple"    && <SimpleTab />}
         {tab === "inclusive" && <InclusiveTab />}
-
       </div>
     </div>
   );

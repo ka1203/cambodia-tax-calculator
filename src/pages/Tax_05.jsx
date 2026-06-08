@@ -210,8 +210,8 @@ export default function WithholdingTaxPage({ setPage }) {
 
         {/* HEADER */}
         <div style={S.header}>
-          <div style={S.h1}>ពន្ធកាត់ទុក (Withholding Tax) — កម្មវិធីគណនា</div>
-          <div style={S.hSub}>កម្ពុជា · ប្រកាស ១០៥៩/២០០៣ · ៥៩៩/២០០៩ · ១៨២០/២០១៥ · TAX-05</div>
+          <div style={S.h1}>ពន្ធកាត់ទុក </div>
+          <div style={S.hSub}></div>
         </div>
 
         {/* TABS + FORM */}
